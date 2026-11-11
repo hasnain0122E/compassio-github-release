@@ -1,6 +1,5 @@
-# infra — deployment and infrastructure (planned)
+# Deployment
 
-Nothing is deployed and no infrastructure code exists as of Task 001. Planned
-contents (see `docs/architecture/tech_stack.md`): container definitions for the
-API and web app, and database provisioning once a database is introduced.
-Production URLs and credentials must never be hard-coded here.
+See [the free hosting runbook](../docs/hackathon/free_hosting_runbook.md).
+The Docker image excludes canonical artifacts and preserves production denial.
+Optional private provisioning does not enable source serving or model inference.

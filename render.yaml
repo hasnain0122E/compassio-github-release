@@ -1,0 +1,27 @@
+# Code-only fail-closed backend. Canonical cloud serving is NOT authorized yet.
+services:
+  - type: web
+    name: compassio-api
+    runtime: docker
+    plan: free
+    dockerfilePath: ./infra/Dockerfile
+    dockerContext: .
+    healthCheckPath: /health
+    autoDeployTrigger: "off"
+    envVars:
+      - key: COMPASSIO_ENVIRONMENT
+        value: production
+      - key: COMPASSIO_SOURCE_DATA_ACCESS
+        value: public
+      - key: COMPASSIO_CORS_ORIGINS
+        sync: false
+      - key: COMPASSIO_ML_V2_LOCAL_DEMO
+        value: "false"
+      - key: COMPASSIO_PRELOAD_MODELS
+        value: "false"
+      - key: COMPASSIO_C09_ENABLED
+        value: "false"
+      - key: COMPASSIO_C11_ENABLED
+        value: "true"
+      - key: COMPASSIO_MAX_REQUEST_BODY_BYTES
+        value: "262144"

@@ -78,6 +78,9 @@ def create_app(settings: Settings | None = None) -> FastAPI:
         description=PRODUCT_TAGLINE,
         version=__version__,
         lifespan=lifespan,
+        docs_url=None if resolved.environment == "production" else "/docs",
+        redoc_url=None if resolved.environment == "production" else "/redoc",
+        openapi_url=None if resolved.environment == "production" else "/openapi.json",
     )
     app.dependency_overrides[get_settings] = lambda: resolved
     # Read-only engine; connects lazily on first query, so /health works without a database.
