@@ -1,0 +1,70 @@
+# ML v2 rights-eligibility decisions (Task 006-ML review gate). Enforced by
+# compassio_ml.external.rights and the v2 partition rules.
+#
+# These are OPERATIONAL, CONSERVATIVE use restrictions recorded from observed evidence.
+# They are NOT legal clearances and do not change rights_status (which stays not_reviewed).
+# Statuses:
+#   permitted_pending_review  usable for internal non-commercial research now; a person must
+#                             still review the licence before any release or publication
+#   restricted                must not be used for this purpose until a person records
+#                             reviewed evidence that the use is permitted
+#   not_applicable            the pipeline never uses this source for this purpose
+# Uses: ml_training (fitting, resampling, hyper-parameter tuning, thresholds, calibration),
+#       automated_evaluation (scoring any model against texts or labels from the source),
+#       human_review_reference (showing texts to human reviewers / analysts as reference).
+version: ml_rights_eligibility_v2.0
+evidence_snapshot: data/ml_v2/rights_evidence/20261109T155841Z  # git-ignored; SHA256SUMS inside
+sources:
+  aiddata:
+    ml_training: permitted_pending_review
+    automated_evaluation: permitted_pending_review
+    human_review_reference: permitted_pending_review
+    evidence: >-
+      v1 rights matrix: AidData GCDF 3.0 ODC-By 1.0 (workbook License sheet); Qi et al. labels CC0
+      (Figshare API). v1 consumed-test records are additionally excluded from v2 development.
+  iati_fcdo:
+    ml_training: permitted_pending_review
+    automated_evaluation: permitted_pending_review
+    human_review_reference: permitted_pending_review
+    evidence: >-
+      IATI Registry license_id uk-ogl for 31/31 FCDO datasets (retrieved registry_datasets.json).
+      iati.fcdo.gov.uk/robots.txt returned HTTP 403 (no robots or AI content signal served).
+  iati_ec_intpa:
+    ml_training: permitted_pending_review
+    automated_evaluation: permitted_pending_review
+    human_review_reference: permitted_pending_review
+    evidence: >-
+      IATI Registry license_id other-at (attribution) for all EC INTPA datasets; ec.europa.eu
+      robots.txt has no rule matching /international-partnerships/assets/iati/ and no
+      Content-Signal. Commission legal notice (retrieved with the data, role=terms, sha256
+      47cef732e583...): content owned by the EU is licensed CC BY 4.0 under Commission Decision
+      2011/833 unless otherwise indicated; credit required, changes indicated; third-party
+      content may need separate clearance. Not reviewed by a person.
+  worldbank_projects:
+    ml_training: not_applicable
+    automated_evaluation: permitted_pending_review
+    human_review_reference: permitted_pending_review
+    evidence: >-
+      General WBG Terms & Conditions (retrieved; the datasets-terms URL redirects there): API use
+      for non-commercial purposes; no commercial use or charging for derivatives. No robots.txt on
+      search.worldbank.org (404); www.worldbank.org robots.txt has no AI content signal.
+      World Bank texts are evaluation-only by design (unseen publisher).
+  gcf_project_pages:
+    ml_training: restricted
+    automated_evaluation: restricted
+    human_review_reference: restricted
+    evidence: >-
+      www.greenclimate.fund/robots.txt declares "Content-Signal: ai-train=no, search=yes,
+      ai-input=yes" (captured 2026-11-09, sha256 b99410eda722...). GCF Terms and conditions:
+      private study, research, teaching and non-commercial use; no derivative works for
+      commercial purposes without written consent; no AI-specific clause. The ai-train=no
+      signal is treated as excluding model training, and evaluation of models built for a
+      product, until a person reviews it. Records are kept for separately authorised reference
+      use only and are excluded from all worksheets and pools.
+  gcf_api_snapshot_backend:
+    ml_training: restricted
+    automated_evaluation: restricted
+    human_review_reference: restricted
+    evidence: >-
+      Backend GCF API snapshot (main checkout data/raw_db/) reported to carry ai-train=no. It is
+      never read by ML v2 code (V2Paths forbids raw_db/ and db/ under the input root).

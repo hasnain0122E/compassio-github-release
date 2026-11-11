@@ -1,0 +1,15 @@
+{
+  "completed_at": "2026-11-09T11:06:17.208372+00:00",
+  "git_head": "153dce85439c712cb1e2fb4dfa799002368e8126",
+  "opened_at": "2026-11-09T11:04:25.792919+00:00",
+  "output_sha256": {
+    "model.joblib": "500c85c7baf2c8277f35447829bb501c28bf523824315b14a161b9fddcf3d463",
+    "results.json": "7bdb722b5471730433618ef4d8f7a4de5e2dcf600798a9441f3275258af3556e",
+    "test_predictions.parquet": "2d8434f7b4bee3989ca44922498e7dac47ce25c534eb98ac1931981d275d1990"
+  },
+  "plan_sha256": "c4760503f4b8798706e24cccfe7b87a4203751b8722d946984ebf76a47b8b3cb",
+  "plan_version": "final_evaluation_v1",
+  "protocol": "pakistan_holdout",
+  "source_git_commit": "f14f397fbed29364e7b43bfd1f0cdc582c6b3442",
+  "status": "completed"
+}

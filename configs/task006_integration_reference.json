@@ -1,0 +1,29 @@
+{
+  "backend_checkpoint": "bd2fe3085fcc30d89f9ace9d4cc3326598cf31b0",
+  "hash_normalization": "CRLF to LF for portable text checks; binary artifacts use their existing locks",
+  "ml_checkpoint": "22f44628155572b2a46c7b25a40f4ff02e85ab49",
+  "protected_text_sha256": {
+    "apps/api/src/compassio_api/db/migrations/env.py": "589d353ab6bc0fb95c7c30ab93f8d95a512c8d6b728142c867e190fbe55886c4",
+    "apps/api/src/compassio_api/db/migrations/script.py.mako": "98b2d537663e8ade53770181b3db56426b6858c3d1e80de6f100d41dd5bf2788",
+    "apps/api/src/compassio_api/db/migrations/versions/0001_initial_schema.py": "94551a1793bb5e947f58bc6c860be8474eec7e1d2f56df8989f17114d272982d",
+    "apps/api/src/compassio_api/db/migrations/versions/0002_backend_enrichment_registry_enrichments_.py": "23e5f975ba0f8b11084d3b43adf6aee6709c14b72fee3a1a5a59584c6879fe89",
+    "apps/api/src/compassio_api/db/migrations/versions/0003_search_indexes.py": "c394fe9642b47b0cfba3e1e2b71307ad6127b2575be19685ed373604e4f791ba",
+    "apps/api/src/compassio_api/db/models.py": "7a3640a82a222ee00bd971638913ecfec9b69957d01e661e85c2d385dcac2ae2",
+    "apps/api/src/compassio_api/services/finance.py": "9ca9ef3fd0cf0affde50c50d5dbac0026b2a038001121522bd3f7244d8b3bbfd",
+    "configs/ai_assessment_permissions_v2.json": "f853ccc00bc93b6cab5439366256f9f3c65834526c0e7b453944ef2b49da984b",
+    "configs/external_sources_v2.yaml": "2a8a2ff83c90c2b2dffff0f736cacbcfbf2d5d49fc787d9262d8ffe476c9a425",
+    "configs/final_evaluation_v1.sha256": "135ce7e5778801f76dba8739a2548a025e737696f927f89e52b16f7ecff06b6d",
+    "configs/final_evaluation_v1.yaml": "c4760503f4b8798706e24cccfe7b87a4203751b8722d946984ebf76a47b8b3cb",
+    "configs/label_mapping_v2.yaml": "0fd67c218939b65a5736b5ab8ccec0deb1af833d735dd33f3b0b89f708ae6621",
+    "configs/ml_rights_eligibility_v2.yaml": "0118fcca373d30d7b97cf41ee0a5c1e2c487783198f2187cc302afdcb824d05c",
+    "configs/research_split_v1.lock.json": "3d5b34d43bfb2547498a8280fe7b272b5665b84d29b930383e8f797fb1166c70",
+    "configs/research_split_v1.yaml": "e06de7e236723784e8268e8c4ea8ca35a6c1f86281419476e48f357c5e6e4743",
+    "configs/trusted_model_releases.json": "06caec1c2dc43839c2617819baab2e3d2b4896bd00cf29789c069ec29f6e0eb3",
+    "data/manifests/backend_source_registry.json": "8d3c08f685dcb37b39432b19cf146bb6bb29a48de450df0b2423d3636a6d0837",
+    "data/manifests/source_manifest.json": "f9a233d60cec6feaad2f1fb2b4d645cecf7d80644dbcea31a8de791d8cba9c68",
+    "packages/compassio_ml/src/compassio_ml/external/development.py": "30f62979de176a04859f3a3e356744477c9eb2e0c126351db808a3bb0c77ffc8",
+    "packages/compassio_ml/src/compassio_ml/external/iati.py": "bc8813ddca09ca0179634c353604f0b2a6b09350451dc23447bc62aaad294fd4",
+    "packages/compassio_ml/src/compassio_ml/finance/contract.py": "3c39f1c41bc3c548fa173784a99df41e562d8ebd89843df1775b4fe4f1d6cb5d",
+    "packages/compassio_ml/src/compassio_ml/modeling/release.py": "1ce3bbe4aa15d1772850a87bfe0f73aa9e7f636a9125bc56020ff72d96705720"
+  }
+}

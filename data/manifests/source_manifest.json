@@ -1,0 +1,325 @@
+{
+  "schema_version": 2,
+  "entries": [
+    {
+      "source_id": "adb_pakistan",
+      "original_filename": "ADB Project in Pakistan.xml",
+      "file_relpath": "raw/adb_pakistan/ADB Project in Pakistan.xml",
+      "file_size_bytes": 14346227,
+      "file_format": "xml",
+      "publisher": "Asian Development Bank (IATI reporting-org XM-DAC-46004)",
+      "source_url": null,
+      "publisher_reference_url": "https://data.adb.org/dataset/adb-projects-pakistan",
+      "sha256": "58f1dca29b4be3790cf7790fc578e723fda798a8f75755358fa69918efac6862",
+      "acquisition_date": null,
+      "inspected_at": "2026-11-09T10:27:49Z",
+      "source_publication_date": null,
+      "rights_status": "not_reviewed",
+      "rights_evidence": null,
+      "published_license_notes": "Not verified: the reference page returned HTTP 403 to automated access on 2026-11-09. ADB data terms must be reviewed by a person.",
+      "unit_of_observation": "one IATI activity (an ADB loan/grant financing instrument)",
+      "record_count_after_inspection": 193,
+      "related_sources": [
+        "gcf_projects",
+        "climate_project_explorer"
+      ],
+      "known_duplicates_notes": null,
+      "confirmed_facts": [
+        "IATI standard version 2.03; generated-datetime 2026-10-21T16:49:28+08:00",
+        "All activities report recipient-country PK and default-currency USD"
+      ],
+      "assumptions": [
+        "Acquisition date not recorded by the developer (file timestamps are not evidence of download date)",
+        "Download URL not recorded"
+      ],
+      "limitations": [
+        "Policy markers use ADB's own vocabulary (99) without significance scores; they are not OECD Rio markers"
+      ]
+    },
+    {
+      "source_id": "aiddata",
+      "original_filename": "AidDatas_Global_Chinese_Development_Finance_Dataset_Version_3_0.zip",
+      "file_relpath": "raw/aiddata/AidDatas_Global_Chinese_Development_Finance_Dataset_Version_3_0.zip",
+      "file_size_bytes": 28561122,
+      "file_format": "zip",
+      "publisher": "AidData (William & Mary)",
+      "source_url": null,
+      "publisher_reference_url": "https://www.aiddata.org/data/aiddatas-global-chinese-development-finance-dataset-version-3-0",
+      "sha256": "290da2887a6984beaa6d269d2171798951e0644cae579497dafb8bd78646e097",
+      "acquisition_date": null,
+      "inspected_at": "2026-11-09T10:27:49Z",
+      "source_publication_date": null,
+      "rights_status": "not_reviewed",
+      "rights_evidence": null,
+      "published_license_notes": "Workbook 'License' sheet: Open Data Commons Attribution License (ODC-By 1.0); attribution to AidData required and the licence must be stated on redistribution. The dataset web page (checked 2026-11-09) states no licence and names two works as the official citation. Not human-reviewed.",
+      "unit_of_observation": "one Chinese official-sector project/activity commitment record",
+      "record_count_after_inspection": 20985,
+      "related_sources": [
+        "research_paper"
+      ],
+      "known_duplicates_notes": null,
+      "confirmed_facts": [
+        "Workbook 'Contents' sheet states release date November 07, 2023",
+        "Workbook 'License' sheet states Open Data Commons Attribution License (ODC-By 1.0)",
+        "'Guide' sheet states 20,985 records, 17,957 recommended for aggregates",
+        "The AidData dataset page offers a download with the identical filename AidDatas_Global_Chinese_Development_Finance_Dataset_Version_3_0.zip (checked 2026-11-09); the page gives 'Date Published November 6, 2023'"
+      ],
+      "assumptions": [
+        "Acquisition date not recorded by the developer (file timestamps are not evidence of download date)"
+      ],
+      "limitations": [
+        "Descriptions are retrospective summaries that may include implementation outcomes",
+        "Archive contains macOS metadata (__MACOSX, .DS_Store) which is ignored"
+      ]
+    },
+    {
+      "source_id": "climate_funds_update",
+      "original_filename": "CFU-Website-Master-2025.xlsx",
+      "file_relpath": "raw/climate_funds_update/CFU-Website-Master-2025.xlsx",
+      "file_size_bytes": 880100,
+      "file_format": "xlsx",
+      "publisher": "Climate Funds Update (ODI / Heinrich Boll Stiftung)",
+      "source_url": null,
+      "publisher_reference_url": "https://climatefundsupdate.org/data-dashboard/",
+      "sha256": "7b3cf06b948365da99a164d21bbb1d176db0e938ff70af9f2b391f070c14e099",
+      "acquisition_date": null,
+      "inspected_at": "2026-11-09T10:27:49Z",
+      "source_publication_date": null,
+      "rights_status": "not_reviewed",
+      "rights_evidence": null,
+      "published_license_notes": "The data dashboard (checked 2026-11-09) links an Excel file named CFU-Website-Master-2025.xlsx and shows '(c) Copyright Climate Funds Update 2026'; no licence or reuse terms are stated. Terms must be reviewed by a person.",
+      "unit_of_observation": "Projects sheet: one fund-approved project row; Pledges: one contributor pledge; Fund Status: one fund",
+      "record_count_after_inspection": 4066,
+      "related_sources": [
+        "gcf_projects",
+        "gcf_readiness"
+      ],
+      "known_duplicates_notes": null,
+      "confirmed_facts": [
+        "Sheets: 'Fund Status', 'Pledges', 'Projects'",
+        "The CFU data dashboard links a download with the identical filename CFU-Website-Master-2025.xlsx (checked 2026-11-09)"
+      ],
+      "assumptions": [
+        "Acquisition date not recorded by the developer (file timestamps are not evidence of download date)",
+        "Publisher attribution from the filename; download URL not recorded"
+      ],
+      "limitations": [
+        "Workbook author metadata names an individual, not the publisher; provenance of the copy should be confirmed",
+        "Amounts are USD millions"
+      ]
+    },
+    {
+      "source_id": "climate_project_explorer",
+      "original_filename": "search_results.csv",
+      "file_relpath": "raw/climate_project_explorer/search_results.csv",
+      "file_size_bytes": 1391967,
+      "file_format": "csv",
+      "publisher": "Climate Project Explorer (climateprojectexplorer.org)",
+      "source_url": null,
+      "publisher_reference_url": "https://climateprojectexplorer.org/",
+      "sha256": "9850111cdcbcc55b71e36f0f1ba0745cb423cc241f2c4e53dc4df2f6de7ff5ea",
+      "acquisition_date": null,
+      "inspected_at": "2026-11-09T10:27:49Z",
+      "source_publication_date": null,
+      "rights_status": "not_reviewed",
+      "rights_evidence": null,
+      "published_license_notes": "Not checked in Task 003. Terms must be reviewed by a person.",
+      "unit_of_observation": "one document; documents are grouped into project 'families'",
+      "record_count_after_inspection": 498,
+      "related_sources": [
+        "gcf_projects",
+        "adb_pakistan"
+      ],
+      "known_duplicates_notes": null,
+      "confirmed_facts": [
+        "Family and document URLs in the file are on climateprojectexplorer.org",
+        "Rows cover funds GCF, GEF, AF and CIF"
+      ],
+      "assumptions": [
+        "Acquisition date not recorded by the developer (file timestamps are not evidence of download date)",
+        "Export reflects one search query whose parameters were not recorded"
+      ],
+      "limitations": [
+        "No financial fields",
+        "Family Publication Date is the publication date on the explorer, not an approval date"
+      ]
+    },
+    {
+      "source_id": "gcf_countries",
+      "original_filename": "ODL-Export-countries-1794139570848.xlsx",
+      "file_relpath": "raw/gcf_countries/ODL-Export-countries-1794139570848.xlsx",
+      "file_size_bytes": 15994,
+      "file_format": "xlsx",
+      "publisher": "Green Climate Fund",
+      "source_url": null,
+      "publisher_reference_url": "https://data.greenclimate.fund/public/data/countries",
+      "sha256": "0d0c3b027a9a3e9b6b55c7611706ebfbafe567a32b432e57dc7e3b7288b566bf",
+      "acquisition_date": null,
+      "inspected_at": "2026-11-09T10:27:49Z",
+      "source_publication_date": null,
+      "rights_status": "not_reviewed",
+      "rights_evidence": null,
+      "published_license_notes": "GCF Terms and conditions (greenclimate.fund/terms-and-conditions, read 2026-11-09): use for private study, research, teaching and non-commercial purposes encouraged; commercial use, redistribution or derivatives for commercial purposes need prior written consent; attribution 'First published by the Green Climate Fund' with a link; no implied endorsement. Not a legal review.",
+      "unit_of_observation": "one country (aggregate of readiness and funded-activity counts/amounts)",
+      "record_count_after_inspection": 155,
+      "related_sources": [
+        "gcf_projects",
+        "gcf_readiness"
+      ],
+      "known_duplicates_notes": null,
+      "confirmed_facts": [],
+      "assumptions": [
+        "Acquisition date not recorded by the developer (file timestamps are not evidence of download date)",
+        "Filename suffix read as export timestamp 2026-11-08T12:06:10Z"
+      ],
+      "limitations": [
+        "Aggregates: must never be summed with project-level amounts",
+        "Written by openpyxl; all cells text"
+      ]
+    },
+    {
+      "source_id": "gcf_historical",
+      "original_filename": "mjcszv9t52-1.zip",
+      "file_relpath": "raw/gcf_historical/mjcszv9t52-1.zip",
+      "file_size_bytes": 3914398,
+      "file_format": "zip",
+      "publisher": "Research authors (archive mjcszv9t52-1)",
+      "source_url": null,
+      "publisher_reference_url": null,
+      "sha256": "dbbf4aae107e664037f35c01d6c21a6b80722c181a9a262e43110df1ea1d0778",
+      "acquisition_date": null,
+      "inspected_at": "2026-11-09T10:27:49Z",
+      "source_publication_date": null,
+      "rights_status": "not_reviewed",
+      "rights_evidence": null,
+      "published_license_notes": null,
+      "unit_of_observation": "one GCF funded project (Ref_N) with co-financing breakdown",
+      "record_count_after_inspection": 128,
+      "related_sources": [
+        "gcf_projects"
+      ],
+      "known_duplicates_notes": null,
+      "confirmed_facts": [
+        "Workbook properties: created 2020-03-25, modified 2020-03-26",
+        "'TO READ' sheet states Total Project Financing is in USD thousands"
+      ],
+      "assumptions": [
+        "Acquisition date not recorded by the developer (file timestamps are not evidence of download date)",
+        "Archive name suggests a Mendeley Data dataset id; URL not recorded"
+      ],
+      "limitations": [
+        "'TO READ' describes Project Name, Date of Approval and Country columns that are absent from the Portfolio sheet",
+        "Duplicate column headers in the Portfolio sheet"
+      ]
+    },
+    {
+      "source_id": "gcf_projects",
+      "original_filename": "ODL-Export-projects-1794139775112.xlsx",
+      "file_relpath": "raw/gcf_projects/ODL-Export-projects-1794139775112.xlsx",
+      "file_size_bytes": 42151,
+      "file_format": "xlsx",
+      "publisher": "Green Climate Fund",
+      "source_url": null,
+      "publisher_reference_url": "https://data.greenclimate.fund/public/data/projects",
+      "sha256": "dd7c0ee238b9557a3dbacf31c3061e1e8161796636a08f4674783a86cb18635f",
+      "acquisition_date": null,
+      "inspected_at": "2026-11-09T10:27:49Z",
+      "source_publication_date": null,
+      "rights_status": "not_reviewed",
+      "rights_evidence": null,
+      "published_license_notes": "GCF Terms and conditions (greenclimate.fund/terms-and-conditions, read 2026-11-09): use for private study, research, teaching and non-commercial purposes encouraged; commercial use, redistribution or derivatives for commercial purposes need prior written consent; attribution 'First published by the Green Climate Fund' with a link; no implied endorsement. Not a legal review.",
+      "unit_of_observation": "one GCF funded project (FP/SAP reference number)",
+      "record_count_after_inspection": 379,
+      "related_sources": [
+        "gcf_historical",
+        "climate_funds_update",
+        "climate_project_explorer"
+      ],
+      "known_duplicates_notes": null,
+      "confirmed_facts": [
+        "Single sheet 'Sheet 1'; reference numbers are FPnnn/SAPnnn"
+      ],
+      "assumptions": [
+        "Acquisition date not recorded by the developer (file timestamps are not evidence of download date)",
+        "Filename suffix 1794139775112 read as an epoch-milliseconds export timestamp (2026-11-08T12:09:35Z)",
+        "'FA Financing' is GCF funding in USD (column header states no unit)"
+      ],
+      "limitations": [
+        "Workbook properties show it was written by openpyxl and all cells are text; the bytes may not be the publisher's original export",
+        "No approval date column; only board meeting code (BM)"
+      ]
+    },
+    {
+      "source_id": "gcf_readiness",
+      "original_filename": "ODL-Export-readiness-1794139579990.xlsx",
+      "file_relpath": "raw/gcf_readiness/ODL-Export-readiness-1794139579990.xlsx",
+      "file_size_bytes": 83951,
+      "file_format": "xlsx",
+      "publisher": "Green Climate Fund",
+      "source_url": null,
+      "publisher_reference_url": "https://data.greenclimate.fund/public/data/readiness",
+      "sha256": "ee4c75c16a3308856c9922f35b01051e58622d885bab22f82aaa762517a2189c",
+      "acquisition_date": null,
+      "inspected_at": "2026-11-09T10:27:49Z",
+      "source_publication_date": null,
+      "rights_status": "not_reviewed",
+      "rights_evidence": null,
+      "published_license_notes": "GCF Terms and conditions (greenclimate.fund/terms-and-conditions, read 2026-11-09): use for private study, research, teaching and non-commercial purposes encouraged; commercial use, redistribution or derivatives for commercial purposes need prior written consent; attribution 'First published by the Green Climate Fund' with a link; no implied endorsement. Not a legal review.",
+      "unit_of_observation": "one readiness grant/activity row (Ref # is not unique)",
+      "record_count_after_inspection": 876,
+      "related_sources": [
+        "climate_funds_update",
+        "gcf_countries"
+      ],
+      "known_duplicates_notes": null,
+      "confirmed_facts": [],
+      "assumptions": [
+        "Acquisition date not recorded by the developer (file timestamps are not evidence of download date)",
+        "Filename suffix read as export timestamp 2026-11-08T12:06:19Z",
+        "'Financing' is USD (column header states no unit)"
+      ],
+      "limitations": [
+        "Written by openpyxl; all cells text",
+        "Cancelled grants carry placeholder Financing values (e.g. 1)"
+      ]
+    },
+    {
+      "source_id": "research_paper",
+      "original_filename": "30015124.zip",
+      "file_relpath": "raw/research_paper/30015124.zip",
+      "file_size_bytes": 23003237,
+      "file_format": "zip",
+      "publisher": "Qi, Tang, Zhang, Wang & Qian (Scientific Data 13, 277, 2026), via Figshare",
+      "source_url": null,
+      "publisher_reference_url": "https://doi.org/10.6084/m9.figshare.30015124",
+      "sha256": "f4420394676e17be8d78d2b8ddbb5293a7fcf0d4c0633edd7a34a0a3f539557d",
+      "acquisition_date": null,
+      "inspected_at": "2026-11-09T10:27:49Z",
+      "source_publication_date": null,
+      "rights_status": "not_reviewed",
+      "rights_evidence": null,
+      "published_license_notes": "Figshare API (api.figshare.com/v2/articles/30015124, checked 2026-11-09) lists the item licence as CC0 (creativecommons.org/publicdomain/zero/1.0). The article itself (doi:10.1038/s41597-026-06605-9) is CC BY 4.0. Cite the paper. Not human-reviewed.",
+      "unit_of_observation": "one AidData GCDF 3.0 project/activity record (AidData_Record_ID)",
+      "record_count_after_inspection": 20985,
+      "related_sources": [
+        "aiddata"
+      ],
+      "known_duplicates_notes": null,
+      "confirmed_facts": [
+        "Archive contains exactly two workbooks: Chinese_Climate_Finance_2000-2021.xlsx and Chinese_Development_Finance_SDG_Categorizations_2000-2021.xlsx",
+        "Both workbooks are byte-identical to Figshare item 30015124 version 1 (MD5 7fd6e1d1459c1aac2fe32694010053cf and 488f213db78985973051e81e7fd639b9 match the Figshare API, checked 2026-11-09); Figshare published date 2026-02-20",
+        "Every AidData_Record_ID in both workbooks exists in AidData GCDF 3.0",
+        "rio_marker order is (Overall, Mitigation, Adaptation) per the paper's Table 1 header; scores 0/1/2 = not targeted/significant/principal per Methods, Data processing",
+        "Research workbook text fields are truncated at 255 characters (Title 12 rows, Funding_Agencies 7, Funding_Agencies_Type 1) relative to AidData"
+      ],
+      "assumptions": [
+        "Acquisition date not recorded by the developer (file timestamps are not evidence of download date)",
+        "The local ZIP wrapper (30015124.zip) bundles the Figshare files at download time; its own bytes are not published by Figshare"
+      ],
+      "limitations": [
+        "The paper states inter-annotator agreement statistics are included in the final dataset, but no agreement column exists in either workbook",
+        "Labels are the authors' annotations, cross-verified with ClimateBERT per the paper; they are not independent ground truth"
+      ]
+    }
+  ]
+}

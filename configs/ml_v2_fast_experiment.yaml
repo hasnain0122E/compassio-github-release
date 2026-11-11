@@ -1,0 +1,104 @@
+# Compassio ML v2 FAST-TRACK experiment plan (Task 006-ML2). Frozen BEFORE any model is fitted.
+# Executed by `uv run compassio-v2-train benchmark --plan-sha256 <sha>`; the runner refuses if
+# this file's SHA-256, the pinned inputs or the TRAIN/VALID memberships differ.
+# Development-only: VALID is used once to choose among finalists by the rule below, so its
+# scores are optimistic for the chosen model. No sealed/external/consumed-v1 data is read.
+plan_version: ml_v2_fast_v1
+seed: 20261110
+
+inputs:
+  audit_id: quality_7e70e77d22bba416          # loaded ONLY via quality_v2.audit.load_eligible_donor_records
+  build_id: v2build_a37deb181332
+  build_manifest_sha256: ae8fea9f84dc041264db14c5067b9c4f671d673b22e6caa6d9d08f8165b1e583
+  development_sha256: 9c25b796450d1c13b71f28860280876afbab7b9e373df31a63d741f0fda2b53f
+  membership_sha256: 4a3f6541cf658f4a3a825d83d40522fe8bd9ec1fa122686c4eaab66825c02a46
+  rights_config_sha256: 0118fcca373d30d7b97cf41ee0a5c1e2c487783198f2187cc302afdcb824d05c
+  quality_report_sha256: f080fad45443d78d69c5fa5c37b4c6da314bb02c776ae17f036f32c1badaa401
+  record_quality_sha256: 6807e0cc8bb8e543372cd4096d3d01e1d9d82806edd197539ff9065bceaa92da
+  memberships:  # sha256 of sorted "candidate_id|y" lines (y = donor_rio_overall > 0)
+    train: {records: 13317, positives: 4194, sha256: ad128fc332ae35228a235e992d66241432ce742932414f142852bd62250eb103}
+    valid: {records: 2550, positives: 827, sha256: 3b001fc0a693b004e3e5acbe95f05fd9b5c69c32157ebec651ad01a11269049d}
+  training_sources: [iati_fcdo, iati_ec_intpa]   # rights: ml_training permitted_pending_review
+  aiddata_augmentation:                          # ablation only; v2 training_candidate partition
+    research_table_sha256: 71fc5a10285d25ed22d7e804f6cd5ec66783b6c6163168b5f8ab7cb46ae9d394
+  v1_release:                                    # fixed comparator; never retrained or re-thresholded
+    release_dir: models/compassio_ccrc_v1
+    model_version: compassio-ccrc-1.0.0-mvp-research-screening
+    artifact_sha256: 53b226f6e866bd5377b951aaeb87f9be86c72dc9ac444a807bf0d49c857d3656
+    fingerprint: 3023fe3d148b605c3ed9079c93f07296193fd2d8d5f77b8a82a163e58ccdc495
+
+label:
+  positive: "donor_rio_overall > 0 (Rio significant=1 or principal=2 on mitigation or adaptation)"
+  origin: B_donor_reported_rio   # publisher-reported markers; NOT human-verified
+  adaptation_only: "donor_rio_adaptation > 0 and donor_rio_mitigation == 0"
+  non_energy: "not is_energy_sector"
+text_representation: title_description   # title_clean + description_clean only; no metadata inputs
+
+cv:
+  n_splits: 3
+  group_column: partition_group_id       # StratifiedGroupKFold inside TRAIN only
+hyperparameter_selection: train_oof_average_precision   # validation never used for this
+threshold: train_oof_max_f1                              # refit on full TRAIN; score >= threshold
+calibration:
+  lr: none (class-weighted logistic regression scores are reported as probabilities with Brier/ECE)
+  svm_platt: "Platt sigmoid fitted on group-aware TRAIN out-of-fold decision scores"
+  linear_svm: none (decision scores; no Brier/ECE)
+
+features:
+  word: {analyzer: word, ngram_range: [1, 2], min_df: 2, max_df: 0.9, max_features: 200000, sublinear_tf: true}
+  char: {analyzer: char_wb, ngram_range: [2, 5], min_df: 3, max_df: 0.95, max_features: 300000, sublinear_tf: true}
+
+candidates:   # bounded grids; every config is listed (no open-ended search)
+  - {name: A_word_lr, features: word, classifier: lr, weighting: none,
+     grid: [{C: 1.0, class_weight: balanced}, {C: 4.0, class_weight: balanced}, {C: 16.0, class_weight: balanced}, {C: 4.0, class_weight: none}]}
+  - {name: B_char_lr, features: char, classifier: lr, weighting: none,
+     grid: [{C: 2.0, class_weight: balanced}, {C: 8.0, class_weight: balanced}, {C: 32.0, class_weight: balanced}]}
+  - {name: C_wordchar_lr, features: word_char, classifier: lr, weighting: none,
+     grid: [{C: 4.0, class_weight: balanced}, {C: 16.0, class_weight: balanced}]}
+  - {name: C_wordchar_svm, features: word_char, classifier: linear_svm, weighting: none,
+     grid: [{C: 0.1, class_weight: balanced}, {C: 0.5, class_weight: balanced}]}
+  - {name: D_word_svm_platt, features: word, classifier: svm_platt, weighting: none,
+     grid: [{C: 0.1, class_weight: balanced}, {C: 0.5, class_weight: balanced}, {C: 1.0, class_weight: balanced}]}
+  - {name: E_publisher_balanced, features: best_of_ABC, classifier: best_of_ABC, weighting: publisher_balanced, grid: best_of_ABC}
+  - {name: E_family_inverse, features: best_of_ABC, classifier: best_of_ABC, weighting: family_inverse, grid: best_of_ABC}
+# E reuses the train-OOF-best A/B/C configuration of the same population (decided on TRAIN only).
+
+populations:            # TRAIN subset -> VALID subset
+  fcdo: {train_sources: [iati_fcdo], valid_sources: [iati_fcdo], candidates: [A, B, C, D]}
+  ec: {train_sources: [iati_ec_intpa], valid_sources: [iati_ec_intpa], candidates: [A, B, C, D]}
+  combined: {train_sources: [iati_fcdo, iati_ec_intpa], valid_sources: [iati_fcdo, iati_ec_intpa], candidates: [A, B, C, D, E]}
+  combined_plus_aiddata: {train_sources: [iati_fcdo, iati_ec_intpa, aiddata], valid_sources: [iati_fcdo, iati_ec_intpa], candidates: [best_of_combined]}
+transfer:               # trained on one publisher, scored on the other's VALID; families of the
+  - {train: fcdo, evaluate_on: iati_ec_intpa}   # target publisher are excluded from training
+  - {train: ec, evaluate_on: iati_fcdo}
+
+baselines: [v1_release, keyword, majority]   # scored on the identical VALID records
+
+selection:              # applied ONCE to the finalists of populations combined + combined_plus_aiddata
+  population: combined_valid
+  guard_min_non_energy_precision: 0.60
+  primary_metric: non_energy_average_precision
+  tie_window: 0.005
+  tie_breakers: [adaptation_only_recall, average_precision, artifact_bytes]
+  improvement_claim: "paired group-bootstrap 95% CI of (champion AP - v1 AP) on combined VALID lies above 0"
+  if_no_candidate_passes_guard: retain_v1
+
+bootstrap: {resamples: 2000, confidence: 0.95, group_column: partition_group_id}
+slices:
+  min_records: 30
+  min_positives: 15          # below this a slice is reported as SUPPRESSED (counts only)
+  sector_families: [transport, urban_development, water_sanitation_waste, agriculture_forestry_fishing,
+                    disaster_risk_and_emergency, environment_ecosystems, energy]
+latency: {texts: 1000, repeats: 3}
+
+targets:   # aspirational, reported only; never used to select, never measured on other populations
+  f1: 0.80
+  average_precision: 0.85
+  non_energy_recall: 0.75
+  non_energy_precision: 0.75
+  adaptation_only_recall: 0.70
+
+artifacts:
+  run_root: experiments_v2/fast       # under the git-ignored v2 output root (data/ml_v2/)
+  model_root: models_v2_dev           # champion only; never the trusted release registry
+  status: development_candidate

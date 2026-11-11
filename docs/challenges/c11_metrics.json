@@ -1,0 +1,2262 @@
+{
+  "schema": "c11-evidence-v1",
+  "platform": "Windows-11-10.0.26300-SP0",
+  "python": "3.12.15",
+  "policy": "c11-token-bucket-v1",
+  "frozen_base": "8c083509e324d76aafc7ee097dc4345a94314afd",
+  "branch": "challenge/c11-availability-shield",
+  "packages": {
+    "fastapi": "0.162.2",
+    "uvicorn": "0.54.0",
+    "httpx2": "2.16.0",
+    "scikit-learn": "1.9.1"
+  },
+  "fixtures": "ARTIFICIAL tiny v1/v2 models and invented project DB; real inference",
+  "integrity_unchanged": true,
+  "deterministic_memory_pressure": {
+    "filled_bytes": 267526,
+    "after_50000_rejected_keys_bytes": 267670,
+    "peak_bytes": 269028,
+    "after_expiry_bytes": 107300,
+    "keys": 0,
+    "max_keys": 1024,
+    "high_water": 1024,
+    "evicted": 1024,
+    "admitted": 1024,
+    "rejected": 50000
+  },
+  "quality_gates": {
+    "pytest_summary": "742 passed, 65 skipped in 194.54s (0:03:14)",
+    "pytest_skips": [
+      "SKIPPED [1] tests\\api\\test_postgres_portability.py:45: PostgreSQL verification pending: set COMPASSIO_TEST_POSTGRES_URL to a disposable DB",
+      "SKIPPED [1] tests\\test_local_data.py:29: real source files not present in data/raw",
+      "SKIPPED [1] tests\\test_local_data.py:36: real source files not present in data/raw",
+      "SKIPPED [1] tests\\test_local_data.py:43: real source files not present in data/raw",
+      "SKIPPED [1] tests\\test_local_db.py:57: local source data absent",
+      "SKIPPED [1] tests\\test_local_db.py:71: local source data absent",
+      "SKIPPED [1] tests\\test_local_db.py:82: local source data absent",
+      "SKIPPED [1] tests\\test_local_db.py:98: local source data absent",
+      "SKIPPED [1] tests\\test_local_db.py:113: local source data absent",
+      "SKIPPED [1] tests\\test_local_db.py:127: local source data absent",
+      "SKIPPED [1] tests\\test_local_db.py:142: local source data absent",
+      "SKIPPED [1] tests\\test_local_db_extended.py:59: local data or snapshot absent",
+      "SKIPPED [1] tests\\test_local_db_extended.py:65: local data or snapshot absent",
+      "SKIPPED [1] tests\\test_local_db_extended.py:74: local data or snapshot absent",
+      "SKIPPED [1] tests\\test_local_db_extended.py:87: local data or snapshot absent",
+      "SKIPPED [1] tests\\test_local_db_extended.py:95: local data or snapshot absent",
+      "SKIPPED [1] tests\\test_local_db_extended.py:120: local data or snapshot absent",
+      "SKIPPED [1] tests\\test_local_db_extended.py:138: local data or snapshot absent",
+      "SKIPPED [1] tests\\test_local_decision_engine.py:67: verified database absent",
+      "SKIPPED [5] tests\\test_local_decision_engine.py:73: verified database absent",
+      "SKIPPED [1] tests\\test_local_decision_engine.py:94: verified database absent",
+      "SKIPPED [1] tests\\test_local_decision_engine.py:103: verified database absent",
+      "SKIPPED [1] tests\\test_local_decision_engine.py:118: verified database absent",
+      "SKIPPED [1] tests\\test_local_decision_engine.py:139: verified database absent",
+      "SKIPPED [1] tests\\test_local_decision_engine.py:150: verified database absent",
+      "SKIPPED [1] tests\\test_local_decision_engine.py:161: verified database absent",
+      "SKIPPED [1] tests\\test_local_decision_engine.py:182: verified database absent",
+      "SKIPPED [1] tests\\test_local_final_eval.py:33: final evaluation outputs not present",
+      "SKIPPED [3] tests\\test_local_final_eval.py:41: final evaluation outputs not present",
+      "SKIPPED [1] tests\\test_local_final_eval.py:57: final evaluation outputs not present",
+      "SKIPPED [1] tests\\test_local_final_eval.py:66: release not built",
+      "SKIPPED [1] tests\\test_local_ml.py:34: research dataset not built",
+      "SKIPPED [3] tests\\test_local_ml.py:40: research dataset not built",
+      "SKIPPED [1] tests\\test_local_ml.py:54: research dataset not built",
+      "SKIPPED [1] tests\\test_local_ml.py:62: no benchmark artifact present",
+      "SKIPPED [1] tests\\test_local_ml_v2.py:56: COMPASSIO_DATA_ROOT or v2 retrievals not present",
+      "SKIPPED [1] tests\\test_local_ml_v2.py:61: COMPASSIO_DATA_ROOT or v2 retrievals not present",
+      "SKIPPED [1] tests\\test_local_ml_v2.py:68: no review-gate build present",
+      "SKIPPED [1] tests\\test_local_ml_v2.py:79: no review-gate build present",
+      "SKIPPED [1] tests\\test_local_ml_v2.py:94: no review-gate build present",
+      "SKIPPED [1] tests\\test_local_ml_v2.py:109: no review-gate build present",
+      "SKIPPED [1] tests\\test_local_ml_v2_fast.py:27: local ML2 run absent",
+      "SKIPPED [1] tests\\test_local_ml_v2_fast.py:36: local ML2 run absent",
+      "SKIPPED [1] tests\\test_local_ml_v2_fast.py:45: local ML2 run absent",
+      "SKIPPED [1] tests\\test_local_ml_v2_fast.py:53: local ML2 run absent",
+      "SKIPPED [1] tests\\test_local_research_dataset.py:45: research dataset not built",
+      "SKIPPED [1] tests\\test_local_research_dataset.py:52: research dataset not built",
+      "SKIPPED [1] tests\\test_local_research_dataset.py:60: research dataset not built",
+      "SKIPPED [1] tests\\test_local_research_dataset.py:74: research dataset not built",
+      "SKIPPED [1] tests\\test_local_research_dataset.py:87: research dataset not built",
+      "SKIPPED [1] tests\\test_local_research_dataset.py:92: research dataset not built",
+      "SKIPPED [1] tests\\test_local_research_dataset.py:98: research dataset not built",
+      "SKIPPED [1] tests\\test_local_research_dataset.py:106: research dataset not built",
+      "SKIPPED [1] tests\\test_local_research_dataset.py:113: research dataset not built",
+      "SKIPPED [1] tests\\test_local_screening.py:48: model artifacts absent",
+      "SKIPPED [1] tests\\test_local_screening.py:57: model artifacts absent",
+      "SKIPPED [1] tests\\test_local_screening.py:71: model artifacts absent"
+    ],
+    "mypy": [
+      "Success: no issues found in 222 source files"
+    ],
+    "mypy_scripts": [
+      "Success: no issues found in 2 source files"
+    ],
+    "ruff": [
+      "RUF001 String contains ambiguous `\u2013` (EN DASH). Did you mean `-` (HYPHEN-MINUS)?",
+      "   --> scripts\\c11_report.py:168:57",
+      "    |",
+      "166 |     rates = [run[\"abusive\"][\"actual_sent_rps\"] for run in shield_runs]",
+      "167 |     summary = (",
+      "168 |         f\"Final shield dispatch rate: **{min(rates):.2f}\u2013{max(rates):.2f} bot rps**. \"",
+      "    |                                                         ^",
+      "169 |         f\"Independent legitimate requests: **{legit_ok}/{legit_total} HTTP 200**. \"",
+      "170 |         f\"Abusive HTTP 429 responses: **{rejected}**. Shared-IP results are separate below. \"",
+      "    |",
+      "",
+      "E501 Line too long (101 > 100)",
+      "   --> scripts\\c11_report.py:171:101",
+      "    |",
+      "169 |         f\"Independent legitimate requests: **{legit_ok}/{legit_total} HTTP 200**. \"",
+      "170 |         f\"Abusive HTTP 429 responses: **{rejected}**. Shared-IP results are separate below. \"",
+      "171 |         \"Near-target rates reflect measured scheduler variation; exact per-run values are shown.\\n\\n\"",
+      "    |                                                                                                     ^",
+      "172 |     )",
+      "173 |     (DOC / \"c11_results.md\").write_text(",
+      "    |",
+      "",
+      "Found 2 errors."
+    ],
+    "format": [
+      "309 files already formatted"
+    ]
+  },
+  "fixture_and_registry_hashes": {
+    "artifacts\\c11\\example.sqlite": "6e6d343dfa980298de8892edfe88c3a9a12625054d5e017b1d2932798915e478",
+    "artifacts\\c11\\root\\data\\example_v2\\candidate_manifest.json": "7c8fb2a23b015c78b61dd4532a4bf272b66cedf0b439e5b670d607fbc764ae52",
+    "artifacts\\c11\\root\\data\\example_v2\\model.joblib": "8639aa7cd9e611b6dd04a383e4f0a99ccbed2a1531dd78bdcff9622b14da2b83",
+    "artifacts\\c11\\root\\models\\example_v1\\model.joblib": "4d7878af8708ff2dd07b8fa04b21e8b4bd3ff69d85f95b886dd45379f10f907a",
+    "artifacts\\c11\\root\\models\\example_v1\\release_manifest.json": "851151fd96f14efaa53572a0658d0fe38175688f46fbfc7cd69c17fff667aaf3",
+    "artifacts\\c11\\root\\registry.yaml": "2485f776fb1cf1e10870bf9b335be4c4f63902ff804e418c360cce9336f834ab",
+    "artifacts\\c11\\root\\trusted.json": "c0ea885f78e9f8c49efd9db2e0b4d00ed7d478d08acd5deeecf38720f0266721",
+    "configs\\inference_models.yaml": "8dbd603abcf9d7c995b982d3a77645c101d055c92243acfc886659aa7963a63e",
+    "configs\\trusted_model_releases.json": "06caec1c2dc43839c2617819baab2e3d2b4896bd00cf29789c069ec29f6e0eb3"
+  },
+  "raw_sha256": {
+    "baseline": "201ad0f0e4b6964c587dbe60f105b07c3fc4f87071f9dae9f1a281dd224b6a01",
+    "shield": "4ca911aac8fdda2998f72b0a058d91aeb3de6effb14e88c5935f6b0602b2ef76",
+    "earlier_shield_validation": "d34d7433044da6ec47c1f85a4a68ad11ae72f28db1f50c89cc96fe981ab38be4"
+  },
+  "source_sha256": {
+    "scripts\\c11_report.py": "fec98735229550ec3bd4c566d40045e12ca737ba717889d8b0c2c32c43308fe6",
+    "scripts\\c11_benchmark.py": "aca77d0988438abea176de0626379007099dfac4f48fb7976f38ed170a2d44f9",
+    "apps\\api\\src\\compassio_api\\core\\availability.py": "87b849493e5f3437871e956f68d9122a02e614b74f90b5f78c37892db0a28b06",
+    "apps\\api\\src\\compassio_api\\main.py": "09eae59b4499c7ea403c71a5d2c8876d4695e92b4eb71e818dc4f414e751f977",
+    "apps\\api\\src\\compassio_api\\core\\config.py": "85840d42ca9546e3a01df0fc24b86a66e4ea53a4f28fa049dad029b8a0e2d2e9",
+    "apps\\api\\src\\compassio_api\\db\\session.py": "1055c8249bdec403ef9b06baed38a4a250fdaeaaf41e442964625f4295672f88",
+    "uv.lock": "f6720fe264f1619111c01ae0c901de72e32ea14ba91af8e7adf5eaea0587d0d3"
+  },
+  "runs": [
+    {
+      "mode": "baseline",
+      "scenario": "single",
+      "target_abusive_rps": 200,
+      "seconds": 4,
+      "safety_aborted": false,
+      "safety_abort_reason": null,
+      "recovery_failure": null,
+      "identity": "real socket source IPs 127.0.0.2-5, legitimate .9; shared_ip uses .2",
+      "completed_rps": 203.9589277727828,
+      "attempts_finished_rps": 203.9589277727828,
+      "recovery_seconds": null,
+      "recovery_observation_limit_seconds": 3,
+      "example_429": {
+        "status": 429,
+        "body": {
+          "code": "rate_limited",
+          "message": "At most 60 screening requests per minute per client (COMPASSIO_SCREENING_RATE_LIMIT_PER_MINUTE)."
+        },
+        "headers": {
+          "date": "Wed, 11 Nov 2026 20:17:24 GMT",
+          "server": "uvicorn",
+          "content-type": "application/json",
+          "content-length": "135",
+          "retry-after": "60",
+          "x-content-type-options": "nosniff",
+          "referrer-policy": "no-referrer",
+          "cache-control": "no-store",
+          "access-control-allow-origin": "http://localhost:3000",
+          "vary": "Origin"
+        }
+      },
+      "abusive": {
+        "sent": 800,
+        "actual_sent_rps": 199.86227263148658,
+        "status_counts": {
+          "200": 60,
+          "429": 740
+        },
+        "transport_error_counts": {},
+        "read_status_counts": {},
+        "screen_status_counts": {
+          "200": 60,
+          "429": 740
+        },
+        "success_percent": 7.5,
+        "latency_ms": {
+          "p50": 4.3901000171899796,
+          "p95": 296.57869995571673,
+          "p99": 404.2560000671074
+        },
+        "max_scheduling_lag_ms": 2.821399942040337
+      },
+      "legitimate": {
+        "sent": 16,
+        "actual_sent_rps": 3.9912289816201887,
+        "status_counts": {
+          "200": 16
+        },
+        "transport_error_counts": {},
+        "read_status_counts": {
+          "200": 8
+        },
+        "screen_status_counts": {
+          "200": 8
+        },
+        "success_percent": 100.0,
+        "latency_ms": {
+          "p50": 11.715799919329584,
+          "p95": 367.1267998870462,
+          "p99": 367.1267998870462
+        },
+        "max_scheduling_lag_ms": 2.821399942040337
+      },
+      "iteration": 0,
+      "process": {
+        "cpu_seconds_including_startup": 3.890625,
+        "app_source": "artifacts\\c11\\frozen\\apps\\api\\src\\compassio_api\\main.py",
+        "app_source_sha256": "20a331f48afd652cabdd477ec8f2b3e50bb23dfda758c9caec6783cad5b7f09a",
+        "rss_bytes": 222322688,
+        "peak_rss_bytes": 222883840,
+        "limiter": null,
+        "server_observed_load_count": 816,
+        "server_observed_load_rps": 203.85880964348044
+      }
+    },
+    {
+      "mode": "baseline",
+      "scenario": "distributed",
+      "target_abusive_rps": 200,
+      "seconds": 4,
+      "safety_aborted": false,
+      "safety_abort_reason": null,
+      "recovery_failure": null,
+      "identity": "real socket source IPs 127.0.0.2-5, legitimate .9; shared_ip uses .2",
+      "completed_rps": 204.0471553003404,
+      "attempts_finished_rps": 204.0471553003404,
+      "recovery_seconds": null,
+      "recovery_observation_limit_seconds": 3,
+      "example_429": {
+        "status": 429,
+        "body": {
+          "code": "rate_limited",
+          "message": "At most 60 screening requests per minute per client (COMPASSIO_SCREENING_RATE_LIMIT_PER_MINUTE)."
+        },
+        "headers": {
+          "date": "Wed, 11 Nov 2026 20:17:38 GMT",
+          "server": "uvicorn",
+          "content-type": "application/json",
+          "content-length": "135",
+          "retry-after": "59",
+          "x-content-type-options": "nosniff",
+          "referrer-policy": "no-referrer",
+          "cache-control": "no-store",
+          "access-control-allow-origin": "http://localhost:3000",
+          "vary": "Origin"
+        }
+      },
+      "abusive": {
+        "sent": 800,
+        "actual_sent_rps": 199.93738631810263,
+        "status_counts": {
+          "200": 240,
+          "429": 560
+        },
+        "transport_error_counts": {},
+        "read_status_counts": {},
+        "screen_status_counts": {
+          "200": 240,
+          "429": 560
+        },
+        "success_percent": 30.0,
+        "latency_ms": {
+          "p50": 5.841800011694431,
+          "p95": 406.6439000889659,
+          "p99": 529.7901999438182
+        },
+        "max_scheduling_lag_ms": 1.3077999418600328
+      },
+      "legitimate": {
+        "sent": 16,
+        "actual_sent_rps": 3.996917044752992,
+        "status_counts": {
+          "200": 16
+        },
+        "transport_error_counts": {},
+        "read_status_counts": {
+          "200": 8
+        },
+        "screen_status_counts": {
+          "200": 8
+        },
+        "success_percent": 100.0,
+        "latency_ms": {
+          "p50": 13.949700049124658,
+          "p95": 486.21170001570135,
+          "p99": 486.21170001570135
+        },
+        "max_scheduling_lag_ms": 1.3077999418600328
+      },
+      "iteration": 0,
+      "process": {
+        "cpu_seconds_including_startup": 4.65625,
+        "app_source": "artifacts\\c11\\frozen\\apps\\api\\src\\compassio_api\\main.py",
+        "app_source_sha256": "20a331f48afd652cabdd477ec8f2b3e50bb23dfda758c9caec6783cad5b7f09a",
+        "rss_bytes": 225972224,
+        "peak_rss_bytes": 226746368,
+        "limiter": null,
+        "server_observed_load_count": 816,
+        "server_observed_load_rps": 203.9370612693422
+      }
+    },
+    {
+      "mode": "baseline",
+      "scenario": "mixed",
+      "target_abusive_rps": 200,
+      "seconds": 4,
+      "safety_aborted": true,
+      "safety_abort_reason": "capacity_or_transport_failures",
+      "recovery_failure": null,
+      "identity": "real socket source IPs 127.0.0.2-5, legitimate .9; shared_ip uses .2",
+      "completed_rps": 79.95359138445508,
+      "attempts_finished_rps": 87.06057728529554,
+      "recovery_seconds": 0.008115899981930852,
+      "recovery_observation_limit_seconds": 3,
+      "example_429": null,
+      "abusive": {
+        "sent": 96,
+        "actual_sent_rps": 169.13457755035725,
+        "status_counts": {
+          "200": 69,
+          "500": 20,
+          "connection_failure": 7
+        },
+        "transport_error_counts": {
+          "ReadError": 4,
+          "RemoteProtocolError": 3
+        },
+        "read_status_counts": {
+          "200": 21,
+          "500": 20,
+          "connection_failure": 7
+        },
+        "screen_status_counts": {
+          "200": 48
+        },
+        "success_percent": 71.875,
+        "latency_ms": {
+          "p50": 433.4401999367401,
+          "p95": 766.7433000169694,
+          "p99": 812.5228999415413
+        },
+        "max_scheduling_lag_ms": 0
+      },
+      "legitimate": {
+        "sent": 2,
+        "actual_sent_rps": 4.0997905417290506,
+        "status_counts": {
+          "500": 1,
+          "connection_failure": 1
+        },
+        "transport_error_counts": {
+          "ReadError": 1
+        },
+        "read_status_counts": {
+          "500": 1
+        },
+        "screen_status_counts": {
+          "connection_failure": 1
+        },
+        "success_percent": 0.0,
+        "latency_ms": {
+          "p50": 16.63830003235489,
+          "p95": 242.96780000440776,
+          "p99": 242.96780000440776
+        },
+        "max_scheduling_lag_ms": 0
+      },
+      "iteration": 0,
+      "process": {
+        "cpu_seconds_including_startup": 4.0625,
+        "app_source": "artifacts\\c11\\frozen\\apps\\api\\src\\compassio_api\\main.py",
+        "app_source_sha256": "20a331f48afd652cabdd477ec8f2b3e50bb23dfda758c9caec6783cad5b7f09a",
+        "rss_bytes": 235974656,
+        "peak_rss_bytes": 236863488,
+        "limiter": null,
+        "server_observed_load_count": 93,
+        "server_observed_load_rps": 104.42895693418522
+      }
+    },
+    {
+      "mode": "baseline",
+      "scenario": "shared_ip",
+      "target_abusive_rps": 200,
+      "seconds": 4,
+      "safety_aborted": false,
+      "safety_abort_reason": null,
+      "recovery_failure": null,
+      "identity": "real socket source IPs 127.0.0.2-5, legitimate .9; shared_ip uses .2",
+      "completed_rps": 204.72249125798092,
+      "attempts_finished_rps": 204.72249125798092,
+      "recovery_seconds": null,
+      "recovery_observation_limit_seconds": 3,
+      "example_429": {
+        "status": 429,
+        "body": {
+          "code": "rate_limited",
+          "message": "At most 60 screening requests per minute per client (COMPASSIO_SCREENING_RATE_LIMIT_PER_MINUTE)."
+        },
+        "headers": {
+          "date": "Wed, 11 Nov 2026 20:17:58 GMT",
+          "server": "uvicorn",
+          "content-type": "application/json",
+          "content-length": "135",
+          "retry-after": "60",
+          "x-content-type-options": "nosniff",
+          "referrer-policy": "no-referrer",
+          "cache-control": "no-store",
+          "access-control-allow-origin": "http://localhost:3000",
+          "vary": "Origin"
+        }
+      },
+      "abusive": {
+        "sent": 800,
+        "actual_sent_rps": 200.5648196499207,
+        "status_counts": {
+          "200": 60,
+          "429": 740
+        },
+        "transport_error_counts": {},
+        "read_status_counts": {},
+        "screen_status_counts": {
+          "200": 60,
+          "429": 740
+        },
+        "success_percent": 7.5,
+        "latency_ms": {
+          "p50": 4.066199995577335,
+          "p95": 253.26390005648136,
+          "p99": 350.99669999908656
+        },
+        "max_scheduling_lag_ms": 0
+      },
+      "legitimate": {
+        "sent": 16,
+        "actual_sent_rps": 4.002047767740282,
+        "status_counts": {
+          "200": 8,
+          "429": 8
+        },
+        "transport_error_counts": {},
+        "read_status_counts": {
+          "200": 8
+        },
+        "screen_status_counts": {
+          "429": 8
+        },
+        "success_percent": 50.0,
+        "latency_ms": {
+          "p50": 11.265500099398196,
+          "p95": 305.99380005151033,
+          "p99": 305.99380005151033
+        },
+        "max_scheduling_lag_ms": 0
+      },
+      "iteration": 0,
+      "process": {
+        "cpu_seconds_including_startup": 3.5625,
+        "app_source": "artifacts\\c11\\frozen\\apps\\api\\src\\compassio_api\\main.py",
+        "app_source_sha256": "20a331f48afd652cabdd477ec8f2b3e50bb23dfda758c9caec6783cad5b7f09a",
+        "rss_bytes": 221286400,
+        "peak_rss_bytes": 221773824,
+        "limiter": null,
+        "server_observed_load_count": 816,
+        "server_observed_load_rps": 204.58251786713072
+      }
+    },
+    {
+      "mode": "baseline",
+      "scenario": "single",
+      "target_abusive_rps": 200,
+      "seconds": 4,
+      "safety_aborted": false,
+      "safety_abort_reason": null,
+      "recovery_failure": null,
+      "identity": "real socket source IPs 127.0.0.2-5, legitimate .9; shared_ip uses .2",
+      "completed_rps": 204.5278967295519,
+      "attempts_finished_rps": 204.5278967295519,
+      "recovery_seconds": null,
+      "recovery_observation_limit_seconds": 3,
+      "example_429": {
+        "status": 429,
+        "body": {
+          "code": "rate_limited",
+          "message": "At most 60 screening requests per minute per client (COMPASSIO_SCREENING_RATE_LIMIT_PER_MINUTE)."
+        },
+        "headers": {
+          "date": "Wed, 11 Nov 2026 20:18:11 GMT",
+          "server": "uvicorn",
+          "content-type": "application/json",
+          "content-length": "135",
+          "retry-after": "60",
+          "x-content-type-options": "nosniff",
+          "referrer-policy": "no-referrer",
+          "cache-control": "no-store",
+          "access-control-allow-origin": "http://localhost:3000",
+          "vary": "Origin"
+        }
+      },
+      "abusive": {
+        "sent": 800,
+        "actual_sent_rps": 200.37841677478443,
+        "status_counts": {
+          "200": 60,
+          "429": 740
+        },
+        "transport_error_counts": {},
+        "read_status_counts": {},
+        "screen_status_counts": {
+          "200": 60,
+          "429": 740
+        },
+        "success_percent": 7.5,
+        "latency_ms": {
+          "p50": 3.9802000392228365,
+          "p95": 187.60960001964122,
+          "p99": 262.1439000358805
+        },
+        "max_scheduling_lag_ms": 0
+      },
+      "legitimate": {
+        "sent": 16,
+        "actual_sent_rps": 3.9998621914828356,
+        "status_counts": {
+          "200": 16
+        },
+        "transport_error_counts": {},
+        "read_status_counts": {
+          "200": 8
+        },
+        "screen_status_counts": {
+          "200": 8
+        },
+        "success_percent": 100.0,
+        "latency_ms": {
+          "p50": 11.039900011382997,
+          "p95": 234.96019991580397,
+          "p99": 234.96019991580397
+        },
+        "max_scheduling_lag_ms": 0
+      },
+      "iteration": 1,
+      "process": {
+        "cpu_seconds_including_startup": 3.21875,
+        "app_source": "artifacts\\c11\\frozen\\apps\\api\\src\\compassio_api\\main.py",
+        "app_source_sha256": "20a331f48afd652cabdd477ec8f2b3e50bb23dfda758c9caec6783cad5b7f09a",
+        "rss_bytes": 221548544,
+        "peak_rss_bytes": 222179328,
+        "limiter": null,
+        "server_observed_load_count": 816,
+        "server_observed_load_rps": 204.3860442612334
+      }
+    },
+    {
+      "mode": "baseline",
+      "scenario": "distributed",
+      "target_abusive_rps": 200,
+      "seconds": 4,
+      "safety_aborted": true,
+      "safety_abort_reason": "pending_dispatch_ceiling",
+      "recovery_failure": null,
+      "identity": "real socket source IPs 127.0.0.2-5, legitimate .9; shared_ip uses .2",
+      "completed_rps": 170.70099158302216,
+      "attempts_finished_rps": 170.70099158302216,
+      "recovery_seconds": null,
+      "recovery_observation_limit_seconds": 3,
+      "example_429": {
+        "status": 429,
+        "body": {
+          "code": "rate_limited",
+          "message": "At most 60 screening requests per minute per client (COMPASSIO_SCREENING_RATE_LIMIT_PER_MINUTE)."
+        },
+        "headers": {
+          "date": "Wed, 11 Nov 2026 20:18:25 GMT",
+          "server": "uvicorn",
+          "content-type": "application/json",
+          "content-length": "135",
+          "retry-after": "59",
+          "x-content-type-options": "nosniff",
+          "referrer-policy": "no-referrer",
+          "cache-control": "no-store",
+          "access-control-allow-origin": "http://localhost:3000",
+          "vary": "Origin"
+        }
+      },
+      "abusive": {
+        "sent": 304,
+        "actual_sent_rps": 176.18810237694726,
+        "status_counts": {
+          "200": 240,
+          "429": 64
+        },
+        "transport_error_counts": {},
+        "read_status_counts": {},
+        "screen_status_counts": {
+          "200": 240,
+          "429": 64
+        },
+        "success_percent": 78.94736842105263,
+        "latency_ms": {
+          "p50": 401.0398000245914,
+          "p95": 510.4855999816209,
+          "p99": 580.888600088656
+        },
+        "max_scheduling_lag_ms": 0
+      },
+      "legitimate": {
+        "sent": 7,
+        "actual_sent_rps": 3.4979036771297705,
+        "status_counts": {
+          "200": 7
+        },
+        "transport_error_counts": {},
+        "read_status_counts": {
+          "200": 4
+        },
+        "screen_status_counts": {
+          "200": 3
+        },
+        "success_percent": 100.0,
+        "latency_ms": {
+          "p50": 392.3408000264317,
+          "p95": 544.0811000298709,
+          "p99": 544.0811000298709
+        },
+        "max_scheduling_lag_ms": 0
+      },
+      "iteration": 1,
+      "process": {
+        "cpu_seconds_including_startup": 4.421875,
+        "app_source": "artifacts\\c11\\frozen\\apps\\api\\src\\compassio_api\\main.py",
+        "app_source_sha256": "20a331f48afd652cabdd477ec8f2b3e50bb23dfda758c9caec6783cad5b7f09a",
+        "rss_bytes": 225443840,
+        "peak_rss_bytes": 226271232,
+        "limiter": null,
+        "server_observed_load_count": 311,
+        "server_observed_load_rps": 173.69501116985978
+      }
+    },
+    {
+      "mode": "baseline",
+      "scenario": "shared_ip",
+      "target_abusive_rps": 200,
+      "seconds": 4,
+      "safety_aborted": false,
+      "safety_abort_reason": null,
+      "recovery_failure": null,
+      "identity": "real socket source IPs 127.0.0.2-5, legitimate .9; shared_ip uses .2",
+      "completed_rps": 203.52869876959372,
+      "attempts_finished_rps": 203.52869876959372,
+      "recovery_seconds": null,
+      "recovery_observation_limit_seconds": 3,
+      "example_429": {
+        "status": 429,
+        "body": {
+          "code": "rate_limited",
+          "message": "At most 60 screening requests per minute per client (COMPASSIO_SCREENING_RATE_LIMIT_PER_MINUTE)."
+        },
+        "headers": {
+          "date": "Wed, 11 Nov 2026 20:18:34 GMT",
+          "server": "uvicorn",
+          "content-type": "application/json",
+          "content-length": "135",
+          "retry-after": "60",
+          "x-content-type-options": "nosniff",
+          "referrer-policy": "no-referrer",
+          "cache-control": "no-store",
+          "access-control-allow-origin": "http://localhost:3000",
+          "vary": "Origin"
+        }
+      },
+      "abusive": {
+        "sent": 800,
+        "actual_sent_rps": 199.43779010815615,
+        "status_counts": {
+          "200": 59,
+          "429": 741
+        },
+        "transport_error_counts": {},
+        "read_status_counts": {},
+        "screen_status_counts": {
+          "200": 59,
+          "429": 741
+        },
+        "success_percent": 7.375,
+        "latency_ms": {
+          "p50": 3.9192999247461557,
+          "p95": 185.03239995334297,
+          "p99": 231.0429000062868
+        },
+        "max_scheduling_lag_ms": 11.328699993900848
+      },
+      "legitimate": {
+        "sent": 16,
+        "actual_sent_rps": 3.9814552309777294,
+        "status_counts": {
+          "200": 9,
+          "429": 7
+        },
+        "transport_error_counts": {},
+        "read_status_counts": {
+          "200": 8
+        },
+        "screen_status_counts": {
+          "200": 1,
+          "429": 7
+        },
+        "success_percent": 56.25,
+        "latency_ms": {
+          "p50": 10.386099922470748,
+          "p95": 202.94669992290437,
+          "p99": 202.94669992290437
+        },
+        "max_scheduling_lag_ms": 11.328699993900848
+      },
+      "iteration": 1,
+      "process": {
+        "cpu_seconds_including_startup": 3.203125,
+        "app_source": "artifacts\\c11\\frozen\\apps\\api\\src\\compassio_api\\main.py",
+        "app_source_sha256": "20a331f48afd652cabdd477ec8f2b3e50bb23dfda758c9caec6783cad5b7f09a",
+        "rss_bytes": 221020160,
+        "peak_rss_bytes": 221552640,
+        "limiter": null,
+        "server_observed_load_count": 816,
+        "server_observed_load_rps": 203.42620143280317
+      }
+    },
+    {
+      "mode": "shield",
+      "scenario": "single",
+      "target_abusive_rps": 200,
+      "seconds": 4,
+      "safety_aborted": false,
+      "safety_abort_reason": null,
+      "recovery_failure": null,
+      "identity": "real socket source IPs 127.0.0.2-5, legitimate .9; shared_ip uses .2",
+      "completed_rps": 204.95962609316538,
+      "attempts_finished_rps": 204.95962609316538,
+      "recovery_seconds": 0.12179119989741594,
+      "recovery_observation_limit_seconds": 3,
+      "example_429": {
+        "status": 429,
+        "body": {
+          "code": "rate_limited",
+          "message": "Too many requests. Please try again in a moment."
+        },
+        "headers": {
+          "date": "Wed, 11 Nov 2026 20:18:51 GMT",
+          "server": "uvicorn",
+          "content-type": "application/json",
+          "content-length": "87",
+          "retry-after": "1",
+          "x-content-type-options": "nosniff",
+          "referrer-policy": "no-referrer",
+          "cache-control": "no-store",
+          "access-control-expose-headers": "Retry-After",
+          "access-control-allow-origin": "http://localhost:3000",
+          "vary": "Origin"
+        }
+      },
+      "abusive": {
+        "sent": 800,
+        "actual_sent_rps": 200.76556256258806,
+        "status_counts": {
+          "429": 787,
+          "200": 13
+        },
+        "transport_error_counts": {},
+        "read_status_counts": {},
+        "screen_status_counts": {
+          "429": 787,
+          "200": 13
+        },
+        "success_percent": 1.625,
+        "latency_ms": {
+          "p50": 3.101399983279407,
+          "p95": 5.925199948251247,
+          "p99": 23.227300029248
+        },
+        "max_scheduling_lag_ms": 0
+      },
+      "legitimate": {
+        "sent": 16,
+        "actual_sent_rps": 4.007694452723468,
+        "status_counts": {
+          "200": 16
+        },
+        "transport_error_counts": {},
+        "read_status_counts": {
+          "200": 8
+        },
+        "screen_status_counts": {
+          "200": 8
+        },
+        "success_percent": 100.0,
+        "latency_ms": {
+          "p50": 9.55940003041178,
+          "p95": 130.40340004954487,
+          "p99": 130.40340004954487
+        },
+        "max_scheduling_lag_ms": 0
+      },
+      "iteration": 0,
+      "process": {
+        "cpu_seconds_including_startup": 3.015625,
+        "app_source": "apps\\api\\src\\compassio_api\\main.py",
+        "app_source_sha256": "09eae59b4499c7ea403c71a5d2c8876d4695e92b4eb71e818dc4f414e751f977",
+        "rss_bytes": 216354816,
+        "peak_rss_bytes": 216580096,
+        "limiter": {
+          "keys": 3,
+          "max_keys": 1024,
+          "high_water": 3,
+          "evicted": 0,
+          "admitted": 30,
+          "rejected": 788
+        },
+        "server_observed_load_count": 816,
+        "server_observed_load_rps": 204.7833778829474
+      }
+    },
+    {
+      "mode": "shield",
+      "scenario": "distributed",
+      "target_abusive_rps": 200,
+      "seconds": 4,
+      "safety_aborted": false,
+      "safety_abort_reason": null,
+      "recovery_failure": null,
+      "identity": "real socket source IPs 127.0.0.2-5, legitimate .9; shared_ip uses .2",
+      "completed_rps": 204.3417257797388,
+      "attempts_finished_rps": 204.3417257797388,
+      "recovery_seconds": 0.005601300043053925,
+      "recovery_observation_limit_seconds": 3,
+      "example_429": {
+        "status": 429,
+        "body": {
+          "code": "rate_limited",
+          "message": "Too many requests. Please try again in a moment."
+        },
+        "headers": {
+          "date": "Wed, 11 Nov 2026 20:19:02 GMT",
+          "server": "uvicorn",
+          "content-type": "application/json",
+          "content-length": "87",
+          "retry-after": "1",
+          "x-content-type-options": "nosniff",
+          "referrer-policy": "no-referrer",
+          "cache-control": "no-store",
+          "access-control-expose-headers": "Retry-After",
+          "access-control-allow-origin": "http://localhost:3000",
+          "vary": "Origin"
+        }
+      },
+      "abusive": {
+        "sent": 800,
+        "actual_sent_rps": 200.1846910480802,
+        "status_counts": {
+          "429": 748,
+          "200": 52
+        },
+        "transport_error_counts": {},
+        "read_status_counts": {},
+        "screen_status_counts": {
+          "429": 748,
+          "200": 52
+        },
+        "success_percent": 6.5,
+        "latency_ms": {
+          "p50": 3.273200010880828,
+          "p95": 50.21639994811267,
+          "p99": 207.7318000374362
+        },
+        "max_scheduling_lag_ms": 0
+      },
+      "legitimate": {
+        "sent": 16,
+        "actual_sent_rps": 3.9952028799344284,
+        "status_counts": {
+          "200": 16
+        },
+        "transport_error_counts": {},
+        "read_status_counts": {
+          "200": 8
+        },
+        "screen_status_counts": {
+          "200": 8
+        },
+        "success_percent": 100.0,
+        "latency_ms": {
+          "p50": 15.425999998115003,
+          "p95": 273.8219000166282,
+          "p99": 273.8219000166282
+        },
+        "max_scheduling_lag_ms": 0
+      },
+      "iteration": 0,
+      "process": {
+        "cpu_seconds_including_startup": 3.765625,
+        "app_source": "apps\\api\\src\\compassio_api\\main.py",
+        "app_source_sha256": "09eae59b4499c7ea403c71a5d2c8876d4695e92b4eb71e818dc4f414e751f977",
+        "rss_bytes": 218677248,
+        "peak_rss_bytes": 219099136,
+        "limiter": {
+          "keys": 6,
+          "max_keys": 1024,
+          "high_water": 6,
+          "evicted": 0,
+          "admitted": 69,
+          "rejected": 748
+        },
+        "server_observed_load_count": 816,
+        "server_observed_load_rps": 204.18945143310066
+      }
+    },
+    {
+      "mode": "shield",
+      "scenario": "mixed",
+      "target_abusive_rps": 200,
+      "seconds": 4,
+      "safety_aborted": false,
+      "safety_abort_reason": null,
+      "recovery_failure": null,
+      "identity": "real socket source IPs 127.0.0.2-5, legitimate .9; shared_ip uses .2",
+      "completed_rps": 204.57714280704405,
+      "attempts_finished_rps": 204.57714280704405,
+      "recovery_seconds": 0.0077547000255435705,
+      "recovery_observation_limit_seconds": 3,
+      "example_429": {
+        "status": 429,
+        "body": {
+          "code": "rate_limited",
+          "message": "Too many requests. Please try again in a moment."
+        },
+        "headers": {
+          "date": "Wed, 11 Nov 2026 20:19:11 GMT",
+          "server": "uvicorn",
+          "content-type": "application/json",
+          "content-length": "87",
+          "retry-after": "1",
+          "x-content-type-options": "nosniff",
+          "referrer-policy": "no-referrer",
+          "cache-control": "no-store",
+          "access-control-expose-headers": "Retry-After",
+          "access-control-allow-origin": "http://localhost:3000",
+          "vary": "Origin"
+        }
+      },
+      "abusive": {
+        "sent": 800,
+        "actual_sent_rps": 200.458289293192,
+        "status_counts": {
+          "429": 656,
+          "200": 144
+        },
+        "transport_error_counts": {},
+        "read_status_counts": {
+          "200": 118,
+          "429": 282
+        },
+        "screen_status_counts": {
+          "429": 374,
+          "200": 26
+        },
+        "success_percent": 18.0,
+        "latency_ms": {
+          "p50": 8.939299965277314,
+          "p95": 660.1911999750882,
+          "p99": 1022.1151999430731
+        },
+        "max_scheduling_lag_ms": 0
+      },
+      "legitimate": {
+        "sent": 16,
+        "actual_sent_rps": 3.9952009645232356,
+        "status_counts": {
+          "200": 16
+        },
+        "transport_error_counts": {},
+        "read_status_counts": {
+          "200": 8
+        },
+        "screen_status_counts": {
+          "200": 8
+        },
+        "success_percent": 100.0,
+        "latency_ms": {
+          "p50": 39.6343000466004,
+          "p95": 862.3475999338552,
+          "p99": 862.3475999338552
+        },
+        "max_scheduling_lag_ms": 0
+      },
+      "iteration": 0,
+      "process": {
+        "cpu_seconds_including_startup": 6.1875,
+        "app_source": "apps\\api\\src\\compassio_api\\main.py",
+        "app_source_sha256": "09eae59b4499c7ea403c71a5d2c8876d4695e92b4eb71e818dc4f414e751f977",
+        "rss_bytes": 227999744,
+        "peak_rss_bytes": 234987520,
+        "limiter": {
+          "keys": 7,
+          "max_keys": 1024,
+          "high_water": 7,
+          "evicted": 0,
+          "admitted": 161,
+          "rejected": 656
+        },
+        "server_observed_load_count": 816,
+        "server_observed_load_rps": 204.4571764816145
+      }
+    },
+    {
+      "mode": "shield",
+      "scenario": "shared_ip",
+      "target_abusive_rps": 200,
+      "seconds": 4,
+      "safety_aborted": false,
+      "safety_abort_reason": null,
+      "recovery_failure": null,
+      "identity": "real socket source IPs 127.0.0.2-5, legitimate .9; shared_ip uses .2",
+      "completed_rps": 204.73116151164905,
+      "attempts_finished_rps": 204.73116151164905,
+      "recovery_seconds": 0.12024570000357926,
+      "recovery_observation_limit_seconds": 3,
+      "example_429": {
+        "status": 429,
+        "body": {
+          "code": "rate_limited",
+          "message": "Too many requests. Please try again in a moment."
+        },
+        "headers": {
+          "date": "Wed, 11 Nov 2026 20:19:20 GMT",
+          "server": "uvicorn",
+          "content-type": "application/json",
+          "content-length": "87",
+          "retry-after": "1",
+          "x-content-type-options": "nosniff",
+          "referrer-policy": "no-referrer",
+          "cache-control": "no-store",
+          "access-control-expose-headers": "Retry-After",
+          "access-control-allow-origin": "http://localhost:3000",
+          "vary": "Origin"
+        }
+      },
+      "abusive": {
+        "sent": 800,
+        "actual_sent_rps": 200.5705743359932,
+        "status_counts": {
+          "429": 787,
+          "200": 13
+        },
+        "transport_error_counts": {},
+        "read_status_counts": {},
+        "screen_status_counts": {
+          "429": 787,
+          "200": 13
+        },
+        "success_percent": 1.625,
+        "latency_ms": {
+          "p50": 3.792000003159046,
+          "p95": 12.610699981451035,
+          "p99": 89.85919994302094
+        },
+        "max_scheduling_lag_ms": 0
+      },
+      "legitimate": {
+        "sent": 16,
+        "actual_sent_rps": 3.991185758977544,
+        "status_counts": {
+          "200": 8,
+          "429": 8
+        },
+        "transport_error_counts": {},
+        "read_status_counts": {
+          "200": 8
+        },
+        "screen_status_counts": {
+          "429": 8
+        },
+        "success_percent": 50.0,
+        "latency_ms": {
+          "p50": 4.577800049446523,
+          "p95": 178.81760001182556,
+          "p99": 178.81760001182556
+        },
+        "max_scheduling_lag_ms": 0
+      },
+      "iteration": 0,
+      "process": {
+        "cpu_seconds_including_startup": 3.046875,
+        "app_source": "apps\\api\\src\\compassio_api\\main.py",
+        "app_source_sha256": "09eae59b4499c7ea403c71a5d2c8876d4695e92b4eb71e818dc4f414e751f977",
+        "rss_bytes": 216956928,
+        "peak_rss_bytes": 217174016,
+        "limiter": {
+          "keys": 2,
+          "max_keys": 1024,
+          "high_water": 2,
+          "evicted": 0,
+          "admitted": 22,
+          "rejected": 796
+        },
+        "server_observed_load_count": 816,
+        "server_observed_load_rps": 204.59078116065731
+      }
+    },
+    {
+      "mode": "shield",
+      "scenario": "single",
+      "target_abusive_rps": 200,
+      "seconds": 4,
+      "safety_aborted": false,
+      "safety_abort_reason": null,
+      "recovery_failure": null,
+      "identity": "real socket source IPs 127.0.0.2-5, legitimate .9; shared_ip uses .2",
+      "completed_rps": 203.65784972369528,
+      "attempts_finished_rps": 203.65784972369528,
+      "recovery_seconds": 0.5435140000190586,
+      "recovery_observation_limit_seconds": 3,
+      "example_429": {
+        "status": 429,
+        "body": {
+          "code": "rate_limited",
+          "message": "Too many requests. Please try again in a moment."
+        },
+        "headers": {
+          "date": "Wed, 11 Nov 2026 20:19:29 GMT",
+          "server": "uvicorn",
+          "content-type": "application/json",
+          "content-length": "87",
+          "retry-after": "1",
+          "x-content-type-options": "nosniff",
+          "referrer-policy": "no-referrer",
+          "cache-control": "no-store",
+          "access-control-expose-headers": "Retry-After",
+          "access-control-allow-origin": "http://localhost:3000",
+          "vary": "Origin"
+        }
+      },
+      "abusive": {
+        "sent": 800,
+        "actual_sent_rps": 199.84253208924744,
+        "status_counts": {
+          "429": 786,
+          "200": 14
+        },
+        "transport_error_counts": {},
+        "read_status_counts": {},
+        "screen_status_counts": {
+          "429": 786,
+          "200": 14
+        },
+        "success_percent": 1.7500000000000002,
+        "latency_ms": {
+          "p50": 4.0563999209553,
+          "p95": 18.573799985460937,
+          "p99": 76.76299999002367
+        },
+        "max_scheduling_lag_ms": 3.277799924835456
+      },
+      "legitimate": {
+        "sent": 16,
+        "actual_sent_rps": 4.001171222815296,
+        "status_counts": {
+          "200": 16
+        },
+        "transport_error_counts": {},
+        "read_status_counts": {
+          "200": 8
+        },
+        "screen_status_counts": {
+          "200": 8
+        },
+        "success_percent": 100.0,
+        "latency_ms": {
+          "p50": 10.883200098760426,
+          "p95": 199.16449999436736,
+          "p99": 199.16449999436736
+        },
+        "max_scheduling_lag_ms": 3.277799924835456
+      },
+      "iteration": 1,
+      "process": {
+        "cpu_seconds_including_startup": 3.21875,
+        "app_source": "apps\\api\\src\\compassio_api\\main.py",
+        "app_source_sha256": "09eae59b4499c7ea403c71a5d2c8876d4695e92b4eb71e818dc4f414e751f977",
+        "rss_bytes": 216363008,
+        "peak_rss_bytes": 216535040,
+        "limiter": {
+          "keys": 3,
+          "max_keys": 1024,
+          "high_water": 3,
+          "evicted": 0,
+          "admitted": 31,
+          "rejected": 791
+        },
+        "server_observed_load_count": 816,
+        "server_observed_load_rps": 203.83307727023345
+      }
+    },
+    {
+      "mode": "shield",
+      "scenario": "distributed",
+      "target_abusive_rps": 200,
+      "seconds": 4,
+      "safety_aborted": false,
+      "safety_abort_reason": null,
+      "recovery_failure": null,
+      "identity": "real socket source IPs 127.0.0.2-5, legitimate .9; shared_ip uses .2",
+      "completed_rps": 203.61112311778868,
+      "attempts_finished_rps": 203.61112311778868,
+      "recovery_seconds": 0.005162799963727593,
+      "recovery_observation_limit_seconds": 3,
+      "example_429": {
+        "status": 429,
+        "body": {
+          "code": "rate_limited",
+          "message": "Too many requests. Please try again in a moment."
+        },
+        "headers": {
+          "date": "Wed, 11 Nov 2026 20:19:39 GMT",
+          "server": "uvicorn",
+          "content-type": "application/json",
+          "content-length": "87",
+          "retry-after": "1",
+          "x-content-type-options": "nosniff",
+          "referrer-policy": "no-referrer",
+          "cache-control": "no-store",
+          "access-control-expose-headers": "Retry-After",
+          "access-control-allow-origin": "http://localhost:3000",
+          "vary": "Origin"
+        }
+      },
+      "abusive": {
+        "sent": 800,
+        "actual_sent_rps": 199.79350003958578,
+        "status_counts": {
+          "429": 746,
+          "200": 54
+        },
+        "transport_error_counts": {},
+        "read_status_counts": {},
+        "screen_status_counts": {
+          "429": 746,
+          "200": 54
+        },
+        "success_percent": 6.75,
+        "latency_ms": {
+          "p50": 4.358600010164082,
+          "p95": 138.34259996656328,
+          "p99": 272.69969996996224
+        },
+        "max_scheduling_lag_ms": 4.187799985520435
+      },
+      "legitimate": {
+        "sent": 16,
+        "actual_sent_rps": 4.000341362454306,
+        "status_counts": {
+          "200": 16
+        },
+        "transport_error_counts": {},
+        "read_status_counts": {
+          "200": 8
+        },
+        "screen_status_counts": {
+          "200": 8
+        },
+        "success_percent": 100.0,
+        "latency_ms": {
+          "p50": 10.751400026492774,
+          "p95": 322.96290004160255,
+          "p99": 322.96290004160255
+        },
+        "max_scheduling_lag_ms": 4.187799985520435
+      },
+      "iteration": 1,
+      "process": {
+        "cpu_seconds_including_startup": 3.046875,
+        "app_source": "apps\\api\\src\\compassio_api\\main.py",
+        "app_source_sha256": "09eae59b4499c7ea403c71a5d2c8876d4695e92b4eb71e818dc4f414e751f977",
+        "rss_bytes": 220106752,
+        "peak_rss_bytes": 220508160,
+        "limiter": {
+          "keys": 6,
+          "max_keys": 1024,
+          "high_water": 6,
+          "evicted": 0,
+          "admitted": 71,
+          "rejected": 746
+        },
+        "server_observed_load_count": 816,
+        "server_observed_load_rps": 203.79547696295703
+      }
+    },
+    {
+      "mode": "shield",
+      "scenario": "mixed",
+      "target_abusive_rps": 200,
+      "seconds": 4,
+      "safety_aborted": false,
+      "safety_abort_reason": null,
+      "recovery_failure": null,
+      "identity": "real socket source IPs 127.0.0.2-5, legitimate .9; shared_ip uses .2",
+      "completed_rps": 204.4559674787206,
+      "attempts_finished_rps": 204.4559674787206,
+      "recovery_seconds": 0.006204099976457655,
+      "recovery_observation_limit_seconds": 3,
+      "example_429": {
+        "status": 429,
+        "body": {
+          "code": "rate_limited",
+          "message": "Too many requests. Please try again in a moment."
+        },
+        "headers": {
+          "date": "Wed, 11 Nov 2026 20:19:48 GMT",
+          "server": "uvicorn",
+          "content-type": "application/json",
+          "content-length": "87",
+          "retry-after": "1",
+          "x-content-type-options": "nosniff",
+          "referrer-policy": "no-referrer",
+          "cache-control": "no-store",
+          "access-control-expose-headers": "Retry-After",
+          "access-control-allow-origin": "http://localhost:3000",
+          "vary": "Origin"
+        }
+      },
+      "abusive": {
+        "sent": 800,
+        "actual_sent_rps": 200.30566795226156,
+        "status_counts": {
+          "429": 656,
+          "200": 144
+        },
+        "transport_error_counts": {},
+        "read_status_counts": {
+          "200": 118,
+          "429": 282
+        },
+        "screen_status_counts": {
+          "429": 374,
+          "200": 26
+        },
+        "success_percent": 18.0,
+        "latency_ms": {
+          "p50": 8.808999904431403,
+          "p95": 522.3050999920815,
+          "p99": 727.8259999584407
+        },
+        "max_scheduling_lag_ms": 0
+      },
+      "legitimate": {
+        "sent": 16,
+        "actual_sent_rps": 3.982433221570726,
+        "status_counts": {
+          "200": 16
+        },
+        "transport_error_counts": {},
+        "read_status_counts": {
+          "200": 8
+        },
+        "screen_status_counts": {
+          "200": 8
+        },
+        "success_percent": 100.0,
+        "latency_ms": {
+          "p50": 28.60359998885542,
+          "p95": 619.8133999714628,
+          "p99": 619.8133999714628
+        },
+        "max_scheduling_lag_ms": 0
+      },
+      "iteration": 1,
+      "process": {
+        "cpu_seconds_including_startup": 5.6875,
+        "app_source": "apps\\api\\src\\compassio_api\\main.py",
+        "app_source_sha256": "09eae59b4499c7ea403c71a5d2c8876d4695e92b4eb71e818dc4f414e751f977",
+        "rss_bytes": 227721216,
+        "peak_rss_bytes": 234950656,
+        "limiter": {
+          "keys": 7,
+          "max_keys": 1024,
+          "high_water": 7,
+          "evicted": 0,
+          "admitted": 161,
+          "rejected": 656
+        },
+        "server_observed_load_count": 816,
+        "server_observed_load_rps": 204.32003758045215
+      }
+    },
+    {
+      "mode": "shield",
+      "scenario": "shared_ip",
+      "target_abusive_rps": 200,
+      "seconds": 4,
+      "safety_aborted": false,
+      "safety_abort_reason": null,
+      "recovery_failure": null,
+      "identity": "real socket source IPs 127.0.0.2-5, legitimate .9; shared_ip uses .2",
+      "completed_rps": 204.60688961064417,
+      "attempts_finished_rps": 204.60688961064417,
+      "recovery_seconds": 0.12043170002289116,
+      "recovery_observation_limit_seconds": 3,
+      "example_429": {
+        "status": 429,
+        "body": {
+          "code": "rate_limited",
+          "message": "Too many requests. Please try again in a moment."
+        },
+        "headers": {
+          "date": "Wed, 11 Nov 2026 20:19:57 GMT",
+          "server": "uvicorn",
+          "content-type": "application/json",
+          "content-length": "87",
+          "retry-after": "1",
+          "x-content-type-options": "nosniff",
+          "referrer-policy": "no-referrer",
+          "cache-control": "no-store",
+          "access-control-expose-headers": "Retry-After",
+          "access-control-allow-origin": "http://localhost:3000",
+          "vary": "Origin"
+        }
+      },
+      "abusive": {
+        "sent": 800,
+        "actual_sent_rps": 200.49015451493793,
+        "status_counts": {
+          "429": 787,
+          "200": 13
+        },
+        "transport_error_counts": {},
+        "read_status_counts": {},
+        "screen_status_counts": {
+          "429": 787,
+          "200": 13
+        },
+        "success_percent": 1.625,
+        "latency_ms": {
+          "p50": 5.318299983628094,
+          "p95": 24.951100000180304,
+          "p99": 79.29430005606264
+        },
+        "max_scheduling_lag_ms": 0
+      },
+      "legitimate": {
+        "sent": 16,
+        "actual_sent_rps": 4.00414060179295,
+        "status_counts": {
+          "200": 8,
+          "429": 8
+        },
+        "transport_error_counts": {},
+        "read_status_counts": {
+          "200": 8
+        },
+        "screen_status_counts": {
+          "429": 8
+        },
+        "success_percent": 50.0,
+        "latency_ms": {
+          "p50": 14.24719998613,
+          "p95": 168.9949999563396,
+          "p99": 168.9949999563396
+        },
+        "max_scheduling_lag_ms": 0
+      },
+      "iteration": 1,
+      "process": {
+        "cpu_seconds_including_startup": 3.734375,
+        "app_source": "apps\\api\\src\\compassio_api\\main.py",
+        "app_source_sha256": "09eae59b4499c7ea403c71a5d2c8876d4695e92b4eb71e818dc4f414e751f977",
+        "rss_bytes": 216911872,
+        "peak_rss_bytes": 217145344,
+        "limiter": {
+          "keys": 2,
+          "max_keys": 1024,
+          "high_water": 2,
+          "evicted": 0,
+          "admitted": 22,
+          "rejected": 796
+        },
+        "server_observed_load_count": 816,
+        "server_observed_load_rps": 204.49374887439384
+      }
+    }
+  ],
+  "earlier_shield_validation": [
+    {
+      "mode": "shield",
+      "scenario": "single",
+      "target_abusive_rps": 200,
+      "seconds": 4,
+      "safety_aborted": false,
+      "recovery_failure": null,
+      "identity": "real socket source IPs 127.0.0.2-5, legitimate .9; shared_ip uses .2",
+      "completed_rps": 203.53744589140112,
+      "attempts_finished_rps": 203.53744589140112,
+      "recovery_seconds": 0.5632985000265762,
+      "recovery_observation_limit_seconds": 3,
+      "example_429": {
+        "status": 429,
+        "body": {
+          "code": "rate_limited",
+          "message": "Too many requests. Please try again in a moment."
+        },
+        "headers": {
+          "date": "Wed, 11 Nov 2026 20:14:23 GMT",
+          "server": "uvicorn",
+          "content-type": "application/json",
+          "content-length": "87",
+          "retry-after": "1",
+          "x-content-type-options": "nosniff",
+          "referrer-policy": "no-referrer",
+          "cache-control": "no-store",
+          "access-control-expose-headers": "Retry-After",
+          "access-control-allow-origin": "http://localhost:3000",
+          "vary": "Origin"
+        }
+      },
+      "abusive": {
+        "sent": 800,
+        "actual_sent_rps": 199.65760345211646,
+        "status_counts": {
+          "429": 786,
+          "200": 14
+        },
+        "transport_error_counts": {},
+        "read_status_counts": {},
+        "screen_status_counts": {
+          "429": 786,
+          "200": 14
+        },
+        "success_percent": 1.7500000000000002,
+        "latency_ms": {
+          "p50": 6.0529999900609255,
+          "p95": 22.002400015480816,
+          "p99": 105.99539999384433
+        },
+        "max_scheduling_lag_ms": 6.929100020788503
+      },
+      "legitimate": {
+        "sent": 16,
+        "actual_sent_rps": 3.9887100361086096,
+        "status_counts": {
+          "200": 16
+        },
+        "transport_error_counts": {},
+        "read_status_counts": {
+          "200": 8
+        },
+        "screen_status_counts": {
+          "200": 8
+        },
+        "success_percent": 100.0,
+        "latency_ms": {
+          "p50": 19.194999942556024,
+          "p95": 229.19319989159703,
+          "p99": 229.19319989159703
+        },
+        "max_scheduling_lag_ms": 6.929100020788503
+      },
+      "iteration": 0,
+      "process": {
+        "cpu_seconds_including_startup": 4.515625,
+        "app_source": "apps\\api\\src\\compassio_api\\main.py",
+        "app_source_sha256": "09eae59b4499c7ea403c71a5d2c8876d4695e92b4eb71e818dc4f414e751f977",
+        "rss_bytes": 217088000,
+        "peak_rss_bytes": 217292800,
+        "limiter": {
+          "keys": 3,
+          "max_keys": 1024,
+          "high_water": 3,
+          "evicted": 0,
+          "admitted": 31,
+          "rejected": 791
+        },
+        "server_observed_load_count": 816,
+        "server_observed_load_rps": 203.63521591685048
+      }
+    },
+    {
+      "mode": "shield",
+      "scenario": "distributed",
+      "target_abusive_rps": 200,
+      "seconds": 4,
+      "safety_aborted": false,
+      "recovery_failure": null,
+      "identity": "real socket source IPs 127.0.0.2-5, legitimate .9; shared_ip uses .2",
+      "completed_rps": 150.21790708893622,
+      "attempts_finished_rps": 150.21790708893622,
+      "recovery_seconds": 0.11909779999405146,
+      "recovery_observation_limit_seconds": 3,
+      "example_429": {
+        "status": 429,
+        "body": {
+          "code": "rate_limited",
+          "message": "Too many requests. Please try again in a moment."
+        },
+        "headers": {
+          "date": "Wed, 11 Nov 2026 20:14:36 GMT",
+          "server": "uvicorn",
+          "content-type": "application/json",
+          "content-length": "87",
+          "retry-after": "1",
+          "x-content-type-options": "nosniff",
+          "referrer-policy": "no-referrer",
+          "cache-control": "no-store",
+          "access-control-expose-headers": "Retry-After",
+          "access-control-allow-origin": "http://localhost:3000",
+          "vary": "Origin"
+        }
+      },
+      "abusive": {
+        "sent": 800,
+        "actual_sent_rps": 147.36956032352924,
+        "status_counts": {
+          "200": 64,
+          "429": 736
+        },
+        "transport_error_counts": {},
+        "read_status_counts": {},
+        "screen_status_counts": {
+          "200": 64,
+          "429": 736
+        },
+        "success_percent": 8.0,
+        "latency_ms": {
+          "p50": 46.155799995176494,
+          "p95": 666.4161999942735,
+          "p99": 911.6657000267878
+        },
+        "max_scheduling_lag_ms": 1426.8268000986427
+      },
+      "legitimate": {
+        "sent": 16,
+        "actual_sent_rps": 2.8564037286823263,
+        "status_counts": {
+          "200": 16
+        },
+        "transport_error_counts": {},
+        "read_status_counts": {
+          "200": 8
+        },
+        "screen_status_counts": {
+          "200": 8
+        },
+        "success_percent": 100.0,
+        "latency_ms": {
+          "p50": 68.73340008314699,
+          "p95": 1010.0962999276817,
+          "p99": 1010.0962999276817
+        },
+        "max_scheduling_lag_ms": 1426.8268000986427
+      },
+      "iteration": 0,
+      "process": {
+        "cpu_seconds_including_startup": 6.03125,
+        "app_source": "apps\\api\\src\\compassio_api\\main.py",
+        "app_source_sha256": "09eae59b4499c7ea403c71a5d2c8876d4695e92b4eb71e818dc4f414e751f977",
+        "rss_bytes": 220876800,
+        "peak_rss_bytes": 221192192,
+        "limiter": {
+          "keys": 6,
+          "max_keys": 1024,
+          "high_water": 6,
+          "evicted": 0,
+          "admitted": 81,
+          "rejected": 737
+        },
+        "server_observed_load_count": 816,
+        "server_observed_load_rps": 150.29988792484068
+      }
+    },
+    {
+      "mode": "shield",
+      "scenario": "mixed",
+      "target_abusive_rps": 200,
+      "seconds": 4,
+      "safety_aborted": false,
+      "recovery_failure": null,
+      "identity": "real socket source IPs 127.0.0.2-5, legitimate .9; shared_ip uses .2",
+      "completed_rps": 203.44009725001317,
+      "attempts_finished_rps": 203.44009725001317,
+      "recovery_seconds": 0.00835909997113049,
+      "recovery_observation_limit_seconds": 3,
+      "example_429": {
+        "status": 429,
+        "body": {
+          "code": "rate_limited",
+          "message": "Too many requests. Please try again in a moment."
+        },
+        "headers": {
+          "date": "Wed, 11 Nov 2026 20:14:49 GMT",
+          "server": "uvicorn",
+          "content-type": "application/json",
+          "content-length": "87",
+          "retry-after": "1",
+          "x-content-type-options": "nosniff",
+          "referrer-policy": "no-referrer",
+          "cache-control": "no-store",
+          "access-control-expose-headers": "Retry-After",
+          "access-control-allow-origin": "http://localhost:3000",
+          "vary": "Origin"
+        }
+      },
+      "abusive": {
+        "sent": 800,
+        "actual_sent_rps": 199.64289159234698,
+        "status_counts": {
+          "429": 655,
+          "200": 145
+        },
+        "transport_error_counts": {},
+        "read_status_counts": {
+          "200": 118,
+          "429": 282
+        },
+        "screen_status_counts": {
+          "429": 373,
+          "200": 27
+        },
+        "success_percent": 18.125,
+        "latency_ms": {
+          "p50": 7.264600018970668,
+          "p95": 537.0328999124467,
+          "p99": 808.3679999690503
+        },
+        "max_scheduling_lag_ms": 7.202600007876647
+      },
+      "legitimate": {
+        "sent": 16,
+        "actual_sent_rps": 3.978209912095756,
+        "status_counts": {
+          "200": 16
+        },
+        "transport_error_counts": {},
+        "read_status_counts": {
+          "200": 8
+        },
+        "screen_status_counts": {
+          "200": 8
+        },
+        "success_percent": 100.0,
+        "latency_ms": {
+          "p50": 57.648599962703884,
+          "p95": 806.7269999301061,
+          "p99": 806.7269999301061
+        },
+        "max_scheduling_lag_ms": 7.202600007876647
+      },
+      "iteration": 0,
+      "process": {
+        "cpu_seconds_including_startup": 6.125,
+        "app_source": "apps\\api\\src\\compassio_api\\main.py",
+        "app_source_sha256": "09eae59b4499c7ea403c71a5d2c8876d4695e92b4eb71e818dc4f414e751f977",
+        "rss_bytes": 227401728,
+        "peak_rss_bytes": 234340352,
+        "limiter": {
+          "keys": 7,
+          "max_keys": 1024,
+          "high_water": 7,
+          "evicted": 0,
+          "admitted": 162,
+          "rejected": 655
+        },
+        "server_observed_load_count": 816,
+        "server_observed_load_rps": 203.6062692402826
+      }
+    },
+    {
+      "mode": "shield",
+      "scenario": "shared_ip",
+      "target_abusive_rps": 200,
+      "seconds": 4,
+      "safety_aborted": false,
+      "recovery_failure": null,
+      "identity": "real socket source IPs 127.0.0.2-5, legitimate .9; shared_ip uses .2",
+      "completed_rps": 204.70701196392798,
+      "attempts_finished_rps": 204.70701196392798,
+      "recovery_seconds": 0.11890380003023893,
+      "recovery_observation_limit_seconds": 3,
+      "example_429": {
+        "status": 429,
+        "body": {
+          "code": "rate_limited",
+          "message": "Too many requests. Please try again in a moment."
+        },
+        "headers": {
+          "date": "Wed, 11 Nov 2026 20:14:59 GMT",
+          "server": "uvicorn",
+          "content-type": "application/json",
+          "content-length": "87",
+          "retry-after": "1",
+          "x-content-type-options": "nosniff",
+          "referrer-policy": "no-referrer",
+          "cache-control": "no-store",
+          "access-control-expose-headers": "Retry-After",
+          "access-control-allow-origin": "http://localhost:3000",
+          "vary": "Origin"
+        }
+      },
+      "abusive": {
+        "sent": 800,
+        "actual_sent_rps": 200.55777149298277,
+        "status_counts": {
+          "429": 787,
+          "200": 13
+        },
+        "transport_error_counts": {},
+        "read_status_counts": {},
+        "screen_status_counts": {
+          "429": 787,
+          "200": 13
+        },
+        "success_percent": 1.625,
+        "latency_ms": {
+          "p50": 4.256099928170443,
+          "p95": 11.270200018770993,
+          "p99": 73.37009999901056
+        },
+        "max_scheduling_lag_ms": 0
+      },
+      "legitimate": {
+        "sent": 16,
+        "actual_sent_rps": 4.012169820489438,
+        "status_counts": {
+          "200": 8,
+          "429": 8
+        },
+        "transport_error_counts": {},
+        "read_status_counts": {
+          "200": 8
+        },
+        "screen_status_counts": {
+          "429": 8
+        },
+        "success_percent": 50.0,
+        "latency_ms": {
+          "p50": 5.640299990773201,
+          "p95": 177.4789000628516,
+          "p99": 177.4789000628516
+        },
+        "max_scheduling_lag_ms": 0
+      },
+      "iteration": 0,
+      "process": {
+        "cpu_seconds_including_startup": 2.96875,
+        "app_source": "apps\\api\\src\\compassio_api\\main.py",
+        "app_source_sha256": "09eae59b4499c7ea403c71a5d2c8876d4695e92b4eb71e818dc4f414e751f977",
+        "rss_bytes": 216489984,
+        "peak_rss_bytes": 216735744,
+        "limiter": {
+          "keys": 2,
+          "max_keys": 1024,
+          "high_water": 2,
+          "evicted": 0,
+          "admitted": 22,
+          "rejected": 796
+        },
+        "server_observed_load_count": 816,
+        "server_observed_load_rps": 204.57039889465784
+      }
+    },
+    {
+      "mode": "shield",
+      "scenario": "single",
+      "target_abusive_rps": 200,
+      "seconds": 4,
+      "safety_aborted": false,
+      "recovery_failure": null,
+      "identity": "real socket source IPs 127.0.0.2-5, legitimate .9; shared_ip uses .2",
+      "completed_rps": 204.60514529170808,
+      "attempts_finished_rps": 204.60514529170808,
+      "recovery_seconds": 0.006652100011706352,
+      "recovery_observation_limit_seconds": 3,
+      "example_429": {
+        "status": 429,
+        "body": {
+          "code": "rate_limited",
+          "message": "Too many requests. Please try again in a moment."
+        },
+        "headers": {
+          "date": "Wed, 11 Nov 2026 20:15:08 GMT",
+          "server": "uvicorn",
+          "content-type": "application/json",
+          "content-length": "87",
+          "retry-after": "1",
+          "x-content-type-options": "nosniff",
+          "referrer-policy": "no-referrer",
+          "cache-control": "no-store",
+          "access-control-expose-headers": "Retry-After",
+          "access-control-allow-origin": "http://localhost:3000",
+          "vary": "Origin"
+        }
+      },
+      "abusive": {
+        "sent": 800,
+        "actual_sent_rps": 200.4903557497238,
+        "status_counts": {
+          "429": 787,
+          "200": 13
+        },
+        "transport_error_counts": {},
+        "read_status_counts": {},
+        "screen_status_counts": {
+          "429": 787,
+          "200": 13
+        },
+        "success_percent": 1.625,
+        "latency_ms": {
+          "p50": 3.6371999885886908,
+          "p95": 13.1728999549523,
+          "p99": 78.79180007148534
+        },
+        "max_scheduling_lag_ms": 0
+      },
+      "legitimate": {
+        "sent": 16,
+        "actual_sent_rps": 4.009113945534069,
+        "status_counts": {
+          "200": 16
+        },
+        "transport_error_counts": {},
+        "read_status_counts": {
+          "200": 8
+        },
+        "screen_status_counts": {
+          "200": 8
+        },
+        "success_percent": 100.0,
+        "latency_ms": {
+          "p50": 12.168899993412197,
+          "p95": 173.8715999526903,
+          "p99": 173.8715999526903
+        },
+        "max_scheduling_lag_ms": 0
+      },
+      "iteration": 1,
+      "process": {
+        "cpu_seconds_including_startup": 3.390625,
+        "app_source": "apps\\api\\src\\compassio_api\\main.py",
+        "app_source_sha256": "09eae59b4499c7ea403c71a5d2c8876d4695e92b4eb71e818dc4f414e751f977",
+        "rss_bytes": 216563712,
+        "peak_rss_bytes": 216788992,
+        "limiter": {
+          "keys": 3,
+          "max_keys": 1024,
+          "high_water": 3,
+          "evicted": 0,
+          "admitted": 30,
+          "rejected": 787
+        },
+        "server_observed_load_count": 816,
+        "server_observed_load_rps": 204.47344237268055
+      }
+    },
+    {
+      "mode": "shield",
+      "scenario": "distributed",
+      "target_abusive_rps": 200,
+      "seconds": 4,
+      "safety_aborted": false,
+      "recovery_failure": null,
+      "identity": "real socket source IPs 127.0.0.2-5, legitimate .9; shared_ip uses .2",
+      "completed_rps": 203.16242227794817,
+      "attempts_finished_rps": 203.16242227794817,
+      "recovery_seconds": 0.005309600033797324,
+      "recovery_observation_limit_seconds": 3,
+      "example_429": {
+        "status": 429,
+        "body": {
+          "code": "rate_limited",
+          "message": "Too many requests. Please try again in a moment."
+        },
+        "headers": {
+          "date": "Wed, 11 Nov 2026 20:15:18 GMT",
+          "server": "uvicorn",
+          "content-type": "application/json",
+          "content-length": "87",
+          "retry-after": "1",
+          "x-content-type-options": "nosniff",
+          "referrer-policy": "no-referrer",
+          "cache-control": "no-store",
+          "access-control-expose-headers": "Retry-After",
+          "access-control-allow-origin": "http://localhost:3000",
+          "vary": "Origin"
+        }
+      },
+      "abusive": {
+        "sent": 800,
+        "actual_sent_rps": 199.24218149088443,
+        "status_counts": {
+          "429": 747,
+          "200": 53
+        },
+        "transport_error_counts": {},
+        "read_status_counts": {},
+        "screen_status_counts": {
+          "429": 747,
+          "200": 53
+        },
+        "success_percent": 6.625,
+        "latency_ms": {
+          "p50": 3.5088000586256385,
+          "p95": 75.85649995598942,
+          "p99": 216.69839997775853
+        },
+        "max_scheduling_lag_ms": 15.24740003049363
+      },
+      "legitimate": {
+        "sent": 16,
+        "actual_sent_rps": 4.002303832837854,
+        "status_counts": {
+          "200": 16
+        },
+        "transport_error_counts": {},
+        "read_status_counts": {
+          "200": 8
+        },
+        "screen_status_counts": {
+          "200": 8
+        },
+        "success_percent": 100.0,
+        "latency_ms": {
+          "p50": 18.659900058992207,
+          "p95": 265.75559994671494,
+          "p99": 265.75559994671494
+        },
+        "max_scheduling_lag_ms": 15.24740003049363
+      },
+      "iteration": 1,
+      "process": {
+        "cpu_seconds_including_startup": 2.90625,
+        "app_source": "apps\\api\\src\\compassio_api\\main.py",
+        "app_source_sha256": "09eae59b4499c7ea403c71a5d2c8876d4695e92b4eb71e818dc4f414e751f977",
+        "rss_bytes": 219897856,
+        "peak_rss_bytes": 220381184,
+        "limiter": {
+          "keys": 6,
+          "max_keys": 1024,
+          "high_water": 6,
+          "evicted": 0,
+          "admitted": 70,
+          "rejected": 747
+        },
+        "server_observed_load_count": 816,
+        "server_observed_load_rps": 203.2158471475487
+      }
+    },
+    {
+      "mode": "shield",
+      "scenario": "mixed",
+      "target_abusive_rps": 200,
+      "seconds": 4,
+      "safety_aborted": false,
+      "recovery_failure": null,
+      "identity": "real socket source IPs 127.0.0.2-5, legitimate .9; shared_ip uses .2",
+      "completed_rps": 204.40800348053082,
+      "attempts_finished_rps": 204.40800348053082,
+      "recovery_seconds": 0.007327399915084243,
+      "recovery_observation_limit_seconds": 3,
+      "example_429": {
+        "status": 429,
+        "body": {
+          "code": "rate_limited",
+          "message": "Too many requests. Please try again in a moment."
+        },
+        "headers": {
+          "date": "Wed, 11 Nov 2026 20:15:28 GMT",
+          "server": "uvicorn",
+          "content-type": "application/json",
+          "content-length": "87",
+          "retry-after": "1",
+          "x-content-type-options": "nosniff",
+          "referrer-policy": "no-referrer",
+          "cache-control": "no-store",
+          "access-control-expose-headers": "Retry-After",
+          "access-control-allow-origin": "http://localhost:3000",
+          "vary": "Origin"
+        }
+      },
+      "abusive": {
+        "sent": 800,
+        "actual_sent_rps": 200.268178892498,
+        "status_counts": {
+          "429": 656,
+          "200": 144
+        },
+        "transport_error_counts": {},
+        "read_status_counts": {
+          "200": 118,
+          "429": 282
+        },
+        "screen_status_counts": {
+          "429": 374,
+          "200": 26
+        },
+        "success_percent": 18.0,
+        "latency_ms": {
+          "p50": 7.113600033335388,
+          "p95": 720.7493999740109,
+          "p99": 1056.989899952896
+        },
+        "max_scheduling_lag_ms": 0
+      },
+      "legitimate": {
+        "sent": 16,
+        "actual_sent_rps": 4.001210926503558,
+        "status_counts": {
+          "200": 16
+        },
+        "transport_error_counts": {},
+        "read_status_counts": {
+          "200": 8
+        },
+        "screen_status_counts": {
+          "200": 8
+        },
+        "success_percent": 100.0,
+        "latency_ms": {
+          "p50": 45.91169999912381,
+          "p95": 1154.7153000719845,
+          "p99": 1154.7153000719845
+        },
+        "max_scheduling_lag_ms": 0
+      },
+      "iteration": 1,
+      "process": {
+        "cpu_seconds_including_startup": 6.75,
+        "app_source": "apps\\api\\src\\compassio_api\\main.py",
+        "app_source_sha256": "09eae59b4499c7ea403c71a5d2c8876d4695e92b4eb71e818dc4f414e751f977",
+        "rss_bytes": 228155392,
+        "peak_rss_bytes": 235520000,
+        "limiter": {
+          "keys": 7,
+          "max_keys": 1024,
+          "high_water": 7,
+          "evicted": 0,
+          "admitted": 161,
+          "rejected": 656
+        },
+        "server_observed_load_count": 816,
+        "server_observed_load_rps": 204.2761796900641
+      }
+    },
+    {
+      "mode": "shield",
+      "scenario": "shared_ip",
+      "target_abusive_rps": 200,
+      "seconds": 4,
+      "safety_aborted": false,
+      "recovery_failure": null,
+      "identity": "real socket source IPs 127.0.0.2-5, legitimate .9; shared_ip uses .2",
+      "completed_rps": 178.76159748981672,
+      "attempts_finished_rps": 178.76159748981672,
+      "recovery_seconds": 0.44968750001862645,
+      "recovery_observation_limit_seconds": 3,
+      "example_429": {
+        "status": 429,
+        "body": {
+          "code": "rate_limited",
+          "message": "Too many requests. Please try again in a moment."
+        },
+        "headers": {
+          "date": "Wed, 11 Nov 2026 20:15:37 GMT",
+          "server": "uvicorn",
+          "content-type": "application/json",
+          "content-length": "87",
+          "retry-after": "1",
+          "x-content-type-options": "nosniff",
+          "referrer-policy": "no-referrer",
+          "cache-control": "no-store",
+          "access-control-expose-headers": "Retry-After",
+          "access-control-allow-origin": "http://localhost:3000",
+          "vary": "Origin"
+        }
+      },
+      "abusive": {
+        "sent": 800,
+        "actual_sent_rps": 175.6505434407272,
+        "status_counts": {
+          "429": 785,
+          "200": 15
+        },
+        "transport_error_counts": {},
+        "read_status_counts": {},
+        "screen_status_counts": {
+          "429": 785,
+          "200": 15
+        },
+        "success_percent": 1.875,
+        "latency_ms": {
+          "p50": 7.138999993912876,
+          "p95": 50.317399902269244,
+          "p99": 85.34630003850907
+        },
+        "max_scheduling_lag_ms": 553.8649000180884
+      },
+      "legitimate": {
+        "sent": 16,
+        "actual_sent_rps": 3.5326361056506466,
+        "status_counts": {
+          "200": 8,
+          "429": 8
+        },
+        "transport_error_counts": {},
+        "read_status_counts": {
+          "200": 8
+        },
+        "screen_status_counts": {
+          "429": 8
+        },
+        "success_percent": 50.0,
+        "latency_ms": {
+          "p50": 20.15859994571656,
+          "p95": 176.182399969548,
+          "p99": 176.182399969548
+        },
+        "max_scheduling_lag_ms": 553.8649000180884
+      },
+      "iteration": 1,
+      "process": {
+        "cpu_seconds_including_startup": 3.4375,
+        "app_source": "apps\\api\\src\\compassio_api\\main.py",
+        "app_source_sha256": "09eae59b4499c7ea403c71a5d2c8876d4695e92b4eb71e818dc4f414e751f977",
+        "rss_bytes": 216956928,
+        "peak_rss_bytes": 217186304,
+        "limiter": {
+          "keys": 2,
+          "max_keys": 1024,
+          "high_water": 2,
+          "evicted": 0,
+          "admitted": 24,
+          "rejected": 797
+        },
+        "server_observed_load_count": 816,
+        "server_observed_load_rps": 179.06312634612777
+      }
+    }
+  ]
+}

@@ -1,0 +1,15 @@
+{
+  "completed_at": "2026-11-09T11:01:56.382566+00:00",
+  "git_head": "153dce85439c712cb1e2fb4dfa799002368e8126",
+  "opened_at": "2026-11-09T10:59:50.849638+00:00",
+  "output_sha256": {
+    "model.joblib": "53b226f6e866bd5377b951aaeb87f9be86c72dc9ac444a807bf0d49c857d3656",
+    "results.json": "8addc52cafa1b71486c2135e16059bc464bf6a49be4e8da53b3f4154d55ab3c0",
+    "test_predictions.parquet": "b186bae6fb844fd5ed10240d4fa6f7db120b11a420721c50e0f95343ed86d4f3"
+  },
+  "plan_sha256": "c4760503f4b8798706e24cccfe7b87a4203751b8722d946984ebf76a47b8b3cb",
+  "plan_version": "final_evaluation_v1",
+  "protocol": "primary",
+  "source_git_commit": "f14f397fbed29364e7b43bfd1f0cdc582c6b3442",
+  "status": "completed"
+}

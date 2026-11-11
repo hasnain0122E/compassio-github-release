@@ -1,0 +1,9429 @@
+{
+ "components": {
+  "schemas": {
+   "AccessNotice": {
+    "properties": {
+     "mode": {
+      "enum": [
+       "local_development",
+       "hackathon_event",
+       "public"
+      ],
+      "title": "Mode",
+      "type": "string"
+     },
+     "notice": {
+      "title": "Notice",
+      "type": "string"
+     }
+    },
+    "required": [
+     "mode",
+     "notice"
+    ],
+    "title": "AccessNotice",
+    "type": "object"
+   },
+   "AdaptationOnly": {
+    "properties": {
+     "detected": {
+      "title": "Detected",
+      "type": "integer"
+     },
+     "positives": {
+      "title": "Positives",
+      "type": "integer"
+     },
+     "recall": {
+      "anyOf": [
+       {
+        "type": "number"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Recall"
+     }
+    },
+    "required": [
+     "positives",
+     "detected",
+     "recall"
+    ],
+    "title": "AdaptationOnly",
+    "type": "object"
+   },
+   "Allocation": {
+    "additionalProperties": false,
+    "properties": {
+     "allocation": {
+      "description": "In the budget currency and unit",
+      "title": "Allocation",
+      "type": "string"
+     },
+     "binding_constraints": {
+      "items": {
+       "type": "string"
+      },
+      "title": "Binding Constraints",
+      "type": "array"
+     },
+     "country_group": {
+      "title": "Country Group",
+      "type": "string"
+     },
+     "project_id": {
+      "title": "Project Id",
+      "type": "string"
+     },
+     "reference_facts": {
+      "description": "Historical recorded figures for context; NOT costs or funding needs",
+      "items": {
+       "$ref": "#/components/schemas/FinancialFact"
+      },
+      "title": "Reference Facts",
+      "type": "array"
+     },
+     "sector": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Sector"
+     },
+     "share_of_budget": {
+      "title": "Share Of Budget",
+      "type": "string"
+     },
+     "source_id": {
+      "title": "Source Id",
+      "type": "string"
+     },
+     "title": {
+      "title": "Title",
+      "type": "string"
+     },
+     "warnings": {
+      "items": {
+       "type": "string"
+      },
+      "title": "Warnings",
+      "type": "array"
+     },
+     "weight": {
+      "title": "Weight",
+      "type": "string"
+     },
+     "weight_basis": {
+      "title": "Weight Basis",
+      "type": "string"
+     }
+    },
+    "required": [
+     "project_id",
+     "title",
+     "source_id",
+     "sector",
+     "country_group",
+     "weight",
+     "weight_basis",
+     "allocation",
+     "share_of_budget",
+     "binding_constraints",
+     "reference_facts",
+     "warnings"
+    ],
+    "title": "Allocation",
+    "type": "object"
+   },
+   "AnnotationOut": {
+    "properties": {
+     "adaptation": {
+      "anyOf": [
+       {
+        "type": "integer"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Adaptation"
+     },
+     "annotation_source_id": {
+      "title": "Annotation Source Id",
+      "type": "string"
+     },
+     "is_climate_related": {
+      "anyOf": [
+       {
+        "type": "boolean"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Is Climate Related"
+     },
+     "is_model_prediction": {
+      "const": false,
+      "title": "Is Model Prediction",
+      "type": "boolean"
+     },
+     "kind": {
+      "enum": [
+       "research_annotation",
+       "source_classification"
+      ],
+      "title": "Kind",
+      "type": "string"
+     },
+     "label": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Label"
+     },
+     "mitigation": {
+      "anyOf": [
+       {
+        "type": "integer"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Mitigation"
+     },
+     "overall": {
+      "anyOf": [
+       {
+        "type": "integer"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Overall"
+     },
+     "provenance": {
+      "title": "Provenance",
+      "type": "string"
+     },
+     "raw_value": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Raw Value"
+     },
+     "scheme": {
+      "title": "Scheme",
+      "type": "string"
+     }
+    },
+    "required": [
+     "scheme",
+     "kind",
+     "annotation_source_id",
+     "is_model_prediction",
+     "overall",
+     "mitigation",
+     "adaptation",
+     "is_climate_related",
+     "label",
+     "raw_value",
+     "provenance"
+    ],
+    "title": "AnnotationOut",
+    "type": "object"
+   },
+   "ApprovedDisbursedResponse": {
+    "additionalProperties": false,
+    "properties": {
+     "access": {
+      "$ref": "#/components/schemas/AccessNotice"
+     },
+     "country": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Country"
+     },
+     "disclaimers": {
+      "items": {
+       "type": "string"
+      },
+      "title": "Disclaimers",
+      "type": "array"
+     },
+     "sources": {
+      "items": {
+       "$ref": "#/components/schemas/ApprovedDisbursedSource"
+      },
+      "title": "Sources",
+      "type": "array"
+     }
+    },
+    "required": [
+     "country",
+     "sources",
+     "disclaimers",
+     "access"
+    ],
+    "title": "ApprovedDisbursedResponse",
+    "type": "object"
+   },
+   "ApprovedDisbursedSource": {
+    "additionalProperties": false,
+    "properties": {
+     "approval_meaning": {
+      "title": "Approval Meaning",
+      "type": "string"
+     },
+     "approved_total_paired": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Approved Total Paired"
+     },
+     "currency": {
+      "title": "Currency",
+      "type": "string"
+     },
+     "disbursed_to_approved_ratio": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "description": "Within paired projects only; disbursement recording differs by source",
+      "title": "Disbursed To Approved Ratio"
+     },
+     "disbursed_total_paired": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Disbursed Total Paired"
+     },
+     "disbursement_meaning": {
+      "title": "Disbursement Meaning",
+      "type": "string"
+     },
+     "excluded_projects": {
+      "additionalProperties": {
+       "type": "integer"
+      },
+      "title": "Excluded Projects",
+      "type": "object"
+     },
+     "limitations": {
+      "items": {
+       "type": "string"
+      },
+      "title": "Limitations",
+      "type": "array"
+     },
+     "paired_projects": {
+      "title": "Paired Projects",
+      "type": "integer"
+     },
+     "projects_with_approval": {
+      "title": "Projects With Approval",
+      "type": "integer"
+     },
+     "projects_with_disbursement": {
+      "title": "Projects With Disbursement",
+      "type": "integer"
+     },
+     "source_id": {
+      "title": "Source Id",
+      "type": "string"
+     },
+     "universe": {
+      "title": "Universe",
+      "type": "string"
+     }
+    },
+    "required": [
+     "source_id",
+     "approval_meaning",
+     "disbursement_meaning",
+     "currency",
+     "universe",
+     "projects_with_approval",
+     "projects_with_disbursement",
+     "paired_projects",
+     "approved_total_paired",
+     "disbursed_total_paired",
+     "disbursed_to_approved_ratio",
+     "excluded_projects",
+     "limitations"
+    ],
+    "title": "ApprovedDisbursedSource",
+    "type": "object"
+   },
+   "Budget-Input": {
+    "additionalProperties": false,
+    "properties": {
+     "amount": {
+      "anyOf": [
+       {
+        "exclusiveMinimum": 0.0,
+        "maximum": 1000000000000000.0,
+        "type": "number"
+       },
+       {
+        "type": "string"
+       }
+      ],
+      "title": "Amount"
+     },
+     "currency": {
+      "pattern": "^[A-Z]{3}$",
+      "title": "Currency",
+      "type": "string"
+     },
+     "unit": {
+      "default": "units",
+      "enum": [
+       "units",
+       "thousands",
+       "millions"
+      ],
+      "title": "Unit",
+      "type": "string"
+     }
+    },
+    "required": [
+     "amount",
+     "currency"
+    ],
+    "title": "Budget",
+    "type": "object"
+   },
+   "Budget-Output": {
+    "additionalProperties": false,
+    "properties": {
+     "amount": {
+      "title": "Amount",
+      "type": "string"
+     },
+     "currency": {
+      "pattern": "^[A-Z]{3}$",
+      "title": "Currency",
+      "type": "string"
+     },
+     "unit": {
+      "default": "units",
+      "enum": [
+       "units",
+       "thousands",
+       "millions"
+      ],
+      "title": "Unit",
+      "type": "string"
+     }
+    },
+    "required": [
+     "amount",
+     "currency"
+    ],
+    "title": "Budget",
+    "type": "object"
+   },
+   "CandidateFilters": {
+    "additionalProperties": false,
+    "properties": {
+     "country": {
+      "anyOf": [
+       {
+        "pattern": "^[A-Z]{3}$",
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Country"
+     },
+     "project_ids": {
+      "anyOf": [
+       {
+        "items": {
+         "type": "string"
+        },
+        "maxItems": 500,
+        "minItems": 1,
+        "type": "array"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Project Ids"
+     },
+     "q": {
+      "anyOf": [
+       {
+        "maxLength": 200,
+        "minLength": 1,
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Q"
+     },
+     "sector": {
+      "anyOf": [
+       {
+        "maxLength": 200,
+        "minLength": 1,
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Sector"
+     },
+     "source": {
+      "anyOf": [
+       {
+        "pattern": "^[a-z0-9_]{1,80}$",
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Source"
+     },
+     "year_from": {
+      "anyOf": [
+       {
+        "maximum": 2100.0,
+        "minimum": 1900.0,
+        "type": "integer"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Year From"
+     },
+     "year_to": {
+      "anyOf": [
+       {
+        "maximum": 2100.0,
+        "minimum": 1900.0,
+        "type": "integer"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Year To"
+     }
+    },
+    "title": "CandidateFilters",
+    "type": "object"
+   },
+   "ClimateDistribution": {
+    "additionalProperties": false,
+    "properties": {
+     "annotation_source_id": {
+      "title": "Annotation Source Id",
+      "type": "string"
+     },
+     "buckets": {
+      "items": {
+       "$ref": "#/components/schemas/DistributionBucket"
+      },
+      "title": "Buckets",
+      "type": "array"
+     },
+     "kind": {
+      "enum": [
+       "research_annotation",
+       "source_classification"
+      ],
+      "title": "Kind",
+      "type": "string"
+     },
+     "meaning": {
+      "title": "Meaning",
+      "type": "string"
+     },
+     "projects_annotated": {
+      "title": "Projects Annotated",
+      "type": "integer"
+     },
+     "scheme": {
+      "title": "Scheme",
+      "type": "string"
+     }
+    },
+    "required": [
+     "scheme",
+     "annotation_source_id",
+     "kind",
+     "meaning",
+     "buckets",
+     "projects_annotated"
+    ],
+    "title": "ClimateDistribution",
+    "type": "object"
+   },
+   "ClimateDistributionResponse": {
+    "additionalProperties": false,
+    "properties": {
+     "access": {
+      "$ref": "#/components/schemas/AccessNotice"
+     },
+     "country": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Country"
+     },
+     "distributions": {
+      "items": {
+       "$ref": "#/components/schemas/ClimateDistribution"
+      },
+      "title": "Distributions",
+      "type": "array"
+     },
+     "measure": {
+      "const": "project_record_count",
+      "title": "Measure",
+      "type": "string"
+     },
+     "statement": {
+      "title": "Statement",
+      "type": "string"
+     }
+    },
+    "required": [
+     "country",
+     "measure",
+     "distributions",
+     "statement",
+     "access"
+    ],
+    "title": "ClimateDistributionResponse",
+    "type": "object"
+   },
+   "ClimateRelevance": {
+    "additionalProperties": false,
+    "properties": {
+     "annotations": {
+      "items": {
+       "$ref": "#/components/schemas/AnnotationOut"
+      },
+      "title": "Annotations",
+      "type": "array"
+     },
+     "basis": {
+      "title": "Basis",
+      "type": "string"
+     },
+     "is_model_prediction": {
+      "const": false,
+      "default": false,
+      "title": "Is Model Prediction",
+      "type": "boolean"
+     },
+     "model_screening": {
+      "default": "Not run here. Use POST /api/v1/screening/projects/{project_id} (local only).",
+      "title": "Model Screening",
+      "type": "string"
+     },
+     "statement": {
+      "default": "A climate-relevance label or classification, not measured environmental impact.",
+      "title": "Statement",
+      "type": "string"
+     },
+     "status": {
+      "enum": [
+       "research_annotation_climate_related",
+       "research_annotation_not_climate_related",
+       "listed_by_climate_fund",
+       "no_climate_annotation"
+      ],
+      "title": "Status",
+      "type": "string"
+     }
+    },
+    "required": [
+     "status",
+     "basis",
+     "annotations"
+    ],
+    "title": "ClimateRelevance",
+    "type": "object"
+   },
+   "CompareRequest": {
+    "additionalProperties": false,
+    "properties": {
+     "project_ids": {
+      "items": {
+       "type": "string"
+      },
+      "maxItems": 10,
+      "minItems": 2,
+      "title": "Project Ids",
+      "type": "array"
+     }
+    },
+    "required": [
+     "project_ids"
+    ],
+    "title": "CompareRequest",
+    "type": "object"
+   },
+   "CompareResponse": {
+    "additionalProperties": false,
+    "properties": {
+     "access": {
+      "$ref": "#/components/schemas/AccessNotice"
+     },
+     "comparable_groups": {
+      "items": {
+       "$ref": "#/components/schemas/ComparisonGroup"
+      },
+      "title": "Comparable Groups",
+      "type": "array"
+     },
+     "disclaimers": {
+      "items": {
+       "type": "string"
+      },
+      "title": "Disclaimers",
+      "type": "array"
+     },
+     "duplicate_warnings": {
+      "items": {
+       "$ref": "#/components/schemas/DuplicateWarning"
+      },
+      "title": "Duplicate Warnings",
+      "type": "array"
+     },
+     "field_matrix": {
+      "additionalProperties": {
+       "additionalProperties": {
+        "type": "boolean"
+       },
+       "type": "object"
+      },
+      "description": "indicator -> project_id -> present (explicit missing-information view)",
+      "title": "Field Matrix",
+      "type": "object"
+     },
+     "methodology_version": {
+      "title": "Methodology Version",
+      "type": "string"
+     },
+     "projects": {
+      "items": {
+       "$ref": "#/components/schemas/ProjectEvidence"
+      },
+      "title": "Projects",
+      "type": "array"
+     }
+    },
+    "required": [
+     "projects",
+     "comparable_groups",
+     "duplicate_warnings",
+     "field_matrix",
+     "methodology_version",
+     "disclaimers",
+     "access"
+    ],
+    "title": "CompareResponse",
+    "type": "object"
+   },
+   "ComparisonCell": {
+    "additionalProperties": false,
+    "properties": {
+     "facts": {
+      "description": "Empty = not reported for this project",
+      "items": {
+       "$ref": "#/components/schemas/FinancialFact"
+      },
+      "title": "Facts",
+      "type": "array"
+     },
+     "project_id": {
+      "title": "Project Id",
+      "type": "string"
+     }
+    },
+    "required": [
+     "project_id",
+     "facts"
+    ],
+    "title": "ComparisonCell",
+    "type": "object"
+   },
+   "ComparisonGroup": {
+    "additionalProperties": false,
+    "properties": {
+     "cells": {
+      "items": {
+       "$ref": "#/components/schemas/ComparisonCell"
+      },
+      "title": "Cells",
+      "type": "array"
+     },
+     "comparability_key": {
+      "title": "Comparability Key",
+      "type": "string"
+     },
+     "currency": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Currency"
+     },
+     "financial_meaning": {
+      "enum": [
+       "historical_commitment",
+       "pledge_not_commitment",
+       "approval",
+       "disbursement",
+       "repayment_not_funding",
+       "co_financing",
+       "total_project_cost",
+       "readiness_grant",
+       "deposit_into_fund"
+      ],
+      "title": "Financial Meaning",
+      "type": "string"
+     },
+     "flow_kind": {
+      "title": "Flow Kind",
+      "type": "string"
+     },
+     "level": {
+      "title": "Level",
+      "type": "string"
+     },
+     "meaning_label": {
+      "title": "Meaning Label",
+      "type": "string"
+     },
+     "price_basis": {
+      "title": "Price Basis",
+      "type": "string"
+     },
+     "selection_missing_records": {
+      "description": "Selected records whose figure is not reported (excluded, never zero)",
+      "title": "Selection Missing Records",
+      "type": "integer"
+     },
+     "selection_summed_records": {
+      "title": "Selection Summed Records",
+      "type": "integer"
+     },
+     "selection_total": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "description": "Sum across the selected projects, in units of `currency`; null if unsafe",
+      "title": "Selection Total"
+     },
+     "selection_total_meaning": {
+      "title": "Selection Total Meaning",
+      "type": "string"
+     },
+     "selection_total_reason": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Selection Total Reason"
+     },
+     "selection_total_status": {
+      "enum": [
+       "available",
+       "unavailable"
+      ],
+      "title": "Selection Total Status",
+      "type": "string"
+     },
+     "source_id": {
+      "title": "Source Id",
+      "type": "string"
+     }
+    },
+    "required": [
+     "comparability_key",
+     "source_id",
+     "flow_kind",
+     "financial_meaning",
+     "meaning_label",
+     "level",
+     "currency",
+     "price_basis",
+     "cells",
+     "selection_total",
+     "selection_total_status",
+     "selection_summed_records",
+     "selection_missing_records",
+     "selection_total_reason",
+     "selection_total_meaning"
+    ],
+    "title": "ComparisonGroup",
+    "type": "object"
+   },
+   "ComparisonModel": {
+    "properties": {
+     "adaptation_only": {
+      "$ref": "#/components/schemas/AdaptationOnly"
+     },
+     "confusion": {
+      "additionalProperties": {
+       "type": "integer"
+      },
+      "title": "Confusion",
+      "type": "object"
+     },
+     "intervals_95": {
+      "additionalProperties": {
+       "items": {
+        "anyOf": [
+         {
+          "type": "number"
+         },
+         {
+          "type": "null"
+         }
+        ]
+       },
+       "type": "array"
+      },
+      "title": "Intervals 95",
+      "type": "object"
+     },
+     "label": {
+      "title": "Label",
+      "type": "string"
+     },
+     "metrics": {
+      "additionalProperties": {
+       "anyOf": [
+        {
+         "type": "number"
+        },
+        {
+         "type": "null"
+        }
+       ]
+      },
+      "title": "Metrics",
+      "type": "object"
+     },
+     "model_version": {
+      "title": "Model Version",
+      "type": "string"
+     },
+     "predicted_positive": {
+      "title": "Predicted Positive",
+      "type": "integer"
+     },
+     "publisher": {
+      "additionalProperties": {
+       "additionalProperties": {
+        "anyOf": [
+         {
+          "type": "number"
+         },
+         {
+          "type": "integer"
+         },
+         {
+          "type": "null"
+         }
+        ]
+       },
+       "type": "object"
+      },
+      "title": "Publisher",
+      "type": "object"
+     },
+     "status": {
+      "enum": [
+       "trusted_research_release",
+       "development_candidate"
+      ],
+      "title": "Status",
+      "type": "string"
+     },
+     "threshold": {
+      "title": "Threshold",
+      "type": "number"
+     }
+    },
+    "required": [
+     "label",
+     "model_version",
+     "status",
+     "threshold",
+     "metrics",
+     "intervals_95",
+     "confusion",
+     "predicted_positive",
+     "adaptation_only",
+     "publisher"
+    ],
+    "title": "ComparisonModel",
+    "type": "object"
+   },
+   "ComparisonResponse": {
+    "properties": {
+     "by_publisher": {
+      "additionalProperties": {
+       "additionalProperties": {
+        "type": "integer"
+       },
+       "type": "object"
+      },
+      "title": "By Publisher",
+      "type": "object"
+     },
+     "caveats": {
+      "items": {
+       "type": "string"
+      },
+      "title": "Caveats",
+      "type": "array"
+     },
+     "false_positive_tradeoff": {
+      "additionalProperties": {
+       "type": "integer"
+      },
+      "title": "False Positive Tradeoff",
+      "type": "object"
+     },
+     "ml_v1": {
+      "$ref": "#/components/schemas/ComparisonModel"
+     },
+     "ml_v2": {
+      "$ref": "#/components/schemas/ComparisonModel"
+     },
+     "paired_differences_ml_v2_minus_ml_v1": {
+      "additionalProperties": {
+       "$ref": "#/components/schemas/PairedDifference"
+      },
+      "title": "Paired Differences Ml V2 Minus Ml V1",
+      "type": "object"
+     },
+     "population_description": {
+      "title": "Population Description",
+      "type": "string"
+     },
+     "positives": {
+      "title": "Positives",
+      "type": "integer"
+     },
+     "records": {
+      "title": "Records",
+      "type": "integer"
+     },
+     "source_files_sha256": {
+      "additionalProperties": {
+       "type": "string"
+      },
+      "title": "Source Files Sha256",
+      "type": "object"
+     },
+     "source_plan_sha256": {
+      "title": "Source Plan Sha256",
+      "type": "string"
+     },
+     "source_run_id": {
+      "title": "Source Run Id",
+      "type": "string"
+     },
+     "used_for_model_selection": {
+      "title": "Used For Model Selection",
+      "type": "boolean"
+     }
+    },
+    "required": [
+     "population_description",
+     "records",
+     "positives",
+     "by_publisher",
+     "used_for_model_selection",
+     "ml_v1",
+     "ml_v2",
+     "paired_differences_ml_v2_minus_ml_v1",
+     "false_positive_tradeoff",
+     "caveats",
+     "source_run_id",
+     "source_plan_sha256",
+     "source_files_sha256"
+    ],
+    "title": "ComparisonResponse",
+    "type": "object"
+   },
+   "Completeness": {
+    "additionalProperties": false,
+    "properties": {
+     "has_amount_with_currency": {
+      "title": "Has Amount With Currency",
+      "type": "boolean"
+     },
+     "has_dated_amount": {
+      "title": "Has Dated Amount",
+      "type": "boolean"
+     },
+     "has_description": {
+      "title": "Has Description",
+      "type": "boolean"
+     },
+     "has_documents": {
+      "title": "Has Documents",
+      "type": "boolean"
+     },
+     "has_institution": {
+      "title": "Has Institution",
+      "type": "boolean"
+     },
+     "has_mapped_country": {
+      "title": "Has Mapped Country",
+      "type": "boolean"
+     },
+     "has_reported_amount": {
+      "title": "Has Reported Amount",
+      "type": "boolean"
+     },
+     "has_sector": {
+      "title": "Has Sector",
+      "type": "boolean"
+     },
+     "has_source_status": {
+      "title": "Has Source Status",
+      "type": "boolean"
+     },
+     "has_verified_approval": {
+      "title": "Has Verified Approval",
+      "type": "boolean"
+     },
+     "has_year": {
+      "title": "Has Year",
+      "type": "boolean"
+     },
+     "missing": {
+      "description": "Names of the indicators above that are false",
+      "items": {
+       "type": "string"
+      },
+      "title": "Missing",
+      "type": "array"
+     }
+    },
+    "required": [
+     "has_description",
+     "has_sector",
+     "has_year",
+     "has_mapped_country",
+     "has_source_status",
+     "has_institution",
+     "has_reported_amount",
+     "has_amount_with_currency",
+     "has_dated_amount",
+     "has_documents",
+     "has_verified_approval",
+     "missing"
+    ],
+    "title": "Completeness",
+    "type": "object"
+   },
+   "CountryAggregateOut": {
+    "properties": {
+     "amount": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Amount"
+     },
+     "country_name": {
+      "title": "Country Name",
+      "type": "string"
+     },
+     "currency": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Currency"
+     },
+     "iso3": {
+      "title": "Iso3",
+      "type": "string"
+     },
+     "measure": {
+      "title": "Measure",
+      "type": "string"
+     },
+     "measure_label": {
+      "title": "Measure Label",
+      "type": "string"
+     },
+     "meta": {
+      "$ref": "#/components/schemas/MeasureMeta"
+     },
+     "region": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Region"
+     },
+     "snapshot_date": {
+      "anyOf": [
+       {
+        "format": "date",
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Snapshot Date"
+     },
+     "unit": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Unit"
+     },
+     "value_kind": {
+      "title": "Value Kind",
+      "type": "string"
+     },
+     "value_status": {
+      "title": "Value Status",
+      "type": "string"
+     }
+    },
+    "required": [
+     "iso3",
+     "country_name",
+     "region",
+     "measure",
+     "measure_label",
+     "value_kind",
+     "amount",
+     "value_status",
+     "currency",
+     "unit",
+     "snapshot_date",
+     "meta"
+    ],
+    "title": "CountryAggregateOut",
+    "type": "object"
+   },
+   "CountryAggregatesResponse": {
+    "properties": {
+     "access": {
+      "$ref": "#/components/schemas/AccessNotice"
+     },
+     "items": {
+      "items": {
+       "$ref": "#/components/schemas/CountryAggregateOut"
+      },
+      "title": "Items",
+      "type": "array"
+     },
+     "rule": {
+      "title": "Rule",
+      "type": "string"
+     }
+    },
+    "required": [
+     "items",
+     "rule",
+     "access"
+    ],
+    "title": "CountryAggregatesResponse",
+    "type": "object"
+   },
+   "CountryMetricSummary": {
+    "additionalProperties": false,
+    "properties": {
+     "all_years_total": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "All Years Total"
+     },
+     "declaration": {
+      "$ref": "#/components/schemas/MetricDeclaration"
+     },
+     "first_year": {
+      "anyOf": [
+       {
+        "type": "integer"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "First Year"
+     },
+     "last_year": {
+      "anyOf": [
+       {
+        "type": "integer"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Last Year"
+     },
+     "status": {
+      "enum": [
+       "available",
+       "unavailable"
+      ],
+      "title": "Status",
+      "type": "string"
+     },
+     "summed_records": {
+      "title": "Summed Records",
+      "type": "integer"
+     },
+     "unavailable_reason": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Unavailable Reason"
+     }
+    },
+    "required": [
+     "declaration",
+     "status",
+     "all_years_total",
+     "summed_records",
+     "first_year",
+     "last_year",
+     "unavailable_reason"
+    ],
+    "title": "CountryMetricSummary",
+    "type": "object"
+   },
+   "CountryOut": {
+    "properties": {
+     "country_name": {
+      "title": "Country Name",
+      "type": "string"
+     },
+     "iso3": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Iso3"
+     },
+     "mapping_method": {
+      "title": "Mapping Method",
+      "type": "string"
+     }
+    },
+    "required": [
+     "country_name",
+     "iso3",
+     "mapping_method"
+    ],
+    "title": "CountryOut",
+    "type": "object"
+   },
+   "CountryProfileResponse": {
+    "additionalProperties": false,
+    "properties": {
+     "access": {
+      "$ref": "#/components/schemas/AccessNotice"
+     },
+     "climate": {
+      "$ref": "#/components/schemas/ClimateDistributionResponse"
+     },
+     "country": {
+      "title": "Country",
+      "type": "string"
+     },
+     "country_aggregates_endpoint": {
+      "title": "Country Aggregates Endpoint",
+      "type": "string"
+     },
+     "disclaimers": {
+      "items": {
+       "type": "string"
+      },
+      "title": "Disclaimers",
+      "type": "array"
+     },
+     "metrics": {
+      "items": {
+       "$ref": "#/components/schemas/CountryMetricSummary"
+      },
+      "title": "Metrics",
+      "type": "array"
+     },
+     "project_counts": {
+      "items": {
+       "$ref": "#/components/schemas/SourceCount"
+      },
+      "title": "Project Counts",
+      "type": "array"
+     },
+     "top_sectors": {
+      "items": {
+       "$ref": "#/components/schemas/DistributionBucket"
+      },
+      "title": "Top Sectors",
+      "type": "array"
+     }
+    },
+    "required": [
+     "country",
+     "project_counts",
+     "metrics",
+     "top_sectors",
+     "climate",
+     "country_aggregates_endpoint",
+     "disclaimers",
+     "access"
+    ],
+    "title": "CountryProfileResponse",
+    "type": "object"
+   },
+   "CountryRef": {
+    "additionalProperties": false,
+    "properties": {
+     "country_name": {
+      "title": "Country Name",
+      "type": "string"
+     },
+     "iso3": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Iso3"
+     },
+     "mapping_method": {
+      "title": "Mapping Method",
+      "type": "string"
+     }
+    },
+    "required": [
+     "country_name",
+     "iso3",
+     "mapping_method"
+    ],
+    "title": "CountryRef",
+    "type": "object"
+   },
+   "CoverageResponse": {
+    "additionalProperties": false,
+    "properties": {
+     "access": {
+      "$ref": "#/components/schemas/AccessNotice"
+     },
+     "data_version": {
+      "description": "[latest completed import id, completed runs]",
+      "items": {
+       "type": "integer"
+      },
+      "title": "Data Version",
+      "type": "array"
+     },
+     "sources": {
+      "items": {
+       "$ref": "#/components/schemas/SourceCoverage"
+      },
+      "title": "Sources",
+      "type": "array"
+     }
+    },
+    "required": [
+     "data_version",
+     "sources",
+     "access"
+    ],
+    "title": "CoverageResponse",
+    "type": "object"
+   },
+   "DataQualityResponse": {
+    "properties": {
+     "access": {
+      "$ref": "#/components/schemas/AccessNotice"
+     },
+     "sources": {
+      "items": {
+       "$ref": "#/components/schemas/SourceQuality"
+      },
+      "title": "Sources",
+      "type": "array"
+     }
+    },
+    "required": [
+     "sources",
+     "access"
+    ],
+    "title": "DataQualityResponse",
+    "type": "object"
+   },
+   "DistributionBucket": {
+    "additionalProperties": false,
+    "properties": {
+     "label": {
+      "title": "Label",
+      "type": "string"
+     },
+     "projects": {
+      "title": "Projects",
+      "type": "integer"
+     }
+    },
+    "required": [
+     "label",
+     "projects"
+    ],
+    "title": "DistributionBucket",
+    "type": "object"
+   },
+   "DocumentLinkOut": {
+    "properties": {
+     "document": {
+      "$ref": "#/components/schemas/DocumentOut"
+     },
+     "last_verified_on": {
+      "format": "date",
+      "title": "Last Verified On",
+      "type": "string"
+     },
+     "match_evidence": {
+      "title": "Match Evidence",
+      "type": "string"
+     },
+     "match_method": {
+      "title": "Match Method",
+      "type": "string"
+     },
+     "relation_type": {
+      "title": "Relation Type",
+      "type": "string"
+     },
+     "review_status": {
+      "title": "Review Status",
+      "type": "string"
+     },
+     "verification_state": {
+      "title": "Verification State",
+      "type": "string"
+     }
+    },
+    "required": [
+     "document",
+     "relation_type",
+     "match_method",
+     "match_evidence",
+     "verification_state",
+     "review_status",
+     "last_verified_on"
+    ],
+    "title": "DocumentLinkOut",
+    "type": "object"
+   },
+   "DocumentOut": {
+    "properties": {
+     "catalogue_url": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Catalogue Url"
+     },
+     "content_url": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Content Url"
+     },
+     "document_date": {
+      "anyOf": [
+       {
+        "format": "date",
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Document Date"
+     },
+     "document_date_type": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Document Date Type"
+     },
+     "document_type": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Document Type"
+     },
+     "family_name": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Family Name"
+     },
+     "geographies": {
+      "items": {
+       "type": "string"
+      },
+      "title": "Geographies",
+      "type": "array"
+     },
+     "id": {
+      "title": "Id",
+      "type": "string"
+     },
+     "languages": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Languages"
+     },
+     "linked_project_ids": {
+      "items": {
+       "type": "string"
+      },
+      "title": "Linked Project Ids",
+      "type": "array"
+     },
+     "publisher_fund": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Publisher Fund"
+     },
+     "rights_notice": {
+      "title": "Rights Notice",
+      "type": "string"
+     },
+     "source_id": {
+      "title": "Source Id",
+      "type": "string"
+     },
+     "title": {
+      "title": "Title",
+      "type": "string"
+     }
+    },
+    "required": [
+     "id",
+     "source_id",
+     "title",
+     "family_name",
+     "document_type",
+     "publisher_fund",
+     "document_date",
+     "document_date_type",
+     "geographies",
+     "languages",
+     "catalogue_url",
+     "content_url",
+     "linked_project_ids",
+     "rights_notice"
+    ],
+    "title": "DocumentOut",
+    "type": "object"
+   },
+   "DocumentPage": {
+    "properties": {
+     "access": {
+      "$ref": "#/components/schemas/AccessNotice"
+     },
+     "applied_filters": {
+      "additionalProperties": true,
+      "title": "Applied Filters",
+      "type": "object"
+     },
+     "empty_result_message": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Empty Result Message"
+     },
+     "items": {
+      "items": {
+       "$ref": "#/components/schemas/DocumentOut"
+      },
+      "title": "Items",
+      "type": "array"
+     },
+     "pagination": {
+      "$ref": "#/components/schemas/PageMeta"
+     }
+    },
+    "required": [
+     "items",
+     "pagination",
+     "applied_filters",
+     "access"
+    ],
+    "title": "DocumentPage",
+    "type": "object"
+   },
+   "DocumentRef": {
+    "additionalProperties": false,
+    "properties": {
+     "catalogue_url": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Catalogue Url"
+     },
+     "document_id": {
+      "title": "Document Id",
+      "type": "string"
+     },
+     "document_type": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Document Type"
+     },
+     "title": {
+      "title": "Title",
+      "type": "string"
+     },
+     "verification_state": {
+      "title": "Verification State",
+      "type": "string"
+     }
+    },
+    "required": [
+     "document_id",
+     "title",
+     "document_type",
+     "verification_state",
+     "catalogue_url"
+    ],
+    "title": "DocumentRef",
+    "type": "object"
+   },
+   "DuplicateWarning": {
+    "additionalProperties": false,
+    "properties": {
+     "message": {
+      "title": "Message",
+      "type": "string"
+     },
+     "project_ids": {
+      "items": {
+       "type": "string"
+      },
+      "title": "Project Ids",
+      "type": "array"
+     },
+     "relation_type": {
+      "title": "Relation Type",
+      "type": "string"
+     },
+     "verification_state": {
+      "title": "Verification State",
+      "type": "string"
+     }
+    },
+    "required": [
+     "project_ids",
+     "relation_type",
+     "verification_state",
+     "message"
+    ],
+    "title": "DuplicateWarning",
+    "type": "object"
+   },
+   "EnrichmentOut": {
+    "properties": {
+     "approval_date": {
+      "anyOf": [
+       {
+        "format": "date",
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Approval Date"
+     },
+     "approval_date_type": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Approval Date Type"
+     },
+     "approval_status": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Approval Status"
+     },
+     "conflicts": {
+      "items": {
+       "additionalProperties": true,
+       "type": "object"
+      },
+      "title": "Conflicts",
+      "type": "array"
+     },
+     "last_verified_on": {
+      "format": "date",
+      "title": "Last Verified On",
+      "type": "string"
+     },
+     "match_evidence": {
+      "title": "Match Evidence",
+      "type": "string"
+     },
+     "match_method": {
+      "title": "Match Method",
+      "type": "string"
+     },
+     "official_url": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Official Url"
+     },
+     "precedence": {
+      "title": "Precedence",
+      "type": "string"
+     },
+     "project_status": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Project Status"
+     },
+     "relation_type": {
+      "title": "Relation Type",
+      "type": "string"
+     },
+     "review_status": {
+      "title": "Review Status",
+      "type": "string"
+     },
+     "snapshot_id": {
+      "title": "Snapshot Id",
+      "type": "string"
+     },
+     "source_id": {
+      "title": "Source Id",
+      "type": "string"
+     },
+     "status_as_of": {
+      "anyOf": [
+       {
+        "format": "date-time",
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Status As Of"
+     },
+     "status_as_of_meaning": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Status As Of Meaning"
+     },
+     "values": {
+      "additionalProperties": true,
+      "title": "Values",
+      "type": "object"
+     },
+     "verification_state": {
+      "title": "Verification State",
+      "type": "string"
+     }
+    },
+    "required": [
+     "source_id",
+     "snapshot_id",
+     "relation_type",
+     "match_method",
+     "match_evidence",
+     "verification_state",
+     "review_status",
+     "last_verified_on",
+     "official_url",
+     "approval_date",
+     "approval_date_type",
+     "approval_status",
+     "project_status",
+     "status_as_of",
+     "status_as_of_meaning",
+     "values",
+     "conflicts",
+     "precedence"
+    ],
+    "title": "EnrichmentOut",
+    "type": "object"
+   },
+   "ErrorResponse": {
+    "properties": {
+     "code": {
+      "title": "Code",
+      "type": "string"
+     },
+     "message": {
+      "title": "Message",
+      "type": "string"
+     }
+    },
+    "required": [
+     "code",
+     "message"
+    ],
+    "title": "ErrorResponse",
+    "type": "object"
+   },
+   "EvaluationOut": {
+    "properties": {
+     "document": {
+      "title": "Document",
+      "type": "string"
+     },
+     "headline": {
+      "additionalProperties": {
+       "type": "number"
+      },
+      "title": "Headline",
+      "type": "object"
+     },
+     "independent_generalization_evidence": {
+      "title": "Independent Generalization Evidence",
+      "type": "boolean"
+     },
+     "kind": {
+      "enum": [
+       "one_shot_frozen_test",
+       "development_validation_used_for_selection"
+      ],
+      "title": "Kind",
+      "type": "string"
+     },
+     "population": {
+      "title": "Population",
+      "type": "string"
+     }
+    },
+    "required": [
+     "kind",
+     "population",
+     "headline",
+     "document",
+     "independent_generalization_evidence"
+    ],
+    "title": "EvaluationOut",
+    "type": "object"
+   },
+   "EvidenceResponse": {
+    "additionalProperties": false,
+    "properties": {
+     "access": {
+      "$ref": "#/components/schemas/AccessNotice"
+     },
+     "disclaimers": {
+      "items": {
+       "type": "string"
+      },
+      "title": "Disclaimers",
+      "type": "array"
+     },
+     "methodology_version": {
+      "title": "Methodology Version",
+      "type": "string"
+     },
+     "project": {
+      "$ref": "#/components/schemas/ProjectEvidence"
+     }
+    },
+    "required": [
+     "project",
+     "methodology_version",
+     "disclaimers",
+     "access"
+    ],
+    "title": "EvidenceResponse",
+    "type": "object"
+   },
+   "ExplanationOut": {
+    "properties": {
+     "faithfulness_abs_error": {
+      "title": "Faithfulness Abs Error",
+      "type": "number"
+     },
+     "feature_contribution_total": {
+      "description": "Sum over ALL non-zero features; intercept + total = logit",
+      "title": "Feature Contribution Total",
+      "type": "number"
+     },
+     "intercept": {
+      "title": "Intercept",
+      "type": "number"
+     },
+     "logit": {
+      "title": "Logit",
+      "type": "number"
+     },
+     "method": {
+      "title": "Method",
+      "type": "string"
+     },
+     "nonzero_features": {
+      "title": "Nonzero Features",
+      "type": "integer"
+     },
+     "top_negative_features": {
+      "items": {
+       "$ref": "#/components/schemas/FeatureContribution"
+      },
+      "title": "Top Negative Features",
+      "type": "array"
+     },
+     "top_positive_features": {
+      "items": {
+       "$ref": "#/components/schemas/FeatureContribution"
+      },
+      "title": "Top Positive Features",
+      "type": "array"
+     },
+     "top_words": {
+      "items": {
+       "$ref": "#/components/schemas/WordContribution"
+      },
+      "title": "Top Words",
+      "type": "array"
+     },
+     "word_attribution_available": {
+      "title": "Word Attribution Available",
+      "type": "boolean"
+     },
+     "word_contribution_total": {
+      "anyOf": [
+       {
+        "type": "number"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "description": "Sum over ALL word attributions; equals the feature total when available",
+      "title": "Word Contribution Total"
+     }
+    },
+    "required": [
+     "method",
+     "intercept",
+     "logit",
+     "faithfulness_abs_error",
+     "nonzero_features",
+     "feature_contribution_total",
+     "word_contribution_total",
+     "top_positive_features",
+     "top_negative_features",
+     "word_attribution_available",
+     "top_words"
+    ],
+    "title": "ExplanationOut",
+    "type": "object"
+   },
+   "FeatureContribution": {
+    "properties": {
+     "contribution": {
+      "title": "Contribution",
+      "type": "number"
+     },
+     "feature": {
+      "title": "Feature",
+      "type": "string"
+     }
+    },
+    "required": [
+     "feature",
+     "contribution"
+    ],
+    "title": "FeatureContribution",
+    "type": "object"
+   },
+   "FieldCoverage": {
+    "properties": {
+     "field": {
+      "title": "Field",
+      "type": "string"
+     },
+     "missing": {
+      "title": "Missing",
+      "type": "integer"
+     },
+     "present": {
+      "title": "Present",
+      "type": "integer"
+     }
+    },
+    "required": [
+     "field",
+     "present",
+     "missing"
+    ],
+    "title": "FieldCoverage",
+    "type": "object"
+   },
+   "FilterCountry": {
+    "properties": {
+     "iso3": {
+      "title": "Iso3",
+      "type": "string"
+     },
+     "name": {
+      "title": "Name",
+      "type": "string"
+     },
+     "project_rows": {
+      "title": "Project Rows",
+      "type": "integer"
+     }
+    },
+    "required": [
+     "iso3",
+     "name",
+     "project_rows"
+    ],
+    "title": "FilterCountry",
+    "type": "object"
+   },
+   "FilterSector": {
+    "properties": {
+     "project_rows": {
+      "title": "Project Rows",
+      "type": "integer"
+     },
+     "sector_name": {
+      "title": "Sector Name",
+      "type": "string"
+     },
+     "sector_vocabulary": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Sector Vocabulary"
+     },
+     "source_id": {
+      "title": "Source Id",
+      "type": "string"
+     }
+    },
+    "required": [
+     "source_id",
+     "sector_vocabulary",
+     "sector_name",
+     "project_rows"
+    ],
+    "title": "FilterSector",
+    "type": "object"
+   },
+   "FilterYearRange": {
+    "properties": {
+     "max_year": {
+      "anyOf": [
+       {
+        "type": "integer"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Max Year"
+     },
+     "min_year": {
+      "anyOf": [
+       {
+        "type": "integer"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Min Year"
+     },
+     "rows_with_year": {
+      "title": "Rows With Year",
+      "type": "integer"
+     },
+     "rows_without_year": {
+      "title": "Rows Without Year",
+      "type": "integer"
+     },
+     "source_id": {
+      "title": "Source Id",
+      "type": "string"
+     },
+     "year_type": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Year Type"
+     }
+    },
+    "required": [
+     "source_id",
+     "year_type",
+     "min_year",
+     "max_year",
+     "rows_with_year",
+     "rows_without_year"
+    ],
+    "title": "FilterYearRange",
+    "type": "object"
+   },
+   "FiltersResponse": {
+    "properties": {
+     "access": {
+      "$ref": "#/components/schemas/AccessNotice"
+     },
+     "climate_annotation_filter": {
+      "title": "Climate Annotation Filter",
+      "type": "string"
+     },
+     "countries": {
+      "items": {
+       "$ref": "#/components/schemas/FilterCountry"
+      },
+      "title": "Countries",
+      "type": "array"
+     },
+     "sectors": {
+      "items": {
+       "$ref": "#/components/schemas/FilterSector"
+      },
+      "title": "Sectors",
+      "type": "array"
+     },
+     "sort_options": {
+      "items": {
+       "type": "string"
+      },
+      "title": "Sort Options",
+      "type": "array"
+     },
+     "sources": {
+      "items": {
+       "type": "string"
+      },
+      "title": "Sources",
+      "type": "array"
+     },
+     "year_ranges": {
+      "items": {
+       "$ref": "#/components/schemas/FilterYearRange"
+      },
+      "title": "Year Ranges",
+      "type": "array"
+     }
+    },
+    "required": [
+     "sources",
+     "countries",
+     "sectors",
+     "year_ranges",
+     "climate_annotation_filter",
+     "sort_options",
+     "access"
+    ],
+    "title": "FiltersResponse",
+    "type": "object"
+   },
+   "FinancialFact": {
+    "additionalProperties": false,
+    "properties": {
+     "amount": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "description": "Exact source value in `unit`; null = not reported",
+      "title": "Amount"
+     },
+     "amount_in_units": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "description": "amount x unit scale; null if unknown",
+      "title": "Amount In Units"
+     },
+     "comparability_key": {
+      "description": "Facts are comparable (and summable across projects) only with equal keys",
+      "title": "Comparability Key",
+      "type": "string"
+     },
+     "country_attribution": {
+      "enum": [
+       "single_country_project",
+       "whole_project_value_not_attributable_to_one_country",
+       "source_published_country_line",
+       "no_mapped_country"
+      ],
+      "title": "Country Attribution",
+      "type": "string"
+     },
+     "country_iso3": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Country Iso3"
+     },
+     "currency": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "description": "ISO 4217; null = not stated by the source",
+      "title": "Currency"
+     },
+     "date": {
+      "anyOf": [
+       {
+        "format": "date",
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Date"
+     },
+     "date_meaning": {
+      "title": "Date Meaning",
+      "type": "string"
+     },
+     "estimated": {
+      "anyOf": [
+       {
+        "type": "boolean"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Estimated"
+     },
+     "fact_id": {
+      "description": "observation_key, or derived:<source>:<flow>:<project>",
+      "title": "Fact Id",
+      "type": "string"
+     },
+     "fact_type": {
+      "enum": [
+       "source_reported",
+       "derived_sum_of_source_transactions"
+      ],
+      "title": "Fact Type",
+      "type": "string"
+     },
+     "financial_meaning": {
+      "enum": [
+       "historical_commitment",
+       "pledge_not_commitment",
+       "approval",
+       "disbursement",
+       "repayment_not_funding",
+       "co_financing",
+       "total_project_cost",
+       "readiness_grant",
+       "deposit_into_fund"
+      ],
+      "title": "Financial Meaning",
+      "type": "string"
+     },
+     "financing_type": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Financing Type"
+     },
+     "first_year": {
+      "anyOf": [
+       {
+        "type": "integer"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "First Year"
+     },
+     "flow_kind": {
+      "title": "Flow Kind",
+      "type": "string"
+     },
+     "is_component": {
+      "title": "Is Component",
+      "type": "boolean"
+     },
+     "is_funding_flow": {
+      "description": "False for repayments, pledges and total project cost (not funding provided)",
+      "title": "Is Funding Flow",
+      "type": "boolean"
+     },
+     "last_year": {
+      "anyOf": [
+       {
+        "type": "integer"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Last Year"
+     },
+     "level": {
+      "title": "Level",
+      "type": "string"
+     },
+     "meaning_label": {
+      "title": "Meaning Label",
+      "type": "string"
+     },
+     "multi_country": {
+      "title": "Multi Country",
+      "type": "boolean"
+     },
+     "price_basis": {
+      "title": "Price Basis",
+      "type": "string"
+     },
+     "recommended_for_aggregates": {
+      "anyOf": [
+       {
+        "type": "boolean"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Recommended For Aggregates"
+     },
+     "source_id": {
+      "title": "Source Id",
+      "type": "string"
+     },
+     "source_reference": {
+      "title": "Source Reference",
+      "type": "string"
+     },
+     "transactions_summed": {
+      "anyOf": [
+       {
+        "type": "integer"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "description": "Derived sums only: number of source transactions",
+      "title": "Transactions Summed"
+     },
+     "unit": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Unit"
+     },
+     "value_status": {
+      "title": "Value Status",
+      "type": "string"
+     },
+     "year": {
+      "anyOf": [
+       {
+        "type": "integer"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Year"
+     }
+    },
+    "required": [
+     "fact_id",
+     "fact_type",
+     "source_id",
+     "flow_kind",
+     "financial_meaning",
+     "is_funding_flow",
+     "meaning_label",
+     "level",
+     "financing_type",
+     "is_component",
+     "amount",
+     "amount_in_units",
+     "unit",
+     "currency",
+     "price_basis",
+     "value_status",
+     "date",
+     "year",
+     "date_meaning",
+     "multi_country",
+     "country_iso3",
+     "country_attribution",
+     "estimated",
+     "recommended_for_aggregates",
+     "comparability_key",
+     "source_reference"
+    ],
+    "title": "FinancialFact",
+    "type": "object"
+   },
+   "FinancingCompletenessResponse": {
+    "properties": {
+     "access": {
+      "$ref": "#/components/schemas/AccessNotice"
+     },
+     "flows": {
+      "items": {
+       "$ref": "#/components/schemas/FlowCompleteness"
+      },
+      "title": "Flows",
+      "type": "array"
+     }
+    },
+    "required": [
+     "flows",
+     "access"
+    ],
+    "title": "FinancingCompletenessResponse",
+    "type": "object"
+   },
+   "FlowCompleteness": {
+    "properties": {
+     "component_lines": {
+      "title": "Component Lines",
+      "type": "integer"
+     },
+     "flow_kind": {
+      "title": "Flow Kind",
+      "type": "string"
+     },
+     "invalid": {
+      "title": "Invalid",
+      "type": "integer"
+     },
+     "meta": {
+      "$ref": "#/components/schemas/MeasureMeta"
+     },
+     "not_reported": {
+      "title": "Not Reported",
+      "type": "integer"
+     },
+     "observations": {
+      "title": "Observations",
+      "type": "integer"
+     },
+     "reported": {
+      "title": "Reported",
+      "type": "integer"
+     },
+     "reported_without_currency": {
+      "title": "Reported Without Currency",
+      "type": "integer"
+     },
+     "reported_without_unit": {
+      "title": "Reported Without Unit",
+      "type": "integer"
+     },
+     "source_id": {
+      "title": "Source Id",
+      "type": "string"
+     },
+     "unparseable": {
+      "title": "Unparseable",
+      "type": "integer"
+     }
+    },
+    "required": [
+     "source_id",
+     "flow_kind",
+     "observations",
+     "reported",
+     "not_reported",
+     "unparseable",
+     "invalid",
+     "reported_without_currency",
+     "reported_without_unit",
+     "component_lines",
+     "meta"
+    ],
+    "title": "FlowCompleteness",
+    "type": "object"
+   },
+   "GcfTimelineResponse": {
+    "properties": {
+     "access": {
+      "$ref": "#/components/schemas/AccessNotice"
+     },
+     "country": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Country"
+     },
+     "disclaimers": {
+      "items": {
+       "type": "string"
+      },
+      "title": "Disclaimers",
+      "type": "array"
+     },
+     "funding_meta": {
+      "$ref": "#/components/schemas/MeasureMeta"
+     },
+     "points": {
+      "items": {
+       "$ref": "#/components/schemas/TimelinePoint"
+      },
+      "title": "Points",
+      "type": "array"
+     },
+     "projects_meta": {
+      "$ref": "#/components/schemas/MeasureMeta"
+     },
+     "projects_without_approval_date": {
+      "title": "Projects Without Approval Date",
+      "type": "integer"
+     }
+    },
+    "required": [
+     "country",
+     "points",
+     "projects_without_approval_date",
+     "projects_meta",
+     "funding_meta",
+     "disclaimers",
+     "access"
+    ],
+    "title": "GcfTimelineResponse",
+    "type": "object"
+   },
+   "GroupOut": {
+    "properties": {
+     "group_key": {
+      "title": "Group Key",
+      "type": "string"
+     },
+     "meaning": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Meaning"
+     },
+     "member_count": {
+      "title": "Member Count",
+      "type": "integer"
+     },
+     "member_ids": {
+      "description": "Up to 50 members, ordered by id",
+      "items": {
+       "type": "string"
+      },
+      "title": "Member Ids",
+      "type": "array"
+     }
+    },
+    "required": [
+     "group_key",
+     "meaning",
+     "member_count",
+     "member_ids"
+    ],
+    "title": "GroupOut",
+    "type": "object"
+   },
+   "GroupedFundingResponse": {
+    "additionalProperties": false,
+    "properties": {
+     "access": {
+      "$ref": "#/components/schemas/AccessNotice"
+     },
+     "declaration": {
+      "$ref": "#/components/schemas/MetricDeclaration"
+     },
+     "dimension": {
+      "enum": [
+       "country",
+       "sector"
+      ],
+      "title": "Dimension",
+      "type": "string"
+     },
+     "disclaimers": {
+      "items": {
+       "type": "string"
+      },
+      "title": "Disclaimers",
+      "type": "array"
+     },
+     "groups": {
+      "items": {
+       "$ref": "#/components/schemas/GroupedTotal"
+      },
+      "title": "Groups",
+      "type": "array"
+     },
+     "groups_shown": {
+      "title": "Groups Shown",
+      "type": "integer"
+     },
+     "groups_total": {
+      "title": "Groups Total",
+      "type": "integer"
+     },
+     "status": {
+      "enum": [
+       "available",
+       "unavailable"
+      ],
+      "title": "Status",
+      "type": "string"
+     },
+     "unavailable_reason": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Unavailable Reason"
+     },
+     "year_from": {
+      "anyOf": [
+       {
+        "type": "integer"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Year From"
+     },
+     "year_to": {
+      "anyOf": [
+       {
+        "type": "integer"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Year To"
+     }
+    },
+    "required": [
+     "dimension",
+     "status",
+     "unavailable_reason",
+     "declaration",
+     "year_from",
+     "year_to",
+     "groups",
+     "groups_total",
+     "groups_shown",
+     "disclaimers",
+     "access"
+    ],
+    "title": "GroupedFundingResponse",
+    "type": "object"
+   },
+   "GroupedTotal": {
+    "additionalProperties": false,
+    "properties": {
+     "estimated_records": {
+      "title": "Estimated Records",
+      "type": "integer"
+     },
+     "key": {
+      "title": "Key",
+      "type": "string"
+     },
+     "label": {
+      "title": "Label",
+      "type": "string"
+     },
+     "missing_value_records": {
+      "title": "Missing Value Records",
+      "type": "integer"
+     },
+     "status": {
+      "enum": [
+       "available",
+       "unavailable"
+      ],
+      "title": "Status",
+      "type": "string"
+     },
+     "summed_records": {
+      "title": "Summed Records",
+      "type": "integer"
+     },
+     "total": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Total"
+     },
+     "unavailable_reason": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Unavailable Reason"
+     }
+    },
+    "required": [
+     "key",
+     "label",
+     "status",
+     "total",
+     "summed_records",
+     "missing_value_records",
+     "estimated_records",
+     "unavailable_reason"
+    ],
+    "title": "GroupedTotal",
+    "type": "object"
+   },
+   "GuardRequest": {
+    "additionalProperties": false,
+    "properties": {
+     "description": {
+      "anyOf": [
+       {
+        "maxLength": 20000,
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Description"
+     },
+     "title": {
+      "anyOf": [
+       {
+        "maxLength": 1000,
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Title"
+     }
+    },
+    "title": "GuardRequest",
+    "type": "object"
+   },
+   "GuardResponse": {
+    "properties": {
+     "explanation_input": {
+      "const": "normalized_fields",
+      "default": "normalized_fields",
+      "title": "Explanation Input",
+      "type": "string"
+     },
+     "guard_version": {
+      "title": "Guard Version",
+      "type": "string"
+     },
+     "guarded": {
+      "$ref": "#/components/schemas/ScreeningResponse"
+     },
+     "notice": {
+      "title": "Notice",
+      "type": "string"
+     },
+     "raw": {
+      "$ref": "#/components/schemas/ScreeningResponse"
+     },
+     "reasons": {
+      "items": {
+       "type": "string"
+      },
+      "title": "Reasons",
+      "type": "array"
+     },
+     "requires_review": {
+      "title": "Requires Review",
+      "type": "boolean"
+     },
+     "standard_api": {
+      "$ref": "#/components/schemas/ScreeningResponse"
+     },
+     "unstable_input": {
+      "title": "Unstable Input",
+      "type": "boolean"
+     }
+    },
+    "required": [
+     "guard_version",
+     "raw",
+     "guarded",
+     "standard_api",
+     "requires_review",
+     "unstable_input",
+     "reasons",
+     "notice"
+    ],
+    "title": "GuardResponse",
+    "type": "object"
+   },
+   "HTTPValidationError": {
+    "properties": {
+     "detail": {
+      "items": {
+       "$ref": "#/components/schemas/ValidationError"
+      },
+      "title": "Detail",
+      "type": "array"
+     }
+    },
+    "title": "HTTPValidationError",
+    "type": "object"
+   },
+   "HealthResponse": {
+    "description": "Liveness status of the API process.",
+    "properties": {
+     "service": {
+      "title": "Service",
+      "type": "string"
+     },
+     "status": {
+      "const": "ok",
+      "title": "Status",
+      "type": "string"
+     },
+     "version": {
+      "title": "Version",
+      "type": "string"
+     }
+    },
+    "required": [
+     "status",
+     "service",
+     "version"
+    ],
+    "title": "HealthResponse",
+    "type": "object"
+   },
+   "InstitutionCount": {
+    "additionalProperties": false,
+    "properties": {
+     "institution": {
+      "title": "Institution",
+      "type": "string"
+     },
+     "projects": {
+      "title": "Projects",
+      "type": "integer"
+     }
+    },
+    "required": [
+     "institution",
+     "projects"
+    ],
+    "title": "InstitutionCount",
+    "type": "object"
+   },
+   "InstitutionGroup": {
+    "additionalProperties": false,
+    "properties": {
+     "distinct_institutions": {
+      "title": "Distinct Institutions",
+      "type": "integer"
+     },
+     "field": {
+      "title": "Field",
+      "type": "string"
+     },
+     "institutions": {
+      "items": {
+       "$ref": "#/components/schemas/InstitutionCount"
+      },
+      "title": "Institutions",
+      "type": "array"
+     },
+     "projects": {
+      "title": "Projects",
+      "type": "integer"
+     },
+     "projects_without_institution": {
+      "title": "Projects Without Institution",
+      "type": "integer"
+     },
+     "role": {
+      "title": "Role",
+      "type": "string"
+     },
+     "source_id": {
+      "title": "Source Id",
+      "type": "string"
+     }
+    },
+    "required": [
+     "source_id",
+     "role",
+     "field",
+     "institutions",
+     "distinct_institutions",
+     "projects_without_institution",
+     "projects"
+    ],
+    "title": "InstitutionGroup",
+    "type": "object"
+   },
+   "InstitutionRef": {
+    "additionalProperties": false,
+    "properties": {
+     "name": {
+      "title": "Name",
+      "type": "string"
+     },
+     "role": {
+      "description": "What this institution is in the source (funder, fund, ...)",
+      "title": "Role",
+      "type": "string"
+     }
+    },
+    "required": [
+     "role",
+     "name"
+    ],
+    "title": "InstitutionRef",
+    "type": "object"
+   },
+   "InstitutionsResponse": {
+    "additionalProperties": false,
+    "properties": {
+     "access": {
+      "$ref": "#/components/schemas/AccessNotice"
+     },
+     "country": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Country"
+     },
+     "groups": {
+      "items": {
+       "$ref": "#/components/schemas/InstitutionGroup"
+      },
+      "title": "Groups",
+      "type": "array"
+     },
+     "measure": {
+      "const": "project_record_count",
+      "title": "Measure",
+      "type": "string"
+     },
+     "note": {
+      "title": "Note",
+      "type": "string"
+     },
+     "universe": {
+      "title": "Universe",
+      "type": "string"
+     }
+    },
+    "required": [
+     "universe",
+     "country",
+     "measure",
+     "groups",
+     "note",
+     "access"
+    ],
+    "title": "InstitutionsResponse",
+    "type": "object"
+   },
+   "LinkedRecord": {
+    "additionalProperties": false,
+    "properties": {
+     "double_counting_rule": {
+      "title": "Double Counting Rule",
+      "type": "string"
+     },
+     "human_reviewed": {
+      "title": "Human Reviewed",
+      "type": "boolean"
+     },
+     "project_id": {
+      "title": "Project Id",
+      "type": "string"
+     },
+     "relation_type": {
+      "title": "Relation Type",
+      "type": "string"
+     },
+     "source_id": {
+      "title": "Source Id",
+      "type": "string"
+     },
+     "status": {
+      "title": "Status",
+      "type": "string"
+     },
+     "title": {
+      "title": "Title",
+      "type": "string"
+     },
+     "verification_state": {
+      "title": "Verification State",
+      "type": "string"
+     }
+    },
+    "required": [
+     "project_id",
+     "source_id",
+     "title",
+     "relation_type",
+     "status",
+     "verification_state",
+     "human_reviewed",
+     "double_counting_rule"
+    ],
+    "title": "LinkedRecord",
+    "type": "object"
+   },
+   "MeasureMeta": {
+    "properties": {
+     "currency": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Currency"
+     },
+     "dataset": {
+      "title": "Dataset",
+      "type": "string"
+     },
+     "date_meaning": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Date Meaning"
+     },
+     "deduplication_policy": {
+      "title": "Deduplication Policy",
+      "type": "string"
+     },
+     "excluded_count": {
+      "title": "Excluded Count",
+      "type": "integer"
+     },
+     "measure": {
+      "title": "Measure",
+      "type": "string"
+     },
+     "missing_count": {
+      "title": "Missing Count",
+      "type": "integer"
+     },
+     "source_id": {
+      "title": "Source Id",
+      "type": "string"
+     },
+     "unit": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Unit"
+     },
+     "unit_of_observation": {
+      "title": "Unit Of Observation",
+      "type": "string"
+     }
+    },
+    "required": [
+     "dataset",
+     "source_id",
+     "unit_of_observation",
+     "measure",
+     "currency",
+     "unit",
+     "date_meaning",
+     "missing_count",
+     "excluded_count",
+     "deduplication_policy"
+    ],
+    "title": "MeasureMeta",
+    "type": "object"
+   },
+   "MetaResponse": {
+    "description": "Product identity and API version.",
+    "properties": {
+     "api_version": {
+      "title": "Api Version",
+      "type": "string"
+     },
+     "category": {
+      "title": "Category",
+      "type": "string"
+     },
+     "environment": {
+      "title": "Environment",
+      "type": "string"
+     },
+     "product_name": {
+      "title": "Product Name",
+      "type": "string"
+     },
+     "tagline": {
+      "title": "Tagline",
+      "type": "string"
+     }
+    },
+    "required": [
+     "product_name",
+     "tagline",
+     "category",
+     "api_version",
+     "environment"
+    ],
+    "title": "MetaResponse",
+    "type": "object"
+   },
+   "MethodologyResponse": {
+    "additionalProperties": false,
+    "properties": {
+     "comparison_version": {
+      "title": "Comparison Version",
+      "type": "string"
+     },
+     "financial_meanings": {
+      "additionalProperties": {
+       "type": "string"
+      },
+      "title": "Financial Meanings",
+      "type": "object"
+     },
+     "priority_criteria": {
+      "additionalProperties": {
+       "type": "string"
+      },
+      "title": "Priority Criteria",
+      "type": "object"
+     },
+     "priority_version": {
+      "title": "Priority Version",
+      "type": "string"
+     },
+     "public_display": {
+      "additionalProperties": {
+       "type": "string"
+      },
+      "title": "Public Display",
+      "type": "object"
+     },
+     "rules": {
+      "items": {
+       "type": "string"
+      },
+      "title": "Rules",
+      "type": "array"
+     },
+     "scenario_methods": {
+      "additionalProperties": {
+       "type": "string"
+      },
+      "title": "Scenario Methods",
+      "type": "object"
+     },
+     "scenario_version": {
+      "title": "Scenario Version",
+      "type": "string"
+     },
+     "supported_objectives": {
+      "items": {
+       "type": "string"
+      },
+      "title": "Supported Objectives",
+      "type": "array"
+     },
+     "unsupported_objectives": {
+      "additionalProperties": {
+       "type": "string"
+      },
+      "title": "Unsupported Objectives",
+      "type": "object"
+     }
+    },
+    "required": [
+     "comparison_version",
+     "priority_version",
+     "scenario_version",
+     "priority_criteria",
+     "scenario_methods",
+     "supported_objectives",
+     "unsupported_objectives",
+     "financial_meanings",
+     "rules",
+     "public_display"
+    ],
+    "title": "MethodologyResponse",
+    "type": "object"
+   },
+   "MetricDeclaration": {
+    "additionalProperties": false,
+    "properties": {
+     "currency": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Currency"
+     },
+     "excluded_records": {
+      "additionalProperties": {
+       "type": "integer"
+      },
+      "description": "Records left out, by reason (counted)",
+      "title": "Excluded Records",
+      "type": "object"
+     },
+     "financial_meaning": {
+      "title": "Financial Meaning",
+      "type": "string"
+     },
+     "flow_kind": {
+      "title": "Flow Kind",
+      "type": "string"
+     },
+     "is_funding": {
+      "title": "Is Funding",
+      "type": "boolean"
+     },
+     "known_exclusions": {
+      "items": {
+       "type": "string"
+      },
+      "title": "Known Exclusions",
+      "type": "array"
+     },
+     "label": {
+      "title": "Label",
+      "type": "string"
+     },
+     "level": {
+      "title": "Level",
+      "type": "string"
+     },
+     "metric_id": {
+      "title": "Metric Id",
+      "type": "string"
+     },
+     "price_basis": {
+      "title": "Price Basis",
+      "type": "string"
+     },
+     "source_id": {
+      "title": "Source Id",
+      "type": "string"
+     },
+     "unit": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Unit"
+     },
+     "universe": {
+      "title": "Universe",
+      "type": "string"
+     },
+     "year_basis": {
+      "title": "Year Basis",
+      "type": "string"
+     }
+    },
+    "required": [
+     "metric_id",
+     "label",
+     "universe",
+     "financial_meaning",
+     "source_id",
+     "flow_kind",
+     "level",
+     "currency",
+     "price_basis",
+     "unit",
+     "year_basis",
+     "is_funding",
+     "known_exclusions",
+     "excluded_records"
+    ],
+    "title": "MetricDeclaration",
+    "type": "object"
+   },
+   "MetricOut": {
+    "properties": {
+     "currency": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Currency"
+     },
+     "deduplication_policy": {
+      "title": "Deduplication Policy",
+      "type": "string"
+     },
+     "description": {
+      "title": "Description",
+      "type": "string"
+     },
+     "flow_kind": {
+      "title": "Flow Kind",
+      "type": "string"
+     },
+     "is_funding": {
+      "title": "Is Funding",
+      "type": "boolean"
+     },
+     "label": {
+      "title": "Label",
+      "type": "string"
+     },
+     "level": {
+      "title": "Level",
+      "type": "string"
+     },
+     "limitations": {
+      "items": {
+       "type": "string"
+      },
+      "title": "Limitations",
+      "type": "array"
+     },
+     "metric_id": {
+      "title": "Metric Id",
+      "type": "string"
+     },
+     "price_basis": {
+      "title": "Price Basis",
+      "type": "string"
+     },
+     "row_selection": {
+      "description": "exclude = stated totals only; instrument_lines / country_breakdown = the source's own component lines",
+      "title": "Row Selection",
+      "type": "string"
+     },
+     "source_id": {
+      "title": "Source Id",
+      "type": "string"
+     },
+     "year_basis": {
+      "title": "Year Basis",
+      "type": "string"
+     }
+    },
+    "required": [
+     "metric_id",
+     "label",
+     "source_id",
+     "flow_kind",
+     "level",
+     "currency",
+     "price_basis",
+     "year_basis",
+     "is_funding",
+     "description",
+     "limitations",
+     "deduplication_policy",
+     "row_selection"
+    ],
+    "title": "MetricOut",
+    "type": "object"
+   },
+   "MetricsResponse": {
+    "properties": {
+     "access": {
+      "$ref": "#/components/schemas/AccessNotice"
+     },
+     "metrics": {
+      "items": {
+       "$ref": "#/components/schemas/MetricOut"
+      },
+      "title": "Metrics",
+      "type": "array"
+     }
+    },
+    "required": [
+     "metrics",
+     "access"
+    ],
+    "title": "MetricsResponse",
+    "type": "object"
+   },
+   "ModelInfo": {
+    "properties": {
+     "artifact_present": {
+      "title": "Artifact Present",
+      "type": "boolean"
+     },
+     "artifact_sha256": {
+      "title": "Artifact Sha256",
+      "type": "string"
+     },
+     "engine_label": {
+      "title": "Engine Label",
+      "type": "string"
+     },
+     "evaluation": {
+      "$ref": "#/components/schemas/EvaluationOut"
+     },
+     "intended_use": {
+      "title": "Intended Use",
+      "type": "string"
+     },
+     "model_fingerprint": {
+      "title": "Model Fingerprint",
+      "type": "string"
+     },
+     "model_key": {
+      "enum": [
+       "ml_v1",
+       "ml_v2"
+      ],
+      "title": "Model Key",
+      "type": "string"
+     },
+     "model_version": {
+      "title": "Model Version",
+      "type": "string"
+     },
+     "representation": {
+      "title": "Representation",
+      "type": "string"
+     },
+     "selectable_now": {
+      "title": "Selectable Now",
+      "type": "boolean"
+     },
+     "status": {
+      "enum": [
+       "trusted_research_release",
+       "development_candidate"
+      ],
+      "title": "Status",
+      "type": "string"
+     },
+     "threshold": {
+      "title": "Threshold",
+      "type": "number"
+     },
+     "training_data": {
+      "title": "Training Data",
+      "type": "string"
+     }
+    },
+    "required": [
+     "model_key",
+     "engine_label",
+     "model_version",
+     "status",
+     "artifact_sha256",
+     "model_fingerprint",
+     "threshold",
+     "representation",
+     "training_data",
+     "intended_use",
+     "evaluation",
+     "artifact_present",
+     "selectable_now"
+    ],
+    "title": "ModelInfo",
+    "type": "object"
+   },
+   "ModelsResponse": {
+    "properties": {
+     "models": {
+      "items": {
+       "$ref": "#/components/schemas/ModelInfo"
+      },
+      "title": "Models",
+      "type": "array"
+     },
+     "operational": {
+      "$ref": "#/components/schemas/OperationalMode"
+     },
+     "prediction_scope": {
+      "title": "Prediction Scope",
+      "type": "string"
+     }
+    },
+    "required": [
+     "models",
+     "operational",
+     "prediction_scope"
+    ],
+    "title": "ModelsResponse",
+    "type": "object"
+   },
+   "ObservationOut": {
+    "properties": {
+     "amount": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "description": "Exact decimal as a string; null = not reported",
+      "title": "Amount"
+     },
+     "currency": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Currency"
+     },
+     "date_meaning": {
+      "title": "Date Meaning",
+      "type": "string"
+     },
+     "effective_date": {
+      "anyOf": [
+       {
+        "format": "date",
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Effective Date"
+     },
+     "effective_year": {
+      "anyOf": [
+       {
+        "type": "integer"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Effective Year"
+     },
+     "estimated": {
+      "anyOf": [
+       {
+        "type": "boolean"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Estimated"
+     },
+     "financing_type": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Financing Type"
+     },
+     "flow_kind": {
+      "title": "Flow Kind",
+      "type": "string"
+     },
+     "is_component": {
+      "title": "Is Component",
+      "type": "boolean"
+     },
+     "level": {
+      "title": "Level",
+      "type": "string"
+     },
+     "metric_label": {
+      "title": "Metric Label",
+      "type": "string"
+     },
+     "multi_country": {
+      "title": "Multi Country",
+      "type": "boolean"
+     },
+     "observation_key": {
+      "title": "Observation Key",
+      "type": "string"
+     },
+     "price_basis": {
+      "title": "Price Basis",
+      "type": "string"
+     },
+     "raw_value": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Raw Value"
+     },
+     "recommended_for_aggregates": {
+      "anyOf": [
+       {
+        "type": "boolean"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Recommended For Aggregates"
+     },
+     "source_reference": {
+      "title": "Source Reference",
+      "type": "string"
+     },
+     "unit": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Unit"
+     },
+     "unit_status": {
+      "title": "Unit Status",
+      "type": "string"
+     },
+     "value_status": {
+      "enum": [
+       "reported",
+       "not_reported",
+       "unparseable",
+       "invalid"
+      ],
+      "title": "Value Status",
+      "type": "string"
+     }
+    },
+    "required": [
+     "observation_key",
+     "flow_kind",
+     "metric_label",
+     "level",
+     "financing_type",
+     "is_component",
+     "amount",
+     "raw_value",
+     "value_status",
+     "unit",
+     "currency",
+     "unit_status",
+     "price_basis",
+     "effective_date",
+     "effective_year",
+     "date_meaning",
+     "multi_country",
+     "estimated",
+     "recommended_for_aggregates",
+     "source_reference"
+    ],
+    "title": "ObservationOut",
+    "type": "object"
+   },
+   "OperationalMode": {
+    "properties": {
+     "default_model": {
+      "anyOf": [
+       {
+        "enum": [
+         "ml_v1",
+         "ml_v2"
+        ],
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Default Model"
+     },
+     "fallback_model": {
+      "anyOf": [
+       {
+        "enum": [
+         "ml_v1",
+         "ml_v2"
+        ],
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Fallback Model"
+     },
+     "inference_authorized": {
+      "title": "Inference Authorized",
+      "type": "boolean"
+     },
+     "mode": {
+      "enum": [
+       "authorized_local_demo",
+       "standard_local_research",
+       "inference_disabled"
+      ],
+      "title": "Mode",
+      "type": "string"
+     },
+     "notice": {
+      "title": "Notice",
+      "type": "string"
+     },
+     "review_writes_enabled": {
+      "title": "Review Writes Enabled",
+      "type": "boolean"
+     }
+    },
+    "required": [
+     "inference_authorized",
+     "mode",
+     "default_model",
+     "fallback_model",
+     "review_writes_enabled",
+     "notice"
+    ],
+    "title": "OperationalMode",
+    "type": "object"
+   },
+   "OverviewResponse": {
+    "properties": {
+     "access": {
+      "$ref": "#/components/schemas/AccessNotice"
+     },
+     "counting_rules": {
+      "items": {
+       "type": "string"
+      },
+      "title": "Counting Rules",
+      "type": "array"
+     },
+     "cross_source_links": {
+      "additionalProperties": {
+       "type": "integer"
+      },
+      "title": "Cross Source Links",
+      "type": "object"
+     },
+     "disclaimers": {
+      "items": {
+       "type": "string"
+      },
+      "title": "Disclaimers",
+      "type": "array"
+     },
+     "sources": {
+      "items": {
+       "$ref": "#/components/schemas/SourceOverview"
+      },
+      "title": "Sources",
+      "type": "array"
+     }
+    },
+    "required": [
+     "sources",
+     "cross_source_links",
+     "counting_rules",
+     "disclaimers",
+     "access"
+    ],
+    "title": "OverviewResponse",
+    "type": "object"
+   },
+   "PageMeta": {
+    "properties": {
+     "page": {
+      "title": "Page",
+      "type": "integer"
+     },
+     "page_size": {
+      "title": "Page Size",
+      "type": "integer"
+     },
+     "total_items": {
+      "title": "Total Items",
+      "type": "integer"
+     },
+     "total_pages": {
+      "title": "Total Pages",
+      "type": "integer"
+     }
+    },
+    "required": [
+     "page",
+     "page_size",
+     "total_items",
+     "total_pages"
+    ],
+    "title": "PageMeta",
+    "type": "object"
+   },
+   "PairedDifference": {
+    "properties": {
+     "difference": {
+      "title": "Difference",
+      "type": "number"
+     },
+     "high": {
+      "anyOf": [
+       {
+        "type": "number"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "High"
+     },
+     "low": {
+      "anyOf": [
+       {
+        "type": "number"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Low"
+     },
+     "valid_resamples": {
+      "title": "Valid Resamples",
+      "type": "integer"
+     }
+    },
+    "required": [
+     "difference",
+     "low",
+     "high",
+     "valid_resamples"
+    ],
+    "title": "PairedDifference",
+    "type": "object"
+   },
+   "PredictionOut": {
+    "properties": {
+     "band": {
+      "enum": [
+       "clearly_flagged",
+       "borderline",
+       "not_flagged"
+      ],
+      "title": "Band",
+      "type": "string"
+     },
+     "is_climate_related": {
+      "title": "Is Climate Related",
+      "type": "boolean"
+     },
+     "label_score": {
+      "title": "Label Score",
+      "type": "number"
+     },
+     "score_semantics": {
+      "title": "Score Semantics",
+      "type": "string"
+     },
+     "threshold": {
+      "title": "Threshold",
+      "type": "number"
+     }
+    },
+    "required": [
+     "is_climate_related",
+     "label_score",
+     "threshold",
+     "band",
+     "score_semantics"
+    ],
+    "title": "PredictionOut",
+    "type": "object"
+   },
+   "PrioritizeRequest": {
+    "additionalProperties": false,
+    "properties": {
+     "countries_of_interest": {
+      "items": {
+       "type": "string"
+      },
+      "maxItems": 20,
+      "title": "Countries Of Interest",
+      "type": "array"
+     },
+     "filters": {
+      "$ref": "#/components/schemas/CandidateFilters"
+     },
+     "missing_component_policy": {
+      "default": "score_zero",
+      "enum": [
+       "score_zero",
+       "exclude_from_denominator"
+      ],
+      "title": "Missing Component Policy",
+      "type": "string"
+     },
+     "page": {
+      "default": 1,
+      "maximum": 10000.0,
+      "minimum": 1.0,
+      "title": "Page",
+      "type": "integer"
+     },
+     "page_size": {
+      "default": 25,
+      "maximum": 100.0,
+      "minimum": 1.0,
+      "title": "Page Size",
+      "type": "integer"
+     },
+     "sectors_of_interest": {
+      "items": {
+       "type": "string"
+      },
+      "maxItems": 20,
+      "title": "Sectors Of Interest",
+      "type": "array"
+     },
+     "weights": {
+      "$ref": "#/components/schemas/PriorityWeights"
+     }
+    },
+    "title": "PrioritizeRequest",
+    "type": "object"
+   },
+   "PrioritizeResponse": {
+    "additionalProperties": false,
+    "properties": {
+     "access": {
+      "$ref": "#/components/schemas/AccessNotice"
+     },
+     "candidates": {
+      "title": "Candidates",
+      "type": "integer"
+     },
+     "data_version": {
+      "items": {
+       "type": "integer"
+      },
+      "title": "Data Version",
+      "type": "array"
+     },
+     "disclaimers": {
+      "items": {
+       "type": "string"
+      },
+      "title": "Disclaimers",
+      "type": "array"
+     },
+     "items": {
+      "items": {
+       "$ref": "#/components/schemas/PriorityItem"
+      },
+      "title": "Items",
+      "type": "array"
+     },
+     "methodology_version": {
+      "title": "Methodology Version",
+      "type": "string"
+     },
+     "pagination": {
+      "$ref": "#/components/schemas/PageMeta"
+     },
+     "ranking_fingerprint": {
+      "description": "sha256 of methodology, canonical request (without page) and data version",
+      "title": "Ranking Fingerprint",
+      "type": "string"
+     }
+    },
+    "required": [
+     "items",
+     "pagination",
+     "candidates",
+     "methodology_version",
+     "ranking_fingerprint",
+     "data_version",
+     "disclaimers",
+     "access"
+    ],
+    "title": "PrioritizeResponse",
+    "type": "object"
+   },
+   "PriorityItem": {
+    "additionalProperties": false,
+    "properties": {
+     "applied_weight_total": {
+      "title": "Applied Weight Total",
+      "type": "string"
+     },
+     "components": {
+      "items": {
+       "$ref": "#/components/schemas/ScoreComponent"
+      },
+      "title": "Components",
+      "type": "array"
+     },
+     "distinctions": {
+      "$ref": "#/components/schemas/RelevanceDistinction"
+     },
+     "interpretation": {
+      "title": "Interpretation",
+      "type": "string"
+     },
+     "project_id": {
+      "title": "Project Id",
+      "type": "string"
+     },
+     "rank": {
+      "title": "Rank",
+      "type": "integer"
+     },
+     "score": {
+      "description": "Σ contributions / Σ applied weights, 0-1, 4 dp",
+      "title": "Score",
+      "type": "string"
+     },
+     "source_id": {
+      "title": "Source Id",
+      "type": "string"
+     },
+     "title": {
+      "title": "Title",
+      "type": "string"
+     }
+    },
+    "required": [
+     "rank",
+     "project_id",
+     "title",
+     "source_id",
+     "score",
+     "components",
+     "applied_weight_total",
+     "distinctions",
+     "interpretation"
+    ],
+    "title": "PriorityItem",
+    "type": "object"
+   },
+   "PriorityWeights": {
+    "additionalProperties": false,
+    "properties": {
+     "climate_relevance": {
+      "anyOf": [
+       {
+        "maximum": 10.0,
+        "minimum": 0.0,
+        "type": "number"
+       },
+       {
+        "type": "string"
+       }
+      ],
+      "default": "3",
+      "title": "Climate Relevance"
+     },
+     "country_match": {
+      "anyOf": [
+       {
+        "maximum": 10.0,
+        "minimum": 0.0,
+        "type": "number"
+       },
+       {
+        "type": "string"
+       }
+      ],
+      "default": "1",
+      "title": "Country Match"
+     },
+     "documentation": {
+      "anyOf": [
+       {
+        "maximum": 10.0,
+        "minimum": 0.0,
+        "type": "number"
+       },
+       {
+        "type": "string"
+       }
+      ],
+      "default": "1",
+      "title": "Documentation"
+     },
+     "evidence_completeness": {
+      "anyOf": [
+       {
+        "maximum": 10.0,
+        "minimum": 0.0,
+        "type": "number"
+       },
+       {
+        "type": "string"
+       }
+      ],
+      "default": "2",
+      "title": "Evidence Completeness"
+     },
+     "funding_completeness": {
+      "anyOf": [
+       {
+        "maximum": 10.0,
+        "minimum": 0.0,
+        "type": "number"
+       },
+       {
+        "type": "string"
+       }
+      ],
+      "default": "2",
+      "title": "Funding Completeness"
+     },
+     "review_uncertainty": {
+      "anyOf": [
+       {
+        "maximum": 10.0,
+        "minimum": 0.0,
+        "type": "number"
+       },
+       {
+        "type": "string"
+       }
+      ],
+      "default": "0",
+      "title": "Review Uncertainty"
+     },
+     "sector_match": {
+      "anyOf": [
+       {
+        "maximum": 10.0,
+        "minimum": 0.0,
+        "type": "number"
+       },
+       {
+        "type": "string"
+       }
+      ],
+      "default": "1",
+      "title": "Sector Match"
+     }
+    },
+    "title": "PriorityWeights",
+    "type": "object"
+   },
+   "ProjectDetail": {
+    "properties": {
+     "access": {
+      "$ref": "#/components/schemas/AccessNotice"
+     },
+     "attributes": {
+      "additionalProperties": true,
+      "title": "Attributes",
+      "type": "object"
+     },
+     "climate_annotations": {
+      "items": {
+       "$ref": "#/components/schemas/AnnotationOut"
+      },
+      "title": "Climate Annotations",
+      "type": "array"
+     },
+     "countries": {
+      "items": {
+       "$ref": "#/components/schemas/CountryOut"
+      },
+      "title": "Countries",
+      "type": "array"
+     },
+     "data_quality_warnings": {
+      "items": {
+       "$ref": "#/components/schemas/WarningOut"
+      },
+      "title": "Data Quality Warnings",
+      "type": "array"
+     },
+     "date_estimated": {
+      "anyOf": [
+       {
+        "type": "boolean"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Date Estimated"
+     },
+     "date_precision": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Date Precision"
+     },
+     "date_value": {
+      "anyOf": [
+       {
+        "format": "date",
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Date Value"
+     },
+     "description": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Description"
+     },
+     "disclaimers": {
+      "items": {
+       "type": "string"
+      },
+      "title": "Disclaimers",
+      "type": "array"
+     },
+     "documents": {
+      "items": {
+       "$ref": "#/components/schemas/DocumentLinkOut"
+      },
+      "title": "Documents",
+      "type": "array"
+     },
+     "enrichments": {
+      "items": {
+       "$ref": "#/components/schemas/EnrichmentOut"
+      },
+      "title": "Enrichments",
+      "type": "array"
+     },
+     "financial_observations": {
+      "items": {
+       "$ref": "#/components/schemas/ObservationOut"
+      },
+      "title": "Financial Observations",
+      "type": "array"
+     },
+     "group": {
+      "anyOf": [
+       {
+        "$ref": "#/components/schemas/GroupOut"
+       },
+       {
+        "type": "null"
+       }
+      ]
+     },
+     "id": {
+      "title": "Id",
+      "type": "string"
+     },
+     "multi_country": {
+      "title": "Multi Country",
+      "type": "boolean"
+     },
+     "recipient_label": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Recipient Label"
+     },
+     "record_level": {
+      "title": "Record Level",
+      "type": "string"
+     },
+     "region": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Region"
+     },
+     "relationships": {
+      "items": {
+       "$ref": "#/components/schemas/RelationshipOut"
+      },
+      "title": "Relationships",
+      "type": "array"
+     },
+     "sector_code": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Sector Code"
+     },
+     "sector_name": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Sector Name"
+     },
+     "sector_vocabulary": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Sector Vocabulary"
+     },
+     "source": {
+      "$ref": "#/components/schemas/SourceRef"
+     },
+     "source_project_id": {
+      "title": "Source Project Id",
+      "type": "string"
+     },
+     "source_reference": {
+      "title": "Source Reference",
+      "type": "string"
+     },
+     "status": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Status"
+     },
+     "title": {
+      "title": "Title",
+      "type": "string"
+     },
+     "year": {
+      "anyOf": [
+       {
+        "type": "integer"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Year"
+     },
+     "year_type": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Year Type"
+     }
+    },
+    "required": [
+     "id",
+     "source",
+     "source_project_id",
+     "record_level",
+     "title",
+     "description",
+     "recipient_label",
+     "countries",
+     "multi_country",
+     "region",
+     "sector_name",
+     "sector_code",
+     "sector_vocabulary",
+     "year",
+     "year_type",
+     "date_value",
+     "date_precision",
+     "date_estimated",
+     "status",
+     "source_reference",
+     "attributes",
+     "climate_annotations",
+     "financial_observations",
+     "data_quality_warnings",
+     "group",
+     "relationships",
+     "disclaimers",
+     "access"
+    ],
+    "title": "ProjectDetail",
+    "type": "object"
+   },
+   "ProjectEvidence": {
+    "additionalProperties": false,
+    "properties": {
+     "breakdown_facts": {
+      "description": "Instrument components and source-published country lines (never added to the headline totals)",
+      "items": {
+       "$ref": "#/components/schemas/FinancialFact"
+      },
+      "title": "Breakdown Facts",
+      "type": "array"
+     },
+     "climate_relevance": {
+      "$ref": "#/components/schemas/ClimateRelevance"
+     },
+     "completeness": {
+      "$ref": "#/components/schemas/Completeness"
+     },
+     "countries": {
+      "items": {
+       "$ref": "#/components/schemas/CountryRef"
+      },
+      "title": "Countries",
+      "type": "array"
+     },
+     "country_note": {
+      "title": "Country Note",
+      "type": "string"
+     },
+     "current_funding_opportunity": {
+      "const": "not_determinable",
+      "default": "not_determinable",
+      "description": "Compassio holds no data on open calls; historical records are not offers",
+      "title": "Current Funding Opportunity",
+      "type": "string"
+     },
+     "data_quality_warnings": {
+      "items": {
+       "$ref": "#/components/schemas/WarningOut"
+      },
+      "title": "Data Quality Warnings",
+      "type": "array"
+     },
+     "description": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Description"
+     },
+     "documents": {
+      "items": {
+       "$ref": "#/components/schemas/DocumentRef"
+      },
+      "title": "Documents",
+      "type": "array"
+     },
+     "group_key": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "description": "Source-published record group (e.g. AidData parent package)",
+      "title": "Group Key"
+     },
+     "group_meaning": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Group Meaning"
+     },
+     "headline_facts": {
+      "description": "Stated project totals and derived per-flow transaction sums",
+      "items": {
+       "$ref": "#/components/schemas/FinancialFact"
+      },
+      "title": "Headline Facts",
+      "type": "array"
+     },
+     "institutions": {
+      "items": {
+       "$ref": "#/components/schemas/InstitutionRef"
+      },
+      "title": "Institutions",
+      "type": "array"
+     },
+     "limitations": {
+      "items": {
+       "type": "string"
+      },
+      "title": "Limitations",
+      "type": "array"
+     },
+     "linked_records": {
+      "items": {
+       "$ref": "#/components/schemas/LinkedRecord"
+      },
+      "title": "Linked Records",
+      "type": "array"
+     },
+     "multi_country": {
+      "title": "Multi Country",
+      "type": "boolean"
+     },
+     "project_id": {
+      "title": "Project Id",
+      "type": "string"
+     },
+     "record_level": {
+      "title": "Record Level",
+      "type": "string"
+     },
+     "sector": {
+      "anyOf": [
+       {
+        "$ref": "#/components/schemas/SectorRef"
+       },
+       {
+        "type": "null"
+       }
+      ]
+     },
+     "source": {
+      "$ref": "#/components/schemas/SourceInfo"
+     },
+     "source_project_id": {
+      "title": "Source Project Id",
+      "type": "string"
+     },
+     "source_reference": {
+      "title": "Source Reference",
+      "type": "string"
+     },
+     "source_status": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "description": "Lifecycle status as the source states it",
+      "title": "Source Status"
+     },
+     "title": {
+      "title": "Title",
+      "type": "string"
+     },
+     "verified_approval": {
+      "anyOf": [
+       {
+        "$ref": "#/components/schemas/VerifiedApproval"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "description": "Only when an approval is published by an official source (GCF API)"
+     },
+     "year": {
+      "anyOf": [
+       {
+        "type": "integer"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Year"
+     },
+     "year_type": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Year Type"
+     }
+    },
+    "required": [
+     "project_id",
+     "title",
+     "source",
+     "source_project_id",
+     "record_level",
+     "description",
+     "countries",
+     "multi_country",
+     "country_note",
+     "sector",
+     "institutions",
+     "year",
+     "year_type",
+     "source_status",
+     "verified_approval",
+     "climate_relevance",
+     "headline_facts",
+     "breakdown_facts",
+     "linked_records",
+     "documents",
+     "data_quality_warnings",
+     "completeness",
+     "source_reference",
+     "group_key",
+     "group_meaning",
+     "limitations"
+    ],
+    "title": "ProjectEvidence",
+    "type": "object"
+   },
+   "ProjectPage": {
+    "properties": {
+     "access": {
+      "$ref": "#/components/schemas/AccessNotice"
+     },
+     "applied_filters": {
+      "additionalProperties": true,
+      "title": "Applied Filters",
+      "type": "object"
+     },
+     "empty_result_message": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Empty Result Message"
+     },
+     "items": {
+      "items": {
+       "$ref": "#/components/schemas/ProjectSummary"
+      },
+      "title": "Items",
+      "type": "array"
+     },
+     "pagination": {
+      "$ref": "#/components/schemas/PageMeta"
+     },
+     "sort": {
+      "title": "Sort",
+      "type": "string"
+     }
+    },
+    "required": [
+     "items",
+     "pagination",
+     "applied_filters",
+     "sort",
+     "access"
+    ],
+    "title": "ProjectPage",
+    "type": "object"
+   },
+   "ProjectScreeningRequest": {
+    "additionalProperties": false,
+    "properties": {
+     "model": {
+      "default": "default",
+      "enum": [
+       "default",
+       "ml_v1",
+       "ml_v2"
+      ],
+      "title": "Model",
+      "type": "string"
+     },
+     "save": {
+      "default": false,
+      "title": "Save",
+      "type": "boolean"
+     },
+     "top_k": {
+      "default": 10,
+      "maximum": 25.0,
+      "minimum": 1.0,
+      "title": "Top K",
+      "type": "integer"
+     }
+    },
+    "title": "ProjectScreeningRequest",
+    "type": "object"
+   },
+   "ProjectSummary": {
+    "properties": {
+     "climate_annotations": {
+      "items": {
+       "$ref": "#/components/schemas/AnnotationOut"
+      },
+      "title": "Climate Annotations",
+      "type": "array"
+     },
+     "countries": {
+      "items": {
+       "$ref": "#/components/schemas/CountryOut"
+      },
+      "title": "Countries",
+      "type": "array"
+     },
+     "description_excerpt": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Description Excerpt"
+     },
+     "id": {
+      "title": "Id",
+      "type": "string"
+     },
+     "multi_country": {
+      "title": "Multi Country",
+      "type": "boolean"
+     },
+     "record_level": {
+      "title": "Record Level",
+      "type": "string"
+     },
+     "region": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Region"
+     },
+     "sector_name": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Sector Name"
+     },
+     "source_id": {
+      "title": "Source Id",
+      "type": "string"
+     },
+     "source_project_id": {
+      "title": "Source Project Id",
+      "type": "string"
+     },
+     "status": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Status"
+     },
+     "title": {
+      "title": "Title",
+      "type": "string"
+     },
+     "year": {
+      "anyOf": [
+       {
+        "type": "integer"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Year"
+     },
+     "year_type": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Year Type"
+     }
+    },
+    "required": [
+     "id",
+     "source_id",
+     "source_project_id",
+     "record_level",
+     "title",
+     "description_excerpt",
+     "countries",
+     "multi_country",
+     "region",
+     "sector_name",
+     "year",
+     "year_type",
+     "status",
+     "climate_annotations"
+    ],
+    "title": "ProjectSummary",
+    "type": "object"
+   },
+   "RelationshipOut": {
+    "properties": {
+     "direction": {
+      "enum": [
+       "outgoing",
+       "incoming"
+      ],
+      "title": "Direction",
+      "type": "string"
+     },
+     "evidence": {
+      "title": "Evidence",
+      "type": "string"
+     },
+     "human_reviewed": {
+      "title": "Human Reviewed",
+      "type": "boolean"
+     },
+     "method": {
+      "title": "Method",
+      "type": "string"
+     },
+     "other_project_id": {
+      "title": "Other Project Id",
+      "type": "string"
+     },
+     "other_source_id": {
+      "title": "Other Source Id",
+      "type": "string"
+     },
+     "other_title": {
+      "title": "Other Title",
+      "type": "string"
+     },
+     "relation_type": {
+      "title": "Relation Type",
+      "type": "string"
+     },
+     "status": {
+      "title": "Status",
+      "type": "string"
+     }
+    },
+    "required": [
+     "direction",
+     "other_project_id",
+     "other_source_id",
+     "other_title",
+     "relation_type",
+     "status",
+     "method",
+     "evidence",
+     "human_reviewed"
+    ],
+    "title": "RelationshipOut",
+    "type": "object"
+   },
+   "RelationshipSummaryResponse": {
+    "properties": {
+     "access": {
+      "$ref": "#/components/schemas/AccessNotice"
+     },
+     "policy": {
+      "items": {
+       "type": "string"
+      },
+      "title": "Policy",
+      "type": "array"
+     },
+     "rows": {
+      "items": {
+       "$ref": "#/components/schemas/RelationshipSummaryRow"
+      },
+      "title": "Rows",
+      "type": "array"
+     }
+    },
+    "required": [
+     "rows",
+     "policy",
+     "access"
+    ],
+    "title": "RelationshipSummaryResponse",
+    "type": "object"
+   },
+   "RelationshipSummaryRow": {
+    "properties": {
+     "asserted_by_source_id": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Asserted By Source Id"
+     },
+     "links": {
+      "title": "Links",
+      "type": "integer"
+     },
+     "relation_type": {
+      "title": "Relation Type",
+      "type": "string"
+     },
+     "status": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Status"
+     },
+     "table": {
+      "title": "Table",
+      "type": "string"
+     },
+     "verification_state": {
+      "title": "Verification State",
+      "type": "string"
+     }
+    },
+    "required": [
+     "relation_type",
+     "table",
+     "verification_state",
+     "status",
+     "links",
+     "asserted_by_source_id"
+    ],
+    "title": "RelationshipSummaryRow",
+    "type": "object"
+   },
+   "RelevanceDistinction": {
+    "additionalProperties": false,
+    "properties": {
+     "current_funding_opportunity": {
+      "const": "not_determinable",
+      "default": "not_determinable",
+      "title": "Current Funding Opportunity",
+      "type": "string"
+     },
+     "documented_funding_basis": {
+      "title": "Documented Funding Basis",
+      "type": "string"
+     },
+     "has_documented_historical_funding": {
+      "title": "Has Documented Historical Funding",
+      "type": "boolean"
+     },
+     "matched_filters": {
+      "additionalProperties": {
+       "anyOf": [
+        {
+         "type": "string"
+        },
+        {
+         "type": "integer"
+        },
+        {
+         "items": {
+          "type": "string"
+         },
+         "type": "array"
+        }
+       ]
+      },
+      "title": "Matched Filters",
+      "type": "object"
+     },
+     "matches_search": {
+      "default": true,
+      "title": "Matches Search",
+      "type": "boolean"
+     }
+    },
+    "required": [
+     "matched_filters",
+     "has_documented_historical_funding",
+     "documented_funding_basis"
+    ],
+    "title": "RelevanceDistinction",
+    "type": "object"
+   },
+   "ReviewListResponse": {
+    "properties": {
+     "chain_length": {
+      "title": "Chain Length",
+      "type": "integer"
+     },
+     "chain_valid": {
+      "title": "Chain Valid",
+      "type": "boolean"
+     },
+     "reviews": {
+      "items": {
+       "$ref": "#/components/schemas/ReviewOut"
+      },
+      "title": "Reviews",
+      "type": "array"
+     },
+     "screening_id": {
+      "title": "Screening Id",
+      "type": "string"
+     }
+    },
+    "required": [
+     "screening_id",
+     "reviews",
+     "chain_valid",
+     "chain_length"
+    ],
+    "title": "ReviewListResponse",
+    "type": "object"
+   },
+   "ReviewOut": {
+    "properties": {
+     "created_at": {
+      "format": "date-time",
+      "title": "Created At",
+      "type": "string"
+     },
+     "decision": {
+      "enum": [
+       "agree",
+       "disagree",
+       "uncertain"
+      ],
+      "title": "Decision",
+      "type": "string"
+     },
+     "note": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Note"
+     },
+     "prev_hash": {
+      "title": "Prev Hash",
+      "type": "string"
+     },
+     "review_id": {
+      "title": "Review Id",
+      "type": "integer"
+     },
+     "reviewer": {
+      "title": "Reviewer",
+      "type": "string"
+     },
+     "row_hash": {
+      "title": "Row Hash",
+      "type": "string"
+     },
+     "screening_id": {
+      "title": "Screening Id",
+      "type": "string"
+     }
+    },
+    "required": [
+     "review_id",
+     "screening_id",
+     "decision",
+     "reviewer",
+     "note",
+     "created_at",
+     "prev_hash",
+     "row_hash"
+    ],
+    "title": "ReviewOut",
+    "type": "object"
+   },
+   "ReviewRequest": {
+    "additionalProperties": false,
+    "properties": {
+     "decision": {
+      "enum": [
+       "agree",
+       "disagree",
+       "uncertain"
+      ],
+      "title": "Decision",
+      "type": "string"
+     },
+     "note": {
+      "anyOf": [
+       {
+        "maxLength": 2000,
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Note"
+     },
+     "reviewer": {
+      "maxLength": 100,
+      "minLength": 1,
+      "title": "Reviewer",
+      "type": "string"
+     },
+     "screening_id": {
+      "maxLength": 36,
+      "minLength": 36,
+      "title": "Screening Id",
+      "type": "string"
+     }
+    },
+    "required": [
+     "screening_id",
+     "decision",
+     "reviewer"
+    ],
+    "title": "ReviewRequest",
+    "type": "object"
+   },
+   "ScenarioConstraints": {
+    "additionalProperties": false,
+    "properties": {
+     "max_per_project": {
+      "anyOf": [
+       {
+        "exclusiveMinimum": 0.0,
+        "type": "number"
+       },
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Max Per Project"
+     },
+     "max_share_per_country": {
+      "anyOf": [
+       {
+        "exclusiveMinimum": 0.0,
+        "maximum": 1.0,
+        "type": "number"
+       },
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Max Share Per Country"
+     },
+     "max_share_per_sector": {
+      "anyOf": [
+       {
+        "exclusiveMinimum": 0.0,
+        "maximum": 1.0,
+        "type": "number"
+       },
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Max Share Per Sector"
+     },
+     "min_per_project": {
+      "anyOf": [
+       {
+        "minimum": 0.0,
+        "type": "number"
+       },
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Min Per Project"
+     }
+    },
+    "title": "ScenarioConstraints",
+    "type": "object"
+   },
+   "ScenarioRequest": {
+    "additionalProperties": false,
+    "properties": {
+     "budget": {
+      "$ref": "#/components/schemas/Budget-Input"
+     },
+     "constraints": {
+      "$ref": "#/components/schemas/ScenarioConstraints"
+     },
+     "method": {
+      "default": "equal",
+      "enum": [
+       "equal",
+       "sector_priority",
+       "priority_score"
+      ],
+      "title": "Method",
+      "type": "string"
+     },
+     "objective": {
+      "default": "allocate_by_weights",
+      "maxLength": 60,
+      "title": "Objective",
+      "type": "string"
+     },
+     "priority_weights": {
+      "$ref": "#/components/schemas/PriorityWeights"
+     },
+     "project_ids": {
+      "items": {
+       "type": "string"
+      },
+      "maxItems": 50,
+      "minItems": 1,
+      "title": "Project Ids",
+      "type": "array"
+     },
+     "scenario_label": {
+      "anyOf": [
+       {
+        "maxLength": 120,
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Scenario Label"
+     },
+     "sector_priorities": {
+      "additionalProperties": {
+       "anyOf": [
+        {
+         "type": "number"
+        },
+        {
+         "type": "string"
+        }
+       ]
+      },
+      "maxProperties": 50,
+      "title": "Sector Priorities",
+      "type": "object"
+     },
+     "unlisted_sector_weight": {
+      "anyOf": [
+       {
+        "maximum": 100.0,
+        "minimum": 0.0,
+        "type": "number"
+       },
+       {
+        "type": "string"
+       }
+      ],
+      "default": "0",
+      "title": "Unlisted Sector Weight"
+     }
+    },
+    "required": [
+     "budget",
+     "project_ids"
+    ],
+    "title": "ScenarioRequest",
+    "type": "object"
+   },
+   "ScenarioResponse": {
+    "additionalProperties": false,
+    "properties": {
+     "access": {
+      "$ref": "#/components/schemas/AccessNotice"
+     },
+     "allocated_total": {
+      "title": "Allocated Total",
+      "type": "string"
+     },
+     "allocations": {
+      "items": {
+       "$ref": "#/components/schemas/Allocation"
+      },
+      "title": "Allocations",
+      "type": "array"
+     },
+     "arithmetic": {
+      "items": {
+       "type": "string"
+      },
+      "title": "Arithmetic",
+      "type": "array"
+     },
+     "assumptions": {
+      "items": {
+       "type": "string"
+      },
+      "title": "Assumptions",
+      "type": "array"
+     },
+     "budget": {
+      "$ref": "#/components/schemas/Budget-Output"
+     },
+     "conservation_check": {
+      "title": "Conservation Check",
+      "type": "string"
+     },
+     "data_version": {
+      "items": {
+       "type": "integer"
+      },
+      "title": "Data Version",
+      "type": "array"
+     },
+     "disclosures": {
+      "items": {
+       "type": "string"
+      },
+      "title": "Disclosures",
+      "type": "array"
+     },
+     "feasibility_warnings": {
+      "items": {
+       "type": "string"
+      },
+      "title": "Feasibility Warnings",
+      "type": "array"
+     },
+     "methodology_version": {
+      "title": "Methodology Version",
+      "type": "string"
+     },
+     "request_sha256": {
+      "title": "Request Sha256",
+      "type": "string"
+     },
+     "result_sha256": {
+      "title": "Result Sha256",
+      "type": "string"
+     },
+     "scenario_label": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Scenario Label"
+     },
+     "status": {
+      "enum": [
+       "allocated",
+       "partially_allocated",
+       "infeasible"
+      ],
+      "title": "Status",
+      "type": "string"
+     },
+     "unallocated": {
+      "title": "Unallocated",
+      "type": "string"
+     }
+    },
+    "required": [
+     "scenario_label",
+     "status",
+     "budget",
+     "allocated_total",
+     "unallocated",
+     "conservation_check",
+     "allocations",
+     "arithmetic",
+     "feasibility_warnings",
+     "assumptions",
+     "disclosures",
+     "methodology_version",
+     "request_sha256",
+     "result_sha256",
+     "data_version",
+     "access"
+    ],
+    "title": "ScenarioResponse",
+    "type": "object"
+   },
+   "ScoreComponent": {
+    "additionalProperties": false,
+    "properties": {
+     "contribution": {
+      "description": "weight x value (0 when not applied)",
+      "title": "Contribution",
+      "type": "string"
+     },
+     "criterion": {
+      "title": "Criterion",
+      "type": "string"
+     },
+     "evidence": {
+      "title": "Evidence",
+      "type": "string"
+     },
+     "status": {
+      "enum": [
+       "applied",
+       "not_available",
+       "not_requested"
+      ],
+      "title": "Status",
+      "type": "string"
+     },
+     "value": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "description": "0-1; null = not applicable / not available",
+      "title": "Value"
+     },
+     "weight": {
+      "title": "Weight",
+      "type": "string"
+     }
+    },
+    "required": [
+     "criterion",
+     "weight",
+     "value",
+     "status",
+     "contribution",
+     "evidence"
+    ],
+    "title": "ScoreComponent",
+    "type": "object"
+   },
+   "ScreeningResponse": {
+    "properties": {
+     "explanation": {
+      "$ref": "#/components/schemas/ExplanationOut"
+     },
+     "fallback_used": {
+      "title": "Fallback Used",
+      "type": "boolean"
+     },
+     "generated_at": {
+      "format": "date-time",
+      "title": "Generated At",
+      "type": "string"
+     },
+     "guidance": {
+      "items": {
+       "type": "string"
+      },
+      "title": "Guidance",
+      "type": "array"
+     },
+     "input_sha256": {
+      "title": "Input Sha256",
+      "type": "string"
+     },
+     "limitations": {
+      "items": {
+       "type": "string"
+      },
+      "title": "Limitations",
+      "type": "array"
+     },
+     "model": {
+      "$ref": "#/components/schemas/ModelInfo"
+     },
+     "not_predicted": {
+      "items": {
+       "type": "string"
+      },
+      "title": "Not Predicted",
+      "type": "array"
+     },
+     "operational_mode": {
+      "enum": [
+       "authorized_local_demo",
+       "standard_local_research"
+      ],
+      "title": "Operational Mode",
+      "type": "string"
+     },
+     "prediction": {
+      "$ref": "#/components/schemas/PredictionOut"
+     },
+     "saved": {
+      "title": "Saved",
+      "type": "boolean"
+     },
+     "screening_id": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Screening Id"
+     },
+     "source_evidence": {
+      "anyOf": [
+       {
+        "$ref": "#/components/schemas/SourceEvidence"
+       },
+       {
+        "type": "null"
+       }
+      ]
+     }
+    },
+    "required": [
+     "screening_id",
+     "saved",
+     "model",
+     "operational_mode",
+     "fallback_used",
+     "prediction",
+     "explanation",
+     "input_sha256",
+     "guidance",
+     "limitations",
+     "not_predicted",
+     "generated_at"
+    ],
+    "title": "ScreeningResponse",
+    "type": "object"
+   },
+   "SectorRef": {
+    "additionalProperties": false,
+    "properties": {
+     "code": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Code"
+     },
+     "name": {
+      "title": "Name",
+      "type": "string"
+     },
+     "vocabulary": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Vocabulary"
+     }
+    },
+    "required": [
+     "name",
+     "code",
+     "vocabulary"
+    ],
+    "title": "SectorRef",
+    "type": "object"
+   },
+   "SourceCount": {
+    "additionalProperties": false,
+    "properties": {
+     "multi_country_projects_including_country": {
+      "title": "Multi Country Projects Including Country",
+      "type": "integer"
+     },
+     "single_country_projects": {
+      "title": "Single Country Projects",
+      "type": "integer"
+     },
+     "source_id": {
+      "title": "Source Id",
+      "type": "string"
+     }
+    },
+    "required": [
+     "source_id",
+     "single_country_projects",
+     "multi_country_projects_including_country"
+    ],
+    "title": "SourceCount",
+    "type": "object"
+   },
+   "SourceCoverage": {
+    "additionalProperties": false,
+    "properties": {
+     "access_tier": {
+      "title": "Access Tier",
+      "type": "string"
+     },
+     "financial_observation_rows": {
+      "title": "Financial Observation Rows",
+      "type": "integer"
+     },
+     "last_completed_import": {
+      "anyOf": [
+       {
+        "format": "date-time",
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Last Completed Import"
+     },
+     "max_year": {
+      "anyOf": [
+       {
+        "type": "integer"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Max Year"
+     },
+     "min_year": {
+      "anyOf": [
+       {
+        "type": "integer"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Min Year"
+     },
+     "name": {
+      "title": "Name",
+      "type": "string"
+     },
+     "project_rows": {
+      "title": "Project Rows",
+      "type": "integer"
+     },
+     "publisher": {
+      "title": "Publisher",
+      "type": "string"
+     },
+     "reported_amount_rows": {
+      "title": "Reported Amount Rows",
+      "type": "integer"
+     },
+     "rights_status": {
+      "title": "Rights Status",
+      "type": "string"
+     },
+     "served_in_current_mode": {
+      "title": "Served In Current Mode",
+      "type": "boolean"
+     },
+     "snapshot_ids": {
+      "items": {
+       "type": "string"
+      },
+      "title": "Snapshot Ids",
+      "type": "array"
+     },
+     "source_id": {
+      "title": "Source Id",
+      "type": "string"
+     },
+     "version_info": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Version Info"
+     }
+    },
+    "required": [
+     "source_id",
+     "name",
+     "publisher",
+     "rights_status",
+     "access_tier",
+     "served_in_current_mode",
+     "version_info",
+     "project_rows",
+     "financial_observation_rows",
+     "reported_amount_rows",
+     "min_year",
+     "max_year",
+     "last_completed_import",
+     "snapshot_ids"
+    ],
+    "title": "SourceCoverage",
+    "type": "object"
+   },
+   "SourceEvidence": {
+    "properties": {
+     "description": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Description"
+     },
+     "model_input_permission": {
+      "title": "Model Input Permission",
+      "type": "string"
+     },
+     "project_id": {
+      "title": "Project Id",
+      "type": "string"
+     },
+     "rights_status": {
+      "title": "Rights Status",
+      "type": "string"
+     },
+     "source_id": {
+      "title": "Source Id",
+      "type": "string"
+     },
+     "source_reference": {
+      "title": "Source Reference",
+      "type": "string"
+     },
+     "title": {
+      "title": "Title",
+      "type": "string"
+     }
+    },
+    "required": [
+     "project_id",
+     "source_id",
+     "source_reference",
+     "title",
+     "description",
+     "rights_status",
+     "model_input_permission"
+    ],
+    "title": "SourceEvidence",
+    "type": "object"
+   },
+   "SourceInfo": {
+    "additionalProperties": false,
+    "properties": {
+     "access_tier": {
+      "title": "Access Tier",
+      "type": "string"
+     },
+     "name": {
+      "title": "Name",
+      "type": "string"
+     },
+     "publisher": {
+      "title": "Publisher",
+      "type": "string"
+     },
+     "reference_url": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Reference Url"
+     },
+     "rights_status": {
+      "title": "Rights Status",
+      "type": "string"
+     },
+     "source_id": {
+      "title": "Source Id",
+      "type": "string"
+     }
+    },
+    "required": [
+     "source_id",
+     "name",
+     "publisher",
+     "rights_status",
+     "access_tier",
+     "reference_url"
+    ],
+    "title": "SourceInfo",
+    "type": "object"
+   },
+   "SourceOut": {
+    "properties": {
+     "audited_record_count": {
+      "anyOf": [
+       {
+        "type": "integer"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Audited Record Count"
+     },
+     "file_sha256": {
+      "title": "File Sha256",
+      "type": "string"
+     },
+     "imported_project_rows": {
+      "title": "Imported Project Rows",
+      "type": "integer"
+     },
+     "license_notes": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "License Notes"
+     },
+     "name": {
+      "title": "Name",
+      "type": "string"
+     },
+     "observation_type": {
+      "title": "Observation Type",
+      "type": "string"
+     },
+     "public_display_permitted": {
+      "title": "Public Display Permitted",
+      "type": "boolean"
+     },
+     "publisher": {
+      "title": "Publisher",
+      "type": "string"
+     },
+     "reference_url": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Reference Url"
+     },
+     "rights_evidence": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Rights Evidence"
+     },
+     "rights_status": {
+      "title": "Rights Status",
+      "type": "string"
+     },
+     "served_in_current_mode": {
+      "title": "Served In Current Mode",
+      "type": "boolean"
+     },
+     "source_id": {
+      "title": "Source Id",
+      "type": "string"
+     },
+     "version_info": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Version Info"
+     }
+    },
+    "required": [
+     "source_id",
+     "name",
+     "publisher",
+     "version_info",
+     "file_sha256",
+     "reference_url",
+     "rights_status",
+     "rights_evidence",
+     "license_notes",
+     "observation_type",
+     "audited_record_count",
+     "imported_project_rows",
+     "served_in_current_mode",
+     "public_display_permitted"
+    ],
+    "title": "SourceOut",
+    "type": "object"
+   },
+   "SourceOverview": {
+    "properties": {
+     "climate_annotations": {
+      "additionalProperties": {
+       "type": "integer"
+      },
+      "title": "Climate Annotations",
+      "type": "object"
+     },
+     "distinct_groups": {
+      "title": "Distinct Groups",
+      "type": "integer"
+     },
+     "max_year": {
+      "anyOf": [
+       {
+        "type": "integer"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Max Year"
+     },
+     "min_year": {
+      "anyOf": [
+       {
+        "type": "integer"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Min Year"
+     },
+     "multi_country_rows": {
+      "title": "Multi Country Rows",
+      "type": "integer"
+     },
+     "observations_by_flow": {
+      "additionalProperties": {
+       "additionalProperties": {
+        "type": "integer"
+       },
+       "type": "object"
+      },
+      "title": "Observations By Flow",
+      "type": "object"
+     },
+     "pakistan_rows": {
+      "title": "Pakistan Rows",
+      "type": "integer"
+     },
+     "project_rows": {
+      "title": "Project Rows",
+      "type": "integer"
+     },
+     "record_level": {
+      "title": "Record Level",
+      "type": "string"
+     },
+     "rows_with_description": {
+      "title": "Rows With Description",
+      "type": "integer"
+     },
+     "rows_with_year": {
+      "title": "Rows With Year",
+      "type": "integer"
+     },
+     "source_id": {
+      "title": "Source Id",
+      "type": "string"
+     },
+     "top_warnings": {
+      "additionalProperties": {
+       "type": "integer"
+      },
+      "title": "Top Warnings",
+      "type": "object"
+     }
+    },
+    "required": [
+     "source_id",
+     "record_level",
+     "project_rows",
+     "distinct_groups",
+     "rows_with_description",
+     "rows_with_year",
+     "min_year",
+     "max_year",
+     "multi_country_rows",
+     "pakistan_rows",
+     "observations_by_flow",
+     "climate_annotations",
+     "top_warnings"
+    ],
+    "title": "SourceOverview",
+    "type": "object"
+   },
+   "SourceQuality": {
+    "properties": {
+     "fields": {
+      "items": {
+       "$ref": "#/components/schemas/FieldCoverage"
+      },
+      "title": "Fields",
+      "type": "array"
+     },
+     "meta": {
+      "$ref": "#/components/schemas/MeasureMeta"
+     },
+     "record_level": {
+      "title": "Record Level",
+      "type": "string"
+     },
+     "rows": {
+      "title": "Rows",
+      "type": "integer"
+     },
+     "source_id": {
+      "title": "Source Id",
+      "type": "string"
+     },
+     "top_warnings": {
+      "additionalProperties": {
+       "type": "integer"
+      },
+      "title": "Top Warnings",
+      "type": "object"
+     }
+    },
+    "required": [
+     "source_id",
+     "record_level",
+     "rows",
+     "fields",
+     "top_warnings",
+     "meta"
+    ],
+    "title": "SourceQuality",
+    "type": "object"
+   },
+   "SourceRef": {
+    "properties": {
+     "name": {
+      "title": "Name",
+      "type": "string"
+     },
+     "publisher": {
+      "title": "Publisher",
+      "type": "string"
+     },
+     "reference_url": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Reference Url"
+     },
+     "rights_status": {
+      "title": "Rights Status",
+      "type": "string"
+     },
+     "source_id": {
+      "title": "Source Id",
+      "type": "string"
+     }
+    },
+    "required": [
+     "source_id",
+     "name",
+     "publisher",
+     "rights_status",
+     "reference_url"
+    ],
+    "title": "SourceRef",
+    "type": "object"
+   },
+   "SourcesResponse": {
+    "properties": {
+     "access": {
+      "$ref": "#/components/schemas/AccessNotice"
+     },
+     "sources": {
+      "items": {
+       "$ref": "#/components/schemas/SourceOut"
+      },
+      "title": "Sources",
+      "type": "array"
+     }
+    },
+    "required": [
+     "sources",
+     "access"
+    ],
+    "title": "SourcesResponse",
+    "type": "object"
+   },
+   "TextScreeningRequest": {
+    "additionalProperties": false,
+    "properties": {
+     "description": {
+      "anyOf": [
+       {
+        "maxLength": 20000,
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Description"
+     },
+     "model": {
+      "default": "default",
+      "enum": [
+       "default",
+       "ml_v1",
+       "ml_v2"
+      ],
+      "title": "Model",
+      "type": "string"
+     },
+     "save": {
+      "default": false,
+      "description": "Persist the text (needs the review token)",
+      "title": "Save",
+      "type": "boolean"
+     },
+     "title": {
+      "anyOf": [
+       {
+        "maxLength": 1000,
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Title"
+     },
+     "top_k": {
+      "default": 10,
+      "maximum": 25.0,
+      "minimum": 1.0,
+      "title": "Top K",
+      "type": "integer"
+     }
+    },
+    "title": "TextScreeningRequest",
+    "type": "object"
+   },
+   "TimelinePoint": {
+    "properties": {
+     "by_current_status": {
+      "additionalProperties": {
+       "type": "integer"
+      },
+      "title": "By Current Status",
+      "type": "object"
+     },
+     "gcf_funding": {
+      "anyOf": [
+       {
+        "$ref": "#/components/schemas/TrendPoint"
+       },
+       {
+        "type": "null"
+       }
+      ]
+     },
+     "projects_approved": {
+      "title": "Projects Approved",
+      "type": "integer"
+     },
+     "year": {
+      "title": "Year",
+      "type": "integer"
+     }
+    },
+    "required": [
+     "year",
+     "projects_approved",
+     "by_current_status",
+     "gcf_funding"
+    ],
+    "title": "TimelinePoint",
+    "type": "object"
+   },
+   "TrendPoint": {
+    "properties": {
+     "estimated_records": {
+      "title": "Estimated Records",
+      "type": "integer"
+     },
+     "excluded_records": {
+      "additionalProperties": {
+       "type": "integer"
+      },
+      "title": "Excluded Records",
+      "type": "object"
+     },
+     "missing_value_records": {
+      "title": "Missing Value Records",
+      "type": "integer"
+     },
+     "status": {
+      "enum": [
+       "available",
+       "unavailable"
+      ],
+      "title": "Status",
+      "type": "string"
+     },
+     "summed_records": {
+      "title": "Summed Records",
+      "type": "integer"
+     },
+     "total": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Total"
+     },
+     "unavailable_reason": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Unavailable Reason"
+     },
+     "unit": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Unit"
+     },
+     "year": {
+      "title": "Year",
+      "type": "integer"
+     }
+    },
+    "required": [
+     "year",
+     "status",
+     "total",
+     "unit",
+     "summed_records",
+     "missing_value_records",
+     "estimated_records",
+     "excluded_records",
+     "unavailable_reason"
+    ],
+    "title": "TrendPoint",
+    "type": "object"
+   },
+   "TrendsResponse": {
+    "properties": {
+     "access": {
+      "$ref": "#/components/schemas/AccessNotice"
+     },
+     "aggregation_limitations": {
+      "items": {
+       "type": "string"
+      },
+      "title": "Aggregation Limitations",
+      "type": "array"
+     },
+     "country": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Country"
+     },
+     "disclaimers": {
+      "items": {
+       "type": "string"
+      },
+      "title": "Disclaimers",
+      "type": "array"
+     },
+     "excluded_outside_rules": {
+      "additionalProperties": {
+       "type": "integer"
+      },
+      "title": "Excluded Outside Rules",
+      "type": "object"
+     },
+     "metric": {
+      "$ref": "#/components/schemas/MetricOut"
+     },
+     "points": {
+      "items": {
+       "$ref": "#/components/schemas/TrendPoint"
+      },
+      "title": "Points",
+      "type": "array"
+     },
+     "status": {
+      "enum": [
+       "available",
+       "unavailable"
+      ],
+      "title": "Status",
+      "type": "string"
+     },
+     "unavailable_reason": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Unavailable Reason"
+     },
+     "undated_records": {
+      "title": "Undated Records",
+      "type": "integer"
+     },
+     "year_from": {
+      "anyOf": [
+       {
+        "type": "integer"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Year From"
+     },
+     "year_to": {
+      "anyOf": [
+       {
+        "type": "integer"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Year To"
+     }
+    },
+    "required": [
+     "metric",
+     "status",
+     "unavailable_reason",
+     "country",
+     "year_from",
+     "year_to",
+     "points",
+     "undated_records",
+     "excluded_outside_rules",
+     "aggregation_limitations",
+     "disclaimers",
+     "access"
+    ],
+    "title": "TrendsResponse",
+    "type": "object"
+   },
+   "ValidationError": {
+    "properties": {
+     "ctx": {
+      "title": "Context",
+      "type": "object"
+     },
+     "input": {
+      "title": "Input"
+     },
+     "loc": {
+      "items": {
+       "anyOf": [
+        {
+         "type": "string"
+        },
+        {
+         "type": "integer"
+        }
+       ]
+      },
+      "title": "Location",
+      "type": "array"
+     },
+     "msg": {
+      "title": "Message",
+      "type": "string"
+     },
+     "type": {
+      "title": "Error Type",
+      "type": "string"
+     }
+    },
+    "required": [
+     "loc",
+     "msg",
+     "type"
+    ],
+    "title": "ValidationError",
+    "type": "object"
+   },
+   "VerifiedApproval": {
+    "additionalProperties": false,
+    "properties": {
+     "approval_date": {
+      "anyOf": [
+       {
+        "format": "date",
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Approval Date"
+     },
+     "approval_date_type": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Approval Date Type"
+     },
+     "approval_status": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Approval Status"
+     },
+     "official_url": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Official Url"
+     },
+     "project_status": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Project Status"
+     },
+     "status_as_of": {
+      "anyOf": [
+       {
+        "format": "date-time",
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Status As Of"
+     },
+     "verification_state": {
+      "title": "Verification State",
+      "type": "string"
+     },
+     "verified_by_source_id": {
+      "title": "Verified By Source Id",
+      "type": "string"
+     }
+    },
+    "required": [
+     "approval_status",
+     "approval_date",
+     "approval_date_type",
+     "project_status",
+     "status_as_of",
+     "verified_by_source_id",
+     "verification_state",
+     "official_url"
+    ],
+    "title": "VerifiedApproval",
+    "type": "object"
+   },
+   "WarningOut": {
+    "properties": {
+     "code": {
+      "title": "Code",
+      "type": "string"
+     },
+     "field": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Field"
+     },
+     "message": {
+      "title": "Message",
+      "type": "string"
+     }
+    },
+    "required": [
+     "code",
+     "field",
+     "message"
+    ],
+    "title": "WarningOut",
+    "type": "object"
+   },
+   "WordContribution": {
+    "properties": {
+     "contribution": {
+      "title": "Contribution",
+      "type": "number"
+     },
+     "end": {
+      "title": "End",
+      "type": "integer"
+     },
+     "field": {
+      "enum": [
+       "title",
+       "description",
+       "unknown"
+      ],
+      "title": "Field",
+      "type": "string"
+     },
+     "start": {
+      "description": "Character offset within the field; -1 if unavailable",
+      "title": "Start",
+      "type": "integer"
+     },
+     "word": {
+      "title": "Word",
+      "type": "string"
+     }
+    },
+    "required": [
+     "word",
+     "field",
+     "start",
+     "end",
+     "contribution"
+    ],
+    "title": "WordContribution",
+    "type": "object"
+   }
+  }
+ },
+ "info": {
+  "description": "Give Funding a Better Direction.",
+  "title": "Compassio API",
+  "version": "0.1.0"
+ },
+ "openapi": "3.1.0",
+ "paths": {
+  "/api/v1/analytics/approved-vs-disbursed": {
+   "get": {
+    "operationId": "approved_vs_disbursed_api_v1_analytics_approved_vs_disbursed_get",
+    "parameters": [
+     {
+      "description": "ISO 3166 alpha-3",
+      "in": "query",
+      "name": "country",
+      "required": false,
+      "schema": {
+       "anyOf": [
+        {
+         "pattern": "^[A-Z]{3}$",
+         "type": "string"
+        },
+        {
+         "type": "null"
+        }
+       ],
+       "description": "ISO 3166 alpha-3",
+       "title": "Country"
+      }
+     }
+    ],
+    "responses": {
+     "200": {
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/ApprovedDisbursedResponse"
+        }
+       }
+      },
+      "description": "Successful Response"
+     },
+     "403": {
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/ErrorResponse"
+        }
+       }
+      },
+      "description": "Forbidden"
+     },
+     "422": {
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/ErrorResponse"
+        }
+       }
+      },
+      "description": "Unprocessable Entity"
+     },
+     "503": {
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/ErrorResponse"
+        }
+       }
+      },
+      "description": "Service Unavailable"
+     }
+    },
+    "summary": "Approved (or committed) vs disbursed USD over records reporting both",
+    "tags": [
+     "analytics"
+    ]
+   }
+  },
+  "/api/v1/analytics/climate-distribution": {
+   "get": {
+    "operationId": "climate_distribution_api_v1_analytics_climate_distribution_get",
+    "parameters": [
+     {
+      "description": "ISO 3166 alpha-3",
+      "in": "query",
+      "name": "country",
+      "required": false,
+      "schema": {
+       "anyOf": [
+        {
+         "pattern": "^[A-Z]{3}$",
+         "type": "string"
+        },
+        {
+         "type": "null"
+        }
+       ],
+       "description": "ISO 3166 alpha-3",
+       "title": "Country"
+      }
+     }
+    ],
+    "responses": {
+     "200": {
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/ClimateDistributionResponse"
+        }
+       }
+      },
+      "description": "Successful Response"
+     },
+     "403": {
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/ErrorResponse"
+        }
+       }
+      },
+      "description": "Forbidden"
+     },
+     "422": {
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/ErrorResponse"
+        }
+       }
+      },
+      "description": "Unprocessable Entity"
+     },
+     "503": {
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/ErrorResponse"
+        }
+       }
+      },
+      "description": "Service Unavailable"
+     }
+    },
+    "summary": "Record counts by climate label or classification (not measured impact)",
+    "tags": [
+     "analytics"
+    ]
+   }
+  },
+  "/api/v1/analytics/country-aggregates": {
+   "get": {
+    "operationId": "country_aggregates_api_v1_analytics_country_aggregates_get",
+    "parameters": [
+     {
+      "in": "query",
+      "name": "iso3",
+      "required": false,
+      "schema": {
+       "anyOf": [
+        {
+         "pattern": "^[A-Z]{3}$",
+         "type": "string"
+        },
+        {
+         "type": "null"
+        }
+       ],
+       "title": "Iso3"
+      }
+     }
+    ],
+    "responses": {
+     "200": {
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/CountryAggregatesResponse"
+        }
+       }
+      },
+      "description": "Successful Response"
+     },
+     "403": {
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/ErrorResponse"
+        }
+       }
+      },
+      "description": "Forbidden"
+     },
+     "422": {
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/ErrorResponse"
+        }
+       }
+      },
+      "description": "Unprocessable Entity"
+     },
+     "503": {
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/ErrorResponse"
+        }
+       }
+      },
+      "description": "Service Unavailable"
+     }
+    },
+    "summary": "GCF country summary figures (source-published aggregates; never summed)",
+    "tags": [
+     "analytics"
+    ]
+   }
+  },
+  "/api/v1/analytics/country-profile/{iso3}": {
+   "get": {
+    "operationId": "country_profile_api_v1_analytics_country_profile__iso3__get",
+    "parameters": [
+     {
+      "in": "path",
+      "name": "iso3",
+      "required": true,
+      "schema": {
+       "pattern": "^[A-Z]{3}$",
+       "title": "Iso3",
+       "type": "string"
+      }
+     }
+    ],
+    "responses": {
+     "200": {
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/CountryProfileResponse"
+        }
+       }
+      },
+      "description": "Successful Response"
+     },
+     "403": {
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/ErrorResponse"
+        }
+       }
+      },
+      "description": "Forbidden"
+     },
+     "422": {
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/ErrorResponse"
+        }
+       }
+      },
+      "description": "Unprocessable Entity"
+     },
+     "503": {
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/ErrorResponse"
+        }
+       }
+      },
+      "description": "Service Unavailable"
+     }
+    },
+    "summary": "Country funding profile (e.g. PAK): counts, every metric, sectors, climate labels",
+    "tags": [
+     "analytics"
+    ]
+   }
+  },
+  "/api/v1/analytics/coverage": {
+   "get": {
+    "operationId": "coverage_api_v1_analytics_coverage_get",
+    "responses": {
+     "200": {
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/CoverageResponse"
+        }
+       }
+      },
+      "description": "Successful Response"
+     },
+     "403": {
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/ErrorResponse"
+        }
+       }
+      },
+      "description": "Forbidden"
+     },
+     "503": {
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/ErrorResponse"
+        }
+       }
+      },
+      "description": "Service Unavailable"
+     }
+    },
+    "summary": "Per-source coverage, years, rights status and data freshness",
+    "tags": [
+     "analytics"
+    ]
+   }
+  },
+  "/api/v1/analytics/data-quality": {
+   "get": {
+    "operationId": "data_quality_api_v1_analytics_data_quality_get",
+    "responses": {
+     "200": {
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/DataQualityResponse"
+        }
+       }
+      },
+      "description": "Successful Response"
+     },
+     "403": {
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/ErrorResponse"
+        }
+       }
+      },
+      "description": "Forbidden"
+     },
+     "503": {
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/ErrorResponse"
+        }
+       }
+      },
+      "description": "Service Unavailable"
+     }
+    },
+    "summary": "Per-source field coverage and data-quality warning counts",
+    "tags": [
+     "analytics"
+    ]
+   }
+  },
+  "/api/v1/analytics/financing-completeness": {
+   "get": {
+    "operationId": "financing_completeness_api_v1_analytics_financing_completeness_get",
+    "responses": {
+     "200": {
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/FinancingCompletenessResponse"
+        }
+       }
+      },
+      "description": "Successful Response"
+     },
+     "403": {
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/ErrorResponse"
+        }
+       }
+      },
+      "description": "Forbidden"
+     },
+     "503": {
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/ErrorResponse"
+        }
+       }
+      },
+      "description": "Service Unavailable"
+     }
+    },
+    "summary": "Financial observations by source, flow and value status (counts, no sums)",
+    "tags": [
+     "analytics"
+    ]
+   }
+  },
+  "/api/v1/analytics/funding-by-country": {
+   "get": {
+    "operationId": "funding_by_country_api_v1_analytics_funding_by_country_get",
+    "parameters": [
+     {
+      "description": "See /api/v1/analytics/metrics",
+      "in": "query",
+      "name": "metric",
+      "required": true,
+      "schema": {
+       "description": "See /api/v1/analytics/metrics",
+       "pattern": "^[a-z0-9_]{1,80}$",
+       "title": "Metric",
+       "type": "string"
+      }
+     },
+     {
+      "in": "query",
+      "name": "year_from",
+      "required": false,
+      "schema": {
+       "anyOf": [
+        {
+         "maximum": 2100,
+         "minimum": 1900,
+         "type": "integer"
+        },
+        {
+         "type": "null"
+        }
+       ],
+       "title": "Year From"
+      }
+     },
+     {
+      "in": "query",
+      "name": "year_to",
+      "required": false,
+      "schema": {
+       "anyOf": [
+        {
+         "maximum": 2100,
+         "minimum": 1900,
+         "type": "integer"
+        },
+        {
+         "type": "null"
+        }
+       ],
+       "title": "Year To"
+      }
+     },
+     {
+      "in": "query",
+      "name": "limit",
+      "required": false,
+      "schema": {
+       "default": 50,
+       "maximum": 300,
+       "minimum": 1,
+       "title": "Limit",
+       "type": "integer"
+      }
+     }
+    ],
+    "responses": {
+     "200": {
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/GroupedFundingResponse"
+        }
+       }
+      },
+      "description": "Successful Response"
+     },
+     "403": {
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/ErrorResponse"
+        }
+       }
+      },
+      "description": "Forbidden"
+     },
+     "404": {
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/ErrorResponse"
+        }
+       }
+      },
+      "description": "Not Found"
+     },
+     "422": {
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/ErrorResponse"
+        }
+       }
+      },
+      "description": "Unprocessable Entity"
+     },
+     "503": {
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/ErrorResponse"
+        }
+       }
+      },
+      "description": "Service Unavailable"
+     }
+    },
+    "summary": "One metric's totals per country (single-country records or source country lines)",
+    "tags": [
+     "analytics"
+    ]
+   }
+  },
+  "/api/v1/analytics/funding-by-sector": {
+   "get": {
+    "operationId": "funding_by_sector_api_v1_analytics_funding_by_sector_get",
+    "parameters": [
+     {
+      "description": "See /api/v1/analytics/metrics",
+      "in": "query",
+      "name": "metric",
+      "required": true,
+      "schema": {
+       "description": "See /api/v1/analytics/metrics",
+       "pattern": "^[a-z0-9_]{1,80}$",
+       "title": "Metric",
+       "type": "string"
+      }
+     },
+     {
+      "in": "query",
+      "name": "year_from",
+      "required": false,
+      "schema": {
+       "anyOf": [
+        {
+         "maximum": 2100,
+         "minimum": 1900,
+         "type": "integer"
+        },
+        {
+         "type": "null"
+        }
+       ],
+       "title": "Year From"
+      }
+     },
+     {
+      "in": "query",
+      "name": "year_to",
+      "required": false,
+      "schema": {
+       "anyOf": [
+        {
+         "maximum": 2100,
+         "minimum": 1900,
+         "type": "integer"
+        },
+        {
+         "type": "null"
+        }
+       ],
+       "title": "Year To"
+      }
+     },
+     {
+      "in": "query",
+      "name": "limit",
+      "required": false,
+      "schema": {
+       "default": 50,
+       "maximum": 300,
+       "minimum": 1,
+       "title": "Limit",
+       "type": "integer"
+      }
+     }
+    ],
+    "responses": {
+     "200": {
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/GroupedFundingResponse"
+        }
+       }
+      },
+      "description": "Successful Response"
+     },
+     "403": {
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/ErrorResponse"
+        }
+       }
+      },
+      "description": "Forbidden"
+     },
+     "404": {
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/ErrorResponse"
+        }
+       }
+      },
+      "description": "Not Found"
+     },
+     "422": {
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/ErrorResponse"
+        }
+       }
+      },
+      "description": "Unprocessable Entity"
+     },
+     "503": {
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/ErrorResponse"
+        }
+       }
+      },
+      "description": "Service Unavailable"
+     }
+    },
+    "summary": "One metric's totals per source-stated sector",
+    "tags": [
+     "analytics"
+    ]
+   }
+  },
+  "/api/v1/analytics/gcf-timeline": {
+   "get": {
+    "operationId": "gcf_timeline_api_v1_analytics_gcf_timeline_get",
+    "parameters": [
+     {
+      "in": "query",
+      "name": "country",
+      "required": false,
+      "schema": {
+       "anyOf": [
+        {
+         "pattern": "^[A-Z]{3}$",
+         "type": "string"
+        },
+        {
+         "type": "null"
+        }
+       ],
+       "title": "Country"
+      }
+     }
+    ],
+    "responses": {
+     "200": {
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/GcfTimelineResponse"
+        }
+       }
+      },
+      "description": "Successful Response"
+     },
+     "403": {
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/ErrorResponse"
+        }
+       }
+      },
+      "description": "Forbidden"
+     },
+     "422": {
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/ErrorResponse"
+        }
+       }
+      },
+      "description": "Unprocessable Entity"
+     },
+     "503": {
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/ErrorResponse"
+        }
+       }
+      },
+      "description": "Service Unavailable"
+     }
+    },
+    "summary": "GCF projects approved per year (dated by the GCF API) with GCF funding",
+    "tags": [
+     "analytics"
+    ]
+   }
+  },
+  "/api/v1/analytics/institutions": {
+   "get": {
+    "operationId": "institutions_api_v1_analytics_institutions_get",
+    "parameters": [
+     {
+      "description": "ISO 3166 alpha-3",
+      "in": "query",
+      "name": "country",
+      "required": false,
+      "schema": {
+       "anyOf": [
+        {
+         "pattern": "^[A-Z]{3}$",
+         "type": "string"
+        },
+        {
+         "type": "null"
+        }
+       ],
+       "description": "ISO 3166 alpha-3",
+       "title": "Country"
+      }
+     },
+     {
+      "in": "query",
+      "name": "limit",
+      "required": false,
+      "schema": {
+       "default": 20,
+       "maximum": 300,
+       "minimum": 1,
+       "title": "Limit",
+       "type": "integer"
+      }
+     }
+    ],
+    "responses": {
+     "200": {
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/InstitutionsResponse"
+        }
+       }
+      },
+      "description": "Successful Response"
+     },
+     "403": {
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/ErrorResponse"
+        }
+       }
+      },
+      "description": "Forbidden"
+     },
+     "422": {
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/ErrorResponse"
+        }
+       }
+      },
+      "description": "Unprocessable Entity"
+     },
+     "503": {
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/ErrorResponse"
+        }
+       }
+      },
+      "description": "Service Unavailable"
+     }
+    },
+    "summary": "Record counts per institution and role (funder, fund, implementer; no money)",
+    "tags": [
+     "analytics"
+    ]
+   }
+  },
+  "/api/v1/analytics/metrics": {
+   "get": {
+    "operationId": "metrics_api_v1_analytics_metrics_get",
+    "responses": {
+     "200": {
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/MetricsResponse"
+        }
+       }
+      },
+      "description": "Successful Response"
+     },
+     "403": {
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/ErrorResponse"
+        }
+       }
+      },
+      "description": "Forbidden"
+     },
+     "503": {
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/ErrorResponse"
+        }
+       }
+      },
+      "description": "Service Unavailable"
+     }
+    },
+    "summary": "Catalogue of single-source financial metrics usable in /analytics/trends",
+    "tags": [
+     "analytics"
+    ]
+   }
+  },
+  "/api/v1/analytics/overview": {
+   "get": {
+    "operationId": "overview_api_v1_analytics_overview_get",
+    "responses": {
+     "200": {
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/OverviewResponse"
+        }
+       }
+      },
+      "description": "Successful Response"
+     },
+     "403": {
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/ErrorResponse"
+        }
+       }
+      },
+      "description": "Forbidden"
+     },
+     "503": {
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/ErrorResponse"
+        }
+       }
+      },
+      "description": "Service Unavailable"
+     }
+    },
+    "summary": "Per-source counts, coverage, finance availability and links",
+    "tags": [
+     "analytics"
+    ]
+   }
+  },
+  "/api/v1/analytics/relationships": {
+   "get": {
+    "operationId": "relationships_api_v1_analytics_relationships_get",
+    "responses": {
+     "200": {
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/RelationshipSummaryResponse"
+        }
+       }
+      },
+      "description": "Successful Response"
+     },
+     "403": {
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/ErrorResponse"
+        }
+       }
+      },
+      "description": "Forbidden"
+     },
+     "503": {
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/ErrorResponse"
+        }
+       }
+      },
+      "description": "Service Unavailable"
+     }
+    },
+    "summary": "Counts of explicit links by type, verification state and asserting source",
+    "tags": [
+     "analytics"
+    ]
+   }
+  },
+  "/api/v1/analytics/trends": {
+   "get": {
+    "operationId": "trends_api_v1_analytics_trends_get",
+    "parameters": [
+     {
+      "in": "query",
+      "name": "metric",
+      "required": true,
+      "schema": {
+       "pattern": "^[a-z0-9_]{1,80}$",
+       "title": "Metric",
+       "type": "string"
+      }
+     },
+     {
+      "in": "query",
+      "name": "country",
+      "required": false,
+      "schema": {
+       "anyOf": [
+        {
+         "pattern": "^[A-Z]{3}$",
+         "type": "string"
+        },
+        {
+         "type": "null"
+        }
+       ],
+       "title": "Country"
+      }
+     },
+     {
+      "in": "query",
+      "name": "year_from",
+      "required": false,
+      "schema": {
+       "anyOf": [
+        {
+         "maximum": 2100,
+         "minimum": 1900,
+         "type": "integer"
+        },
+        {
+         "type": "null"
+        }
+       ],
+       "title": "Year From"
+      }
+     },
+     {
+      "in": "query",
+      "name": "year_to",
+      "required": false,
+      "schema": {
+       "anyOf": [
+        {
+         "maximum": 2100,
+         "minimum": 1900,
+         "type": "integer"
+        },
+        {
+         "type": "null"
+        }
+       ],
+       "title": "Year To"
+      }
+     }
+    ],
+    "responses": {
+     "200": {
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/TrendsResponse"
+        }
+       }
+      },
+      "description": "Successful Response"
+     },
+     "403": {
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/ErrorResponse"
+        }
+       }
+      },
+      "description": "Forbidden"
+     },
+     "404": {
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/ErrorResponse"
+        }
+       }
+      },
+      "description": "Not Found"
+     },
+     "422": {
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/ErrorResponse"
+        }
+       }
+      },
+      "description": "Unprocessable Entity"
+     },
+     "503": {
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/ErrorResponse"
+        }
+       }
+      },
+      "description": "Service Unavailable"
+     }
+    },
+    "summary": "Yearly totals for one metric; unsafe years are 'unavailable' with a reason",
+    "tags": [
+     "analytics"
+    ]
+   }
+  },
+  "/api/v1/challenges/c09/screen": {
+   "post": {
+    "operationId": "guarded_screen_api_v1_challenges_c09_screen_post",
+    "requestBody": {
+     "content": {
+      "application/json": {
+       "schema": {
+        "$ref": "#/components/schemas/GuardRequest"
+       }
+      }
+     },
+     "required": true
+    },
+    "responses": {
+     "200": {
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/GuardResponse"
+        }
+       }
+      },
+      "description": "Successful Response"
+     },
+     "403": {
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/ErrorResponse"
+        }
+       }
+      },
+      "description": "Forbidden"
+     },
+     "422": {
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/ErrorResponse"
+        }
+       }
+      },
+      "description": "Unprocessable Entity"
+     },
+     "503": {
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/ErrorResponse"
+        }
+       }
+      },
+      "description": "Service Unavailable"
+     }
+    },
+    "summary": "Guarded Screen",
+    "tags": [
+     "challenges"
+    ]
+   }
+  },
+  "/api/v1/decision/compare": {
+   "post": {
+    "operationId": "compare_api_v1_decision_compare_post",
+    "requestBody": {
+     "content": {
+      "application/json": {
+       "schema": {
+        "$ref": "#/components/schemas/CompareRequest"
+       }
+      }
+     },
+     "required": true
+    },
+    "responses": {
+     "200": {
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/CompareResponse"
+        }
+       }
+      },
+      "description": "Successful Response"
+     },
+     "403": {
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/ErrorResponse"
+        }
+       }
+      },
+      "description": "Forbidden"
+     },
+     "404": {
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/ErrorResponse"
+        }
+       }
+      },
+      "description": "Not Found"
+     },
+     "422": {
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/ErrorResponse"
+        }
+       }
+      },
+      "description": "Unprocessable Entity"
+     },
+     "503": {
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/ErrorResponse"
+        }
+       }
+      },
+      "description": "Service Unavailable"
+     }
+    },
+    "summary": "Compare 2-10 records side by side (comparable figures grouped; no invented totals)",
+    "tags": [
+     "decision"
+    ]
+   }
+  },
+  "/api/v1/decision/evidence/{project_id}": {
+   "get": {
+    "operationId": "evidence_api_v1_decision_evidence__project_id__get",
+    "parameters": [
+     {
+      "in": "path",
+      "name": "project_id",
+      "required": true,
+      "schema": {
+       "maxLength": 240,
+       "minLength": 3,
+       "title": "Project Id",
+       "type": "string"
+      }
+     }
+    ],
+    "responses": {
+     "200": {
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/EvidenceResponse"
+        }
+       }
+      },
+      "description": "Successful Response"
+     },
+     "403": {
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/ErrorResponse"
+        }
+       }
+      },
+      "description": "Forbidden"
+     },
+     "404": {
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/ErrorResponse"
+        }
+       }
+      },
+      "description": "Not Found"
+     },
+     "422": {
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/ErrorResponse"
+        }
+       }
+      },
+      "description": "Unprocessable Entity"
+     },
+     "503": {
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/ErrorResponse"
+        }
+       }
+      },
+      "description": "Service Unavailable"
+     }
+    },
+    "summary": "Decision evidence for one record: labelled financial facts, provenance, quality",
+    "tags": [
+     "decision"
+    ]
+   }
+  },
+  "/api/v1/decision/methodology": {
+   "get": {
+    "operationId": "methodology_api_v1_decision_methodology_get",
+    "responses": {
+     "200": {
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/MethodologyResponse"
+        }
+       }
+      },
+      "description": "Successful Response"
+     }
+    },
+    "summary": "Versioned comparison, prioritization and scenario methodologies (no source data)",
+    "tags": [
+     "decision"
+    ]
+   }
+  },
+  "/api/v1/decision/prioritize": {
+   "post": {
+    "operationId": "prioritize_api_v1_decision_prioritize_post",
+    "requestBody": {
+     "content": {
+      "application/json": {
+       "schema": {
+        "$ref": "#/components/schemas/PrioritizeRequest"
+       }
+      }
+     },
+     "required": true
+    },
+    "responses": {
+     "200": {
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/PrioritizeResponse"
+        }
+       }
+      },
+      "description": "Successful Response"
+     },
+     "403": {
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/ErrorResponse"
+        }
+       }
+      },
+      "description": "Forbidden"
+     },
+     "404": {
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/ErrorResponse"
+        }
+       }
+      },
+      "description": "Not Found"
+     },
+     "422": {
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/ErrorResponse"
+        }
+       }
+      },
+      "description": "Unprocessable Entity"
+     },
+     "503": {
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/ErrorResponse"
+        }
+       }
+      },
+      "description": "Service Unavailable"
+     }
+    },
+    "summary": "Rank records for further due diligence with explainable, user-weighted criteria",
+    "tags": [
+     "decision"
+    ]
+   }
+  },
+  "/api/v1/decision/scenarios": {
+   "post": {
+    "operationId": "scenarios_api_v1_decision_scenarios_post",
+    "requestBody": {
+     "content": {
+      "application/json": {
+       "schema": {
+        "$ref": "#/components/schemas/ScenarioRequest"
+       }
+      }
+     },
+     "required": true
+    },
+    "responses": {
+     "200": {
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/ScenarioResponse"
+        }
+       }
+      },
+      "description": "Successful Response"
+     },
+     "403": {
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/ErrorResponse"
+        }
+       }
+      },
+      "description": "Forbidden"
+     },
+     "404": {
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/ErrorResponse"
+        }
+       }
+      },
+      "description": "Not Found"
+     },
+     "422": {
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/ErrorResponse"
+        }
+       }
+      },
+      "description": "Unprocessable Entity"
+     },
+     "503": {
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/ErrorResponse"
+        }
+       }
+      },
+      "description": "Service Unavailable"
+     }
+    },
+    "summary": "Hypothetical budget allocation over selected records (planning simulation only)",
+    "tags": [
+     "decision"
+    ]
+   }
+  },
+  "/api/v1/documents": {
+   "get": {
+    "operationId": "documents_api_v1_documents_get",
+    "parameters": [
+     {
+      "in": "query",
+      "name": "page",
+      "required": false,
+      "schema": {
+       "default": 1,
+       "maximum": 10000,
+       "minimum": 1,
+       "title": "Page",
+       "type": "integer"
+      }
+     },
+     {
+      "in": "query",
+      "name": "page_size",
+      "required": false,
+      "schema": {
+       "default": 25,
+       "maximum": 100,
+       "minimum": 1,
+       "title": "Page Size",
+       "type": "integer"
+      }
+     },
+     {
+      "in": "query",
+      "name": "project_id",
+      "required": false,
+      "schema": {
+       "anyOf": [
+        {
+         "maxLength": 240,
+         "minLength": 3,
+         "type": "string"
+        },
+        {
+         "type": "null"
+        }
+       ],
+       "title": "Project Id"
+      }
+     },
+     {
+      "in": "query",
+      "name": "fund",
+      "required": false,
+      "schema": {
+       "anyOf": [
+        {
+         "pattern": "^[A-Z]{2,6}$",
+         "type": "string"
+        },
+        {
+         "type": "null"
+        }
+       ],
+       "title": "Fund"
+      }
+     },
+     {
+      "in": "query",
+      "name": "q",
+      "required": false,
+      "schema": {
+       "anyOf": [
+        {
+         "maxLength": 200,
+         "minLength": 1,
+         "type": "string"
+        },
+        {
+         "type": "null"
+        }
+       ],
+       "title": "Q"
+      }
+     },
+     {
+      "in": "query",
+      "name": "linked_only",
+      "required": false,
+      "schema": {
+       "default": false,
+       "title": "Linked Only",
+       "type": "boolean"
+      }
+     }
+    ],
+    "responses": {
+     "200": {
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/DocumentPage"
+        }
+       }
+      },
+      "description": "Successful Response"
+     },
+     "403": {
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/ErrorResponse"
+        }
+       }
+      },
+      "description": "Forbidden"
+     },
+     "422": {
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/ErrorResponse"
+        }
+       }
+      },
+      "description": "Unprocessable Entity"
+     },
+     "503": {
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/ErrorResponse"
+        }
+       }
+      },
+      "description": "Service Unavailable"
+     }
+    },
+    "summary": "Catalogue documents (metadata only), optionally for one project",
+    "tags": [
+     "documents"
+    ]
+   }
+  },
+  "/api/v1/filters": {
+   "get": {
+    "operationId": "filters_api_v1_filters_get",
+    "responses": {
+     "200": {
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/FiltersResponse"
+        }
+       }
+      },
+      "description": "Successful Response"
+     },
+     "403": {
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/ErrorResponse"
+        }
+       }
+      },
+      "description": "Forbidden"
+     },
+     "503": {
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/ErrorResponse"
+        }
+       }
+      },
+      "description": "Service Unavailable"
+     }
+    },
+    "summary": "Countries, sectors and year ranges present in the imported records",
+    "tags": [
+     "projects"
+    ]
+   }
+  },
+  "/api/v1/meta": {
+   "get": {
+    "operationId": "meta_api_v1_meta_get",
+    "responses": {
+     "200": {
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/MetaResponse"
+        }
+       }
+      },
+      "description": "Successful Response"
+     }
+    },
+    "summary": "Product name, tagline and API version",
+    "tags": [
+     "meta"
+    ]
+   }
+  },
+  "/api/v1/models": {
+   "get": {
+    "operationId": "models_api_v1_models_get",
+    "responses": {
+     "200": {
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/ModelsResponse"
+        }
+       }
+      },
+      "description": "Successful Response"
+     }
+    },
+    "summary": "Available models, statuses, provenance and the operational mode",
+    "tags": [
+     "screening"
+    ]
+   }
+  },
+  "/api/v1/models/comparison": {
+   "get": {
+    "operationId": "comparison_api_v1_models_comparison_get",
+    "responses": {
+     "200": {
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/ComparisonResponse"
+        }
+       }
+      },
+      "description": "Successful Response"
+     }
+    },
+    "summary": "Fixed v1 vs v2 aggregates on the same 2,550 development-validation records",
+    "tags": [
+     "screening"
+    ]
+   }
+  },
+  "/api/v1/projects": {
+   "get": {
+    "operationId": "search_projects_api_v1_projects_get",
+    "parameters": [
+     {
+      "in": "query",
+      "name": "page",
+      "required": false,
+      "schema": {
+       "default": 1,
+       "maximum": 100000,
+       "minimum": 1,
+       "title": "Page",
+       "type": "integer"
+      }
+     },
+     {
+      "in": "query",
+      "name": "page_size",
+      "required": false,
+      "schema": {
+       "default": 25,
+       "maximum": 100,
+       "minimum": 1,
+       "title": "Page Size",
+       "type": "integer"
+      }
+     },
+     {
+      "description": "Case-insensitive literal text search",
+      "in": "query",
+      "name": "q",
+      "required": false,
+      "schema": {
+       "anyOf": [
+        {
+         "maxLength": 200,
+         "minLength": 1,
+         "type": "string"
+        },
+        {
+         "type": "null"
+        }
+       ],
+       "description": "Case-insensitive literal text search",
+       "title": "Q"
+      }
+     },
+     {
+      "description": "ISO3",
+      "in": "query",
+      "name": "country",
+      "required": false,
+      "schema": {
+       "anyOf": [
+        {
+         "pattern": "^[A-Z]{3}$",
+         "type": "string"
+        },
+        {
+         "type": "null"
+        }
+       ],
+       "description": "ISO3",
+       "title": "Country"
+      }
+     },
+     {
+      "in": "query",
+      "name": "sector",
+      "required": false,
+      "schema": {
+       "anyOf": [
+        {
+         "maxLength": 200,
+         "minLength": 1,
+         "type": "string"
+        },
+        {
+         "type": "null"
+        }
+       ],
+       "title": "Sector"
+      }
+     },
+     {
+      "in": "query",
+      "name": "source",
+      "required": false,
+      "schema": {
+       "anyOf": [
+        {
+         "pattern": "^[a-z0-9_]{1,80}$",
+         "type": "string"
+        },
+        {
+         "type": "null"
+        }
+       ],
+       "title": "Source"
+      }
+     },
+     {
+      "in": "query",
+      "name": "year_from",
+      "required": false,
+      "schema": {
+       "anyOf": [
+        {
+         "maximum": 2100,
+         "minimum": 1900,
+         "type": "integer"
+        },
+        {
+         "type": "null"
+        }
+       ],
+       "title": "Year From"
+      }
+     },
+     {
+      "in": "query",
+      "name": "year_to",
+      "required": false,
+      "schema": {
+       "anyOf": [
+        {
+         "maximum": 2100,
+         "minimum": 1900,
+         "type": "integer"
+        },
+        {
+         "type": "null"
+        }
+       ],
+       "title": "Year To"
+      }
+     },
+     {
+      "description": "Filter on the research Rio-marker annotation (AidData records only)",
+      "in": "query",
+      "name": "climate_related",
+      "required": false,
+      "schema": {
+       "anyOf": [
+        {
+         "type": "boolean"
+        },
+        {
+         "type": "null"
+        }
+       ],
+       "description": "Filter on the research Rio-marker annotation (AidData records only)",
+       "title": "Climate Related"
+      }
+     },
+     {
+      "in": "query",
+      "name": "sort",
+      "required": false,
+      "schema": {
+       "default": "id",
+       "enum": [
+        "id",
+        "-id",
+        "year",
+        "-year",
+        "title",
+        "-title"
+       ],
+       "title": "Sort",
+       "type": "string"
+      }
+     }
+    ],
+    "responses": {
+     "200": {
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/ProjectPage"
+        }
+       }
+      },
+      "description": "Successful Response"
+     },
+     "403": {
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/ErrorResponse"
+        }
+       }
+      },
+      "description": "Forbidden"
+     },
+     "422": {
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/ErrorResponse"
+        }
+       }
+      },
+      "description": "Unprocessable Entity"
+     },
+     "503": {
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/ErrorResponse"
+        }
+       }
+      },
+      "description": "Service Unavailable"
+     }
+    },
+    "summary": "Search and filter project records (paginated)",
+    "tags": [
+     "projects"
+    ]
+   }
+  },
+  "/api/v1/projects/{project_id}": {
+   "get": {
+    "operationId": "project_detail_api_v1_projects__project_id__get",
+    "parameters": [
+     {
+      "in": "path",
+      "name": "project_id",
+      "required": true,
+      "schema": {
+       "maxLength": 240,
+       "minLength": 3,
+       "title": "Project Id",
+       "type": "string"
+      }
+     }
+    ],
+    "responses": {
+     "200": {
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/ProjectDetail"
+        }
+       }
+      },
+      "description": "Successful Response"
+     },
+     "403": {
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/ErrorResponse"
+        }
+       }
+      },
+      "description": "Forbidden"
+     },
+     "404": {
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/ErrorResponse"
+        }
+       }
+      },
+      "description": "Not Found"
+     },
+     "422": {
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/HTTPValidationError"
+        }
+       }
+      },
+      "description": "Validation Error"
+     },
+     "503": {
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/ErrorResponse"
+        }
+       }
+      },
+      "description": "Service Unavailable"
+     }
+    },
+    "summary": "One project record with source, annotations, finance, warnings and links",
+    "tags": [
+     "projects"
+    ]
+   }
+  },
+  "/api/v1/reviews": {
+   "post": {
+    "operationId": "add_review_api_v1_reviews_post",
+    "parameters": [
+     {
+      "in": "header",
+      "name": "X-Compassio-Review-Token",
+      "required": false,
+      "schema": {
+       "anyOf": [
+        {
+         "type": "string"
+        },
+        {
+         "type": "null"
+        }
+       ],
+       "title": "X-Compassio-Review-Token"
+      }
+     }
+    ],
+    "requestBody": {
+     "content": {
+      "application/json": {
+       "schema": {
+        "$ref": "#/components/schemas/ReviewRequest"
+       }
+      }
+     },
+     "required": true
+    },
+    "responses": {
+     "201": {
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/ReviewOut"
+        }
+       }
+      },
+      "description": "Successful Response"
+     },
+     "401": {
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/ErrorResponse"
+        }
+       }
+      },
+      "description": "Unauthorized"
+     },
+     "403": {
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/ErrorResponse"
+        }
+       }
+      },
+      "description": "Forbidden"
+     },
+     "404": {
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/ErrorResponse"
+        }
+       }
+      },
+      "description": "Not Found"
+     },
+     "422": {
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/ErrorResponse"
+        }
+       }
+      },
+      "description": "Unprocessable Entity"
+     }
+    },
+    "summary": "Record a user-initiated review decision (append-only, hash-chained)",
+    "tags": [
+     "screening"
+    ]
+   }
+  },
+  "/api/v1/reviews/{screening_id}": {
+   "get": {
+    "operationId": "list_reviews_api_v1_reviews__screening_id__get",
+    "parameters": [
+     {
+      "in": "path",
+      "name": "screening_id",
+      "required": true,
+      "schema": {
+       "maxLength": 36,
+       "minLength": 36,
+       "title": "Screening Id",
+       "type": "string"
+      }
+     },
+     {
+      "in": "header",
+      "name": "X-Compassio-Review-Token",
+      "required": false,
+      "schema": {
+       "anyOf": [
+        {
+         "type": "string"
+        },
+        {
+         "type": "null"
+        }
+       ],
+       "title": "X-Compassio-Review-Token"
+      }
+     }
+    ],
+    "responses": {
+     "200": {
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/ReviewListResponse"
+        }
+       }
+      },
+      "description": "Successful Response"
+     },
+     "401": {
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/ErrorResponse"
+        }
+       }
+      },
+      "description": "Unauthorized"
+     },
+     "403": {
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/ErrorResponse"
+        }
+       }
+      },
+      "description": "Forbidden"
+     },
+     "404": {
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/ErrorResponse"
+        }
+       }
+      },
+      "description": "Not Found"
+     },
+     "422": {
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/HTTPValidationError"
+        }
+       }
+      },
+      "description": "Validation Error"
+     }
+    },
+    "summary": "Review decisions for a saved screening, with audit-chain verification",
+    "tags": [
+     "screening"
+    ]
+   }
+  },
+  "/api/v1/screening/projects/{project_id}": {
+   "post": {
+    "operationId": "screen_project_api_v1_screening_projects__project_id__post",
+    "parameters": [
+     {
+      "in": "path",
+      "name": "project_id",
+      "required": true,
+      "schema": {
+       "maxLength": 240,
+       "minLength": 3,
+       "title": "Project Id",
+       "type": "string"
+      }
+     },
+     {
+      "in": "header",
+      "name": "X-Compassio-Review-Token",
+      "required": false,
+      "schema": {
+       "anyOf": [
+        {
+         "type": "string"
+        },
+        {
+         "type": "null"
+        }
+       ],
+       "title": "X-Compassio-Review-Token"
+      }
+     }
+    ],
+    "requestBody": {
+     "content": {
+      "application/json": {
+       "schema": {
+        "$ref": "#/components/schemas/ProjectScreeningRequest"
+       }
+      }
+     },
+     "required": true
+    },
+    "responses": {
+     "200": {
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/ScreeningResponse"
+        }
+       }
+      },
+      "description": "Successful Response"
+     },
+     "401": {
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/ErrorResponse"
+        }
+       }
+      },
+      "description": "Unauthorized"
+     },
+     "403": {
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/ErrorResponse"
+        }
+       }
+      },
+      "description": "Forbidden"
+     },
+     "404": {
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/ErrorResponse"
+        }
+       }
+      },
+      "description": "Not Found"
+     },
+     "422": {
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/ErrorResponse"
+        }
+       }
+      },
+      "description": "Unprocessable Entity"
+     },
+     "503": {
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/ErrorResponse"
+        }
+       }
+      },
+      "description": "Service Unavailable"
+     }
+    },
+    "summary": "Screen an eligible database project record (source rights checked)",
+    "tags": [
+     "screening"
+    ]
+   }
+  },
+  "/api/v1/screening/text": {
+   "post": {
+    "operationId": "screen_text_api_v1_screening_text_post",
+    "parameters": [
+     {
+      "in": "header",
+      "name": "X-Compassio-Review-Token",
+      "required": false,
+      "schema": {
+       "anyOf": [
+        {
+         "type": "string"
+        },
+        {
+         "type": "null"
+        }
+       ],
+       "title": "X-Compassio-Review-Token"
+      }
+     }
+    ],
+    "requestBody": {
+     "content": {
+      "application/json": {
+       "schema": {
+        "$ref": "#/components/schemas/TextScreeningRequest"
+       }
+      }
+     },
+     "required": true
+    },
+    "responses": {
+     "200": {
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/ScreeningResponse"
+        }
+       }
+      },
+      "description": "Successful Response"
+     },
+     "401": {
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/ErrorResponse"
+        }
+       }
+      },
+      "description": "Unauthorized"
+     },
+     "403": {
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/ErrorResponse"
+        }
+       }
+      },
+      "description": "Forbidden"
+     },
+     "422": {
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/ErrorResponse"
+        }
+       }
+      },
+      "description": "Unprocessable Entity"
+     },
+     "503": {
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/ErrorResponse"
+        }
+       }
+      },
+      "description": "Service Unavailable"
+     }
+    },
+    "summary": "Screen submitted title/description text (not stored unless save=true)",
+    "tags": [
+     "screening"
+    ]
+   }
+  },
+  "/api/v1/sources": {
+   "get": {
+    "operationId": "sources_api_v1_sources_get",
+    "responses": {
+     "200": {
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/SourcesResponse"
+        }
+       }
+      },
+      "description": "Successful Response"
+     },
+     "503": {
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/ErrorResponse"
+        }
+       }
+      },
+      "description": "Service Unavailable"
+     }
+    },
+    "summary": "Registered sources with checksums and rights-review status",
+    "tags": [
+     "sources"
+    ]
+   }
+  },
+  "/health": {
+   "get": {
+    "operationId": "health_health_get",
+    "responses": {
+     "200": {
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/HealthResponse"
+        }
+       }
+      },
+      "description": "Successful Response"
+     }
+    },
+    "summary": "Service liveness",
+    "tags": [
+     "system"
+    ]
+   }
+  }
+ }
+}

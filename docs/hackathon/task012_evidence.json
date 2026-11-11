@@ -1,0 +1,144 @@
+{
+  "verified_implementation_commit": "c5900acb860c91df4b0266cd3c1be3a79586c1f5",
+  "preserved_refs": {
+    "main": "8c083509e324d76aafc7ee097dc4345a94314afd",
+    "backend-ready-for-battleverse^{commit}": "8c083509e324d76aafc7ee097dc4345a94314afd",
+    "feature/task010-complete-frontend": "e0c71af6e5afb61968363215f2571c164f8942ac",
+    "challenge/c05-poison-quarantine": "7253c15f5133229b2ebef7819b83c323827d5992",
+    "challenge/c09-adversarial-robustness": "4cf835c81316611fe114566d48c30838895daac6",
+    "challenge/c11-availability-shield": "20e6a35b2fd2ddbbdbf88d462846127033e1b4fa"
+  },
+  "canonical_db_audited_figures": 27,
+  "c09_deterministic_repeat": {
+    "baseline.json": true,
+    "baseline_queries.json": true,
+    "baseline_trials.json": true,
+    "guarded.json": true,
+    "guarded_queries.json": true,
+    "guarded_trials.json": true,
+    "metrics.json": true,
+    "records.json": true,
+    "split_manifest.json": true
+  },
+  "c09_matches_original_nine_outputs": {
+    "baseline.json": true,
+    "baseline_queries.json": true,
+    "baseline_trials.json": true,
+    "guarded.json": true,
+    "guarded_queries.json": true,
+    "guarded_trials.json": true,
+    "metrics.json": true,
+    "records.json": true,
+    "split_manifest.json": true
+  },
+  "c09_metrics_sha256": "53cfd6924ea3e51a2a60976624efb1ae03841fda927e55763846941aec0625c2",
+  "c09_receipt_sha256": "cc2f5a530fa8a2ea99326107210148cda233596f922022b5b098b6ebbe28d1ab",
+  "c09_receipt_dirty": true,
+  "c09_source_code_hashes_match_receipt": true,
+  "c09_assessment": {
+    "ALL_adaptive/guarded": {
+      "pairs": 512,
+      "flips": 5
+    },
+    "ALL_adaptive/raw": {
+      "pairs": 512,
+      "flips": 6
+    },
+    "ALL_fixed/guarded": {
+      "pairs": 1280,
+      "flips": 2
+    },
+    "ALL_fixed/raw": {
+      "pairs": 1280,
+      "flips": 5
+    },
+    "ALL_transferred_search/guarded": {
+      "pairs": 512,
+      "flips": 2
+    },
+    "ALL_transferred_search/raw": {
+      "pairs": 512,
+      "flips": 8
+    }
+  },
+  "canonical_mixed_load": {
+    "False": {
+      "requests": 64,
+      "concurrency": 8,
+      "status_counts": {
+        "200": 64
+      },
+      "seconds": 10.199596200021915,
+      "independent_peer_status": 200,
+      "max_response_seconds": 7.730343200033531
+    },
+    "True": {
+      "requests": 64,
+      "concurrency": 8,
+      "status_counts": {
+        "200": 4,
+        "429": 60
+      },
+      "seconds": 1.0017725999932736,
+      "independent_peer_status": 200,
+      "max_response_seconds": 0.5465484999585897
+    }
+  },
+  "probe_read_budget": {
+    "rate_per_second": 1,
+    "burst": 4
+  },
+  "canonical_capacity_200_rps_claim": false,
+  "evidence_sha256": {
+    "browser-final.txt": "b4622ee61bf91eeb3f561d332fb7835bcd00bca51cbf0c957f410b249389d3e9",
+    "browser.txt": "f1f5e1eb7ff5e0537bf47375776746d2c1fb1a70f1c7831dd8f3e4c5d0546aef",
+    "c05-live-A.txt": "fee119d97c4622f03fc355980c9b36ba6a11b9e6d520b3eb6251eb4cb86984f0",
+    "c05-live-B.txt": "99b63d69db3cf7691b81e73493cac34e0131df93d994e1f8fba479a8e6a764a9",
+    "c05-live-targeted-A.txt": "8cc3452849dce0ea04117a49ea8a781a1aaa1f9cbed1ab4073c8d8c99f68308d",
+    "c09-reproduction.txt": "63e1f36771012de602af51b9c7a44c925ad2168de2ccb6c71b0b3791092624e8",
+    "challenge-tests.txt": "0595595b7bde3a5654ceb728b7dd5ca7e1a707399be09f3a0f3ec83818467c43",
+    "contracts.txt": "f42b74793625a59ef05c3e0af1a1c73adf4d033a0c0b53ed5b8c64239916605a",
+    "db-verify.txt": "35311377e9588c9d341ce1de9f7fe55c5343fc45ea571acf97d7f4a71674da78",
+    "format.txt": "1f9676f0e1e5b0eb27ba08e36cfc4be39720f03c8b8eb649918444c0977b72ee",
+    "integration-tests.txt": "bcda4f3306608614072809c6851a8bc07315bd8853202efd6837be1153702e58",
+    "mypy.txt": "21932f821e8efa90318ab049fe9989577cdeb897cfb114b910d8ae96fe024172",
+    "probe.txt": "1171b8beb33949e0efb19580ccb07dd4e4ef04238f368d6d9b758c68779141c4",
+    "pytest-final.txt": "9a57687f2f7e61cdff8293f0b5c420512ae2e60100cefe41d05456589360e357",
+    "pytest-release.txt": "06d7f7ef2c5de5477497d46787deadc2d8129d2e63cfd486dfca43c071a790d5",
+    "pytest.txt": "ed646a57ac2bab23a157b14864d4834b9d8a4958a5a74f7495837e65bad42cc5",
+    "ruff-initial.txt": "9107fdff4320abd6376f6d800c04e372b88fb729ef44560de89a9dc5c621a36a",
+    "ruff.txt": "af352a86840ad0af3d37ea0d9197f868363a6dac6b1c2ef5d2722f6b41d2d9af",
+    "runtime.txt": "d3b0446942f1c45e1f328161cbd114455522ff5209725eec0f88550fef72c432",
+    "scripts-mypy.txt": "f6af9a428ef63a271aa2234de6ce89a03776a74b2b986ece71bae5015648259c",
+    "smoke.txt": "3af6ce5282c1ea03cc59f23f5e8d4a8f34c7e7cdde37b49b9f1986c9cab42220",
+    "sqlite-integrity.txt": "0fb4e7c0e79f3947989bd742e3111e5c7f993c9e3b801f44906054f3a6bf2eea",
+    "web-build.txt": "9e44babdce2d9f09725e777bfe56fc8dc6b26dc42a3e8d07018c9473a51ddc59",
+    "web-lint.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "web-types.txt": "0f56db947d9840a368be4647bd65876ae3bf41e029976c5ca7c585ccb5316895",
+    "web-unit.txt": "fa3bcf8384f38ceaa04bbb300eda4584b74ca3b39512631e9278877a58b0675a"
+  },
+  "pytest": {
+    "passed": 862,
+    "skipped": 49,
+    "seconds": 264.1
+  },
+  "browser": {
+    "passed": 15,
+    "failed": 0,
+    "seconds": 54.0,
+    "canonical_artifacts": true,
+    "c09_enabled": true,
+    "c11_enabled": true
+  },
+  "dedicated_challenges": {
+    "passed": 113,
+    "skipped": 0,
+    "seconds": 8.91
+  },
+  "frontend_unit_tests": {
+    "passed": 16,
+    "files": 2
+  },
+  "canonical_probe_sha256": "0aa1a0341229b4a8e032206c3ccfde62d47b125051fb6f1cea64fff630748646",
+  "completed_release_snapshot_commit": "c0f8d9e2c7853aee32dde5bb74bd606bf701acb3"
+}

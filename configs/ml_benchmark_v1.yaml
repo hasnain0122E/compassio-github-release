@@ -1,0 +1,75 @@
+# Task 004 validation-stage benchmark. Consumed by `uv run compassio-ml benchmark`.
+# Declared before any result was computed. Changing it changes the config hash in every run id.
+version: ml_benchmark_v1
+seed: 20260109
+target: is_climate_related   # rio_overall > 0 (Qi et al. 2026); positive class = 1
+
+data:
+  table: data/processed/research_projects.parquet
+  membership: data/processed/research_split_membership_v1.parquet
+  split_config: configs/research_split_v1.yaml
+  split_lock: configs/research_split_v1.lock.json   # frozen checksums; any change fails the run
+
+tfidf_presets:
+  word_uni:
+    ngram_range: [1, 1]
+    min_df: 2
+    max_df: 0.9
+    max_features: 100000
+    sublinear_tf: true
+  word_unibi:
+    ngram_range: [1, 2]
+    min_df: 2
+    max_df: 0.9
+    max_features: 200000
+    sublinear_tf: true
+
+# Hyperparameters are chosen by group-aware stratified K-fold INSIDE the training partition.
+inner_cv: {n_splits: 3, shuffle: true}
+# Decision threshold = max-F1 threshold on the chosen configuration's out-of-fold TRAIN scores.
+threshold_objective: f1
+bootstrap: {resamples: 2000, confidence: 0.95}   # resamples whole leakage groups
+
+selection:
+  # 1. Rank finalists by validation average precision (PR-AUC).
+  # 2. Tie set = finalists whose paired group-bootstrap 95% CI of (top AP - candidate AP)
+  #    includes 0.
+  # 3. Within the tie set prefer, in order: genuine probabilities, lower complexity tier,
+  #    higher validation F1 at the pre-selected (train-OOF) threshold, lower latency.
+  primary_metric: average_precision
+  tie_rule: paired_bootstrap_ci_includes_zero
+  tie_breakers: [provides_probability, lower_complexity, higher_f1_at_selected_threshold, lower_latency]
+
+slice_min_records: 30
+slice_min_positives: 5
+
+suites:
+  fast:   # smoke / reproducibility suite: one configuration per algorithm
+    representations: [title_description]
+    tfidf: [word_unibi]
+    calibrate_best_svm: true
+    candidates:
+      majority: [{}]
+      keyword: [{}]
+      multinomial_nb: [{alpha: 0.1}]
+      logistic_regression: [{C: 4.0, class_weight: balanced}]
+      linear_svm: [{C: 0.5, class_weight: balanced}]
+  full:   # 3 representations x 2 TF-IDF presets x 12 grid points = 72 inner-CV trials
+    representations: [title, description, title_description]
+    tfidf: [word_uni, word_unibi]
+    calibrate_best_svm: true
+    candidates:
+      majority: [{}]
+      keyword: [{}]
+      multinomial_nb: [{alpha: 0.1}, {alpha: 0.5}, {alpha: 1.0}]
+      logistic_regression:
+        - {C: 1.0, class_weight: null}
+        - {C: 4.0, class_weight: null}
+        - {C: 1.0, class_weight: balanced}
+        - {C: 4.0, class_weight: balanced}
+        - {C: 16.0, class_weight: balanced}
+      linear_svm:
+        - {C: 0.5, class_weight: null}
+        - {C: 0.1, class_weight: balanced}
+        - {C: 0.5, class_weight: balanced}
+        - {C: 2.0, class_weight: balanced}

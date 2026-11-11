@@ -1,0 +1,58 @@
+# Label mapping specification v2 (Task 006-ML). Machine-readable companion of
+# docs/research/model_v2/label_mapping_spec.md. These categories are NOT interchangeable.
+# "maps_to_target" says how a source value may inform the binary target
+# is_climate_related = rio_overall > 0 and the mitigation/adaptation objectives.
+mapping_version: label_mapping_v2.0
+target:
+  scheme: Rio markers (OECD DAC) as used by Qi et al. 2026 - rio_mitigation, rio_adaptation in {0,1,2}
+  rio_overall: max(rio_mitigation, rio_adaptation)
+  binary: rio_overall > 0
+categories:
+  A_researcher_rio:
+    sources: [research_paper (Qi et al. 2026) on AidData GCDF 3.0 text]
+    authority: researchers, cross-verified with ClimateBERT; no per-record agreement column
+    values: {rio_mitigation: [0, 1, 2], rio_adaptation: [0, 1, 2]}
+    maps_to_target: direct (defines v1 target)
+    compatibility: reference scheme
+    use: training/validation candidates from unconsumed v1 records; all consumed v1 tests excluded
+  B_donor_reported_rio:
+    sources: [iati_fcdo, iati_ec_intpa, oecd_crs (not acquired)]
+    authority: reporting donor, self-assessed
+    values: {significance: [0, 1, 2]}
+    explicit_zero: donor-reported "not targeted" - usable as a source-reported negative
+    absent_marker: unknown - NEVER a negative
+    invalid_values: significance outside 0-2 for codes 6/7 -> not a label (recorded)
+    maps_to_target: same scale and definitions; different annotator; known donor over-/under-reporting
+    compatibility: scale_compatible_annotator_differs
+    use: training/validation candidates with label_origin flag; audited by human spot check
+  C_gcf_classification:
+    sources: [gcf_project_pages (ODL Theme)]
+    authority: Green Climate Fund
+    values: {Theme: [Mitigation, Adaptation, Cross-cutting]}
+    maps_to_target: >-
+      Implies a climate objective at the PROJECT level (population is climate-dedicated) but
+      gives no 0/1/2 significance and no negatives. Theme Mitigation does not imply
+      rio_adaptation = 0; Cross-cutting does not specify which objective is principal.
+    compatibility: positive_only_not_rio
+    use: restricted reference only (ai-train=no); excluded from training, evaluation and
+      human-review worksheets pending reviewed permission; never a Rio label
+  D_world_bank_climate_indicator:
+    sources: [worldbank_projects (themev2 level 3 Adaptation/Mitigation under Climate Change)]
+    authority: World Bank theme tagging (no percentages returned)
+    maps_to_target: >-
+      Not a Rio score. Tag presence suggests a climate objective; absence is NOT a negative
+      (the v2 theme taxonomy is recent and absent for most historical projects).
+    compatibility: indicator_only
+    use: external-test stratification metadata and adjudicator context only
+  E_human_reviewed:
+    sources: [labeling worksheets under rio_label_policy_v2.1]
+    authority: two independent human reviewers + third-person adjudication
+    maps_to_target: direct (same scheme as A)
+    compatibility: reference scheme
+    use: external test (sealed), training-label audit
+unresolved:
+  - "Whether donor 'significant' (1) is applied as strictly as the researchers' 1 - measured by the training-label audit"
+  - "FCDO components (hierarchy 2) carry no markers; inheriting parent markers is NOT done"
+  - "GCF Cross-cutting -> which objective is principal is unknown without the proposal"
+  - "World Bank theme tags without percentages cannot distinguish significant from principal"
+  - "OECD CRS markers (category B, many donors) not acquired: Cloudflare 403"

@@ -1,0 +1,93 @@
+# ---------------------------------------------------------------- secrets / env
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+
+# ---------------------------------------------------------------- Claude Code (user-specific)
+.claude/settings.local.json
+CLAUDE.local.md
+
+# ---------------------------------------------------------------- Python
+.venv/
+__pycache__/
+*.py[cod]
+*.egg-info/
+build/
+dist/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+.coverage.*
+htmlcov/
+
+# ---------------------------------------------------------------- Node / Next.js
+node_modules/
+.pnpm-store/
+.next/
+out/
+*.tsbuildinfo
+.pnpm-debug.log*
+npm-debug.log*
+
+# ---------------------------------------------------------------- data (never commit datasets)
+# Only README files in each stage directory are tracked. Manifests are tracked.
+data/raw/*
+!data/raw/README.md
+data/interim/*
+!data/interim/README.md
+data/processed/*
+!data/processed/README.md
+# ML v2 external downloads, candidate datasets, review worksheets and sealed test labels
+# (licence and privacy review pending; never committed).
+data/ml_v2/
+# Local project database (derived from licensed sources; never committed).
+data/db/*
+!data/db/README.md
+# Backend-only downloaded source snapshots (Task 006-DB). Metadata is tracked separately in
+# data/manifests/backend_source_registry.json (no records).
+data/raw_db/*
+!data/raw_db/README.md
+# Guard against stray dataset formats anywhere in the repo.
+*.parquet
+*.feather
+*.xlsx
+*.xls
+*.zip
+*.7z
+*.gz
+*.sqlite
+*.sqlite3
+*.db
+*.duckdb
+
+# ---------------------------------------------------------------- generated audit artifacts
+# Regenerate with `uv run compassio-data audit` (see docs/data/source_inventory.md).
+artifacts/
+
+# ---------------------------------------------------------------- models / experiments
+models/*
+!models/README.md
+experiments/*
+!experiments/README.md
+mlruns/
+mlartifacts/
+wandb/
+*.pt
+*.pth
+*.ckpt
+*.safetensors
+*.onnx
+*.joblib
+*.pkl
+*.pickle
+
+# ---------------------------------------------------------------- OS / editors
+.DS_Store
+Thumbs.db
+desktop.ini
+.idea/
+.vscode/*
+!.vscode/extensions.json

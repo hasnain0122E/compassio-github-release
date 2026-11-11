@@ -1,0 +1,98 @@
+{
+  "acceptance": {
+    "all_passed": true,
+    "checks": {
+      "ap_ci_lower_above_keyword_ap": {
+        "passed": true,
+        "required": "> 0.5721910346181605",
+        "value": 0.679832844189746
+      },
+      "ece": {
+        "passed": true,
+        "required": "<= 0.05",
+        "value": 0.018446729745203404
+      },
+      "energy_recall": {
+        "passed": true,
+        "required": ">= 0.85",
+        "value": 0.8598130841121495
+      },
+      "f1_at_threshold": {
+        "passed": true,
+        "required": ">= 0.65",
+        "value": 0.6701846965699209
+      }
+    },
+    "non_energy_limitation_required": true,
+    "non_energy_recall": 0.3684210526315789
+  },
+  "algorithm": "logistic_regression",
+  "artifact_file": "model.joblib",
+  "artifact_sha256": "53b226f6e866bd5377b951aaeb87f9be86c72dc9ac444a807bf0d49c857d3656",
+  "attribution": [
+    "Labels: Qi, J. et al. (2026) Scientific Data 13:277, doi:10.1038/s41597-026-06605-9 (data: doi:10.6084/m9.figshare.30015124)",
+    "Text: AidData's Global Chinese Development Finance Dataset, Version 3.0 (ODC-By 1.0)"
+  ],
+  "created_at": "2026-11-09T11:08:27.156883+00:00",
+  "data_checksums": {
+    "membership_sha256": "aba478d973f50c7dfd98d8872ccd81fc541e6eded7698aaf7f1fc58adde4be2a",
+    "split_config_sha256": "e06de7e236723784e8268e8c4ea8ca35a6c1f86281419476e48f357c5e6e4743",
+    "split_lock_sha256": "3d5b34d43bfb2547498a8280fe7b272b5665b84d29b930383e8f797fb1166c70",
+    "table_sha256": "71fc5a10285d25ed22d7e804f6cd5ec66783b6c6163168b5f8ab7cb46ae9d394"
+  },
+  "dependencies": {
+    "compassio-ml": "0.1.0",
+    "joblib": "1.6.0",
+    "numpy": "2.5.4",
+    "pandas": "3.1.1",
+    "scikit-learn": "1.9.1",
+    "scipy": "1.18.1"
+  },
+  "evaluation_plan_sha256": "c4760503f4b8798706e24cccfe7b87a4203751b8722d946984ebf76a47b8b3cb",
+  "evaluation_plan_version": "final_evaluation_v1",
+  "evaluation_summaries_sha256": {
+    "chronological": "f64a79b02cee6e714cfd42370640df70eda929b9a47d88e8c49b66e01e8c54c0",
+    "pakistan_holdout": "7bdb722b5471730433618ef4d8f7a4de5e2dcf600798a9441f3275258af3556e",
+    "primary": "8addc52cafa1b71486c2135e16059bc464bf6a49be4e8da53b3f4154d55ab3c0"
+  },
+  "input_columns": [
+    "title_clean",
+    "description_clean"
+  ],
+  "intended_use": "Human-reviewed screening of climate relevance in project descriptions.",
+  "limitation_message": "Research screening only. The label score reflects similarity to the paper authors' climate annotations of retrospective project descriptions. It is not a probability of funding, approval, project success, environmental impact or financial return. Reliable mainly for energy-sector text; adaptation and other non-energy projects are often missed. A negative result does not mean a project is not climate-relevant. Requires human review.",
+  "model_fingerprint": "3023fe3d148b605c3ed9079c93f07296193fd2d8d5f77b8a82a163e58ccdc495",
+  "model_name": "Compassio Climate Relevance Classifier v1 \u2014 MVP Research Screening",
+  "model_version": "compassio-ccrc-1.0.0-mvp-research-screening",
+  "params": {
+    "C": 16.0,
+    "class_weight": "balanced"
+  },
+  "prohibited_claims": [
+    "predicts investment returns",
+    "predicts funding approval",
+    "verifies environmental impact",
+    "detects fraud",
+    "reliable proposal-time classification without external validation",
+    "reliably classifies all adaptation or non-energy project types"
+  ],
+  "python": "3.12.15",
+  "release_status": "mvp_research_screening",
+  "representation": "title_description",
+  "schema": "compassio-model-release/1",
+  "score_semantics": "model-estimated label score in [0, 1]; not a probability of success or impact",
+  "source_git_commit": "f14f397fbed29364e7b43bfd1f0cdc582c6b3442",
+  "tfidf": {
+    "max_df": 0.9,
+    "max_features": 200000,
+    "min_df": 2,
+    "ngram_range": [
+      1,
+      2
+    ],
+    "sublinear_tf": true
+  },
+  "threshold": 0.4740212723792222,
+  "train_records": 14654,
+  "trained_on": "primary protocol TRAIN partition only (frozen research_split_v1)"
+}

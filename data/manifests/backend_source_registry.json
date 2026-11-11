@@ -1,0 +1,32 @@
+{
+  "schema_version": "compassio-backend-source-registry/1",
+  "snapshots": [
+    {
+      "attribution_notes": "GCF website terms (checked 2026-11-09 for Task 004.5): private study, research and non-commercial use; commercial use or redistribution needs prior written consent; attribute 'First published by the Green Climate Fund' with a link. The site's robots.txt Content-Signal states ai-train=no: do not use for model training. Not reviewed for redistribution.",
+      "backend_source_id": "gcf_api_projects",
+      "description": "All GCF funded projects (FP/SAP) as structured JSON: approval date, status, countries with per-country financing (currency stated), funding by source and instrument (currency stated), disbursements, entities, official project URL.",
+      "file_format": "json",
+      "http_metadata": {
+        "content-type": "application/json; charset=utf-8",
+        "date": "Mon, 09 Nov 2026 14:45:45 GMT",
+        "expires": "Mon, 09 Nov 2026 14:45:45 GMT"
+      },
+      "http_status": 200,
+      "ingested_at": "2026-11-09T14:50:37Z",
+      "ingestion_status": "ingested",
+      "landing_url": "https://data.greenclimate.fund/",
+      "original_filename": "projects",
+      "publisher": "Green Climate Fund (GCF) Open Data Library API",
+      "retrieval_url": "https://api.gcfund.org/v1/projects",
+      "retrieved_at": "2026-11-09T14:45:34Z",
+      "rights_status": "not_reviewed",
+      "sha256": "146242891bac37ce48ee263e1e3bcbb66d32e79d689d91f8cec37a7e9a69f3dc",
+      "size_bytes": 2852244,
+      "snapshot_id": "20261109T144534Z",
+      "source_update_date": null,
+      "source_update_date_note": "The publisher states no update date for this payload (no Last-Modified header, no date field in the payload); values are 'as retrieved' at retrieved_at.",
+      "stored_relpath": "gcf_api_projects/20261109T144534Z/projects.json",
+      "unit_of_observation": "one GCF funded project (ApprovedRef, e.g. FP085)"
+    }
+  ]
+}

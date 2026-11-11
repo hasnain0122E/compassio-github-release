@@ -1,0 +1,16 @@
+{
+ "addendum_config": "configs/c05_hardening_addendum.yaml",
+ "addendum_config_sha256": "80ef1619158bfa46e0bf1a1c7e890bb611a107588e9eecc7f87add8454241d37",
+ "base_manifest_sha256": "5a9de7415b8f3a06610b2d900717927bb9688880c66552f70fd183a616c972c9",
+ "base_run_id": "c05_acbd465eef5a",
+ "command": "uv run python -m compassio_ml.challenges.c05.cli addendum",
+ "files_sha256": {
+  "gate_targeted_non_energy_positive_hardened.json": "9db3a855657d6321bcfdd00fff79a89b11ad21ee77fab694706d155a08b98811",
+  "gate_targeted_non_energy_positive_top_share.json": "b290ef8a0d7372be5b766dd7ccd5868bf98a018f886b79ca01a66ecd9b3f397a",
+  "gate_uniform_hardened.json": "ba0652a7981316e2233726a942449376a97d71595f44a6584c5726e1915165e4",
+  "gate_uniform_top_share.json": "171c626ea0a300767bd4b51bd878a1e081959ab4ea47d29259116a022347711a",
+  "sector_metadata.jsonl": "945efd5fe29d1efdcaaa5c11eb93ca85a5501b573b7498c53511b8a29e836e55",
+  "summary.json": "b0760259fc05e88fbf2bec6864a8f605b5676235d671d2fc28f8d1398d810d23"
+ },
+ "git_head": "43528b601ee88015fb2a47fed2f72e8ad9e3fda3"
+}

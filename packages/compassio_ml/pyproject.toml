@@ -1,0 +1,36 @@
+[project]
+name = "compassio-ml"
+version = "0.1.0"
+description = "Compassio data engineering, training, evaluation and inference package."
+requires-python = ">=3.12"
+dependencies = [
+    "defusedxml>=0.7.1",
+    "openpyxl>=3.1.5",
+    "pandas>=3.1.1",
+    "pyarrow>=26.0.1",
+    "pydantic>=2.14.3",
+    "pyyaml>=6.0.3",
+    "scikit-learn>=1.9.1",
+]
+
+[project.scripts]
+compassio-hash = "compassio_ml.integrity.cli:main"
+compassio-data = "compassio_ml.cli.data_cli:main"
+compassio-manifest = "compassio_ml.cli.manifest_cli:main"
+compassio-research = "compassio_ml.cli.research_cli:main"
+compassio-ml = "compassio_ml.cli.ml_cli:main"
+compassio-v2 = "compassio_ml.cli.v2_cli:main"
+compassio-v2-quality = "compassio_ml.cli.quality_v2_cli:main"
+compassio-v2-train = "compassio_ml.cli.v2_train_cli:main"
+
+[project.optional-dependencies]
+embeddings = [
+    "sentence-transformers>=5.1",
+]
+
+[build-system]
+requires = ["hatchling>=1.27"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/compassio_ml"]

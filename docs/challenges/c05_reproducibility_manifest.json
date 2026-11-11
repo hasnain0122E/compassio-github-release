@@ -1,0 +1,26 @@
+{
+ "attack_rate": 0.05,
+ "attack_seed": 20261112,
+ "clean_batch_fingerprint": "ad128fc332ae35228a235e992d66241432ce742932414f142852bd62250eb103",
+ "command": "uv run python -m compassio_ml.challenges.c05.cli run",
+ "config_path": "configs/c05_poison_quarantine.yaml",
+ "config_sha256": "acbd465eef5a887563160543c992679a063f9a4a5dff9a0ea63a1d1688b60150",
+ "detector_version": "compassio-c05-detector-1.0.0",
+ "files_sha256": {
+  "batch_A_clean.jsonl": "3311a57e30f126c09fbb2a9a327e0f4196ce92482a83a3b2ecc6f888b31b7941",
+  "batch_B_poisoned_targeted_non_energy_positive.jsonl": "30c98b564c565f1d2d1c0dad12504c0a44484e442697ac2250b3c82bb237b98b",
+  "batch_B_poisoned_uniform.jsonl": "b7c5f4aac992064c53df166673282a61947d5b11eb9be025c58e63d4a2fee9c5",
+  "batch_C_protected_targeted_non_energy_positive.jsonl": "515e6ba8c048fab444fda26042465fd74ff2cf67e00b8e7b3a642282080f66d1",
+  "batch_C_protected_uniform.jsonl": "1c98fc80386ccb248791b675a846291b4ff1f0a393ce24698e05d36d88a94d94",
+  "benchmark.jsonl": "606ad9403b46ecc2462ca974fcf693a8cd7bf02b4f456404f968ea8fdaa9f188",
+  "gate/clean_batch_report.json": "808f3f0f85a7b6cd47492c2c496db72f55fd93bfd312648eae38b56abd9a768f",
+  "gate/targeted_non_energy_positive_report.json": "34ee77ba1c159eb3eb2f6122b4053f28bce3d0455eb1272bef846d49bea9beb4",
+  "gate/uniform_report.json": "45a092c377e95e0379b89109c96e038a86be943ca73f0fa9acbb7b47709447a3",
+  "private_oracle/oracle_targeted_non_energy_positive.json": "aa16717b361e07c1e029d6578e1f978726b5ae9371274ad1c5571bfb96848584",
+  "private_oracle/oracle_uniform.json": "7d658c04b06b7452f5f759f246e5ad33449944eb8af7390fa590440a8a532023",
+  "summary.json": "8fb64b0a9db9ea96353de6ceca044292f9fd618448bade34f731b6c1622472b7"
+ },
+ "git_head": "be4d67a571c52058e76f0babe5efd006c6b2edb4",
+ "plan_sha256": "4931705648939ff8825655f2d74d34c86d2f57a4eeb72955892105bb1a0728e8",
+ "run_id": "c05_acbd465eef5a"
+}

@@ -1,0 +1,462 @@
+{
+ "attacks": {
+  "targeted_non_energy_positive": {
+   "attack": {
+    "clean_fingerprint": "ad128fc332ae35228a235e992d66241432ce742932414f142852bd62250eb103",
+    "flipped": 666,
+    "flipped_share": 0.050011,
+    "mode": "targeted_non_energy_positive",
+    "poisoned_fingerprint": "3479a7f1ebb9194a938de63abbee185a7e3029d1031f6cef5bc4d5f5408c7c25",
+    "rate": 0.05,
+    "seed": 20261112
+   },
+   "detection": {
+    "clean_adaptation_only_positive_quarantined": 106,
+    "clean_adaptation_only_positive_total": 922,
+    "clean_climate_positive_quarantined": 370,
+    "clean_climate_positive_total": 3528,
+    "clean_records": 12651,
+    "clean_records_retained": 12249,
+    "detected_poison_true_positives": 56,
+    "detection_precision": 0.1223,
+    "detection_recall": 0.0841,
+    "false_negatives": 610,
+    "false_positives": 402,
+    "false_quarantine_rate": 0.0318,
+    "flipped_by_original_label": {
+     "0": 0,
+     "1": 666
+    },
+    "injected_poison": 666,
+    "insufficient_evidence": 1155,
+    "insufficient_evidence_poisoned": 275,
+    "poisoned_accepted_into_training": 610,
+    "quarantined": 458,
+    "recall_by_original_label": {
+     "0": 0.0,
+     "1": 0.0841
+    },
+    "suspicion_rank_sweep": [
+     {
+      "precision": 0.1353,
+      "quarantine_share": 0.02,
+      "quarantined": 266,
+      "recall": 0.0541,
+      "true_positives": 36
+     },
+     {
+      "precision": 0.17,
+      "quarantine_share": 0.03,
+      "quarantined": 400,
+      "recall": 0.1021,
+      "true_positives": 68
+     },
+     {
+      "precision": 0.1757,
+      "quarantine_share": 0.05,
+      "quarantined": 666,
+      "recall": 0.1757,
+      "true_positives": 117
+     },
+     {
+      "precision": 0.1672,
+      "quarantine_share": 0.075,
+      "quarantined": 999,
+      "recall": 0.2508,
+      "true_positives": 167
+     },
+     {
+      "precision": 0.1742,
+      "quarantine_share": 0.1,
+      "quarantined": 1332,
+      "recall": 0.3483,
+      "true_positives": 232
+     }
+    ]
+   },
+   "gate": {
+    "accepted": 12859,
+    "counts": {
+     "accepted": {
+      "by_source": {
+       "iati_ec_intpa": 9415,
+       "iati_fcdo": 3444
+      },
+      "by_supplied_label": {
+       "0": 9701,
+       "1": 3158
+      },
+      "records": 12859
+     },
+     "input": {
+      "by_source": {
+       "iati_ec_intpa": 9806,
+       "iati_fcdo": 3511
+      },
+      "by_supplied_label": {
+       "0": 9789,
+       "1": 3528
+      },
+      "records": 13317
+     },
+     "insufficient_evidence": {
+      "by_source": {
+       "iati_ec_intpa": 941,
+       "iati_fcdo": 214
+      },
+      "by_supplied_label": {
+       "0": 668,
+       "1": 487
+      },
+      "records": 1155
+     },
+     "quarantined": {
+      "by_source": {
+       "iati_ec_intpa": 391,
+       "iati_fcdo": 67
+      },
+      "by_supplied_label": {
+       "0": 88,
+       "1": 370
+      },
+      "records": 458
+     }
+    },
+    "insufficient_evidence": 1155,
+    "output_fingerprint": "66c697ea789484465a391bd1afaa9a26ff251412968ebdd46e3ad759ac083c64",
+    "quarantined": 458,
+    "seconds": 51.3
+   },
+   "models": {
+    "naive_poisoned": {
+     "benchmark": {
+      "adaptation_only_recall": {
+       "detected": 167,
+       "positives": 258,
+       "recall": 0.6472868217054264
+      },
+      "average_precision": 0.8305,
+      "f1": 0.7424,
+      "non_energy_average_precision": 0.7981,
+      "non_energy_recall": {
+       "detected": 505,
+       "positives": 730,
+       "recall": 0.6917808219178082
+      },
+      "positives": 827,
+      "precision": 0.7668,
+      "recall": 0.7195,
+      "records": 2550,
+      "threshold": 0.508566
+     },
+     "fit_seconds": 180.26,
+     "training_records": 13317
+    },
+    "protected_after_quarantine": {
+     "benchmark": {
+      "adaptation_only_recall": {
+       "detected": 165,
+       "positives": 258,
+       "recall": 0.6395348837209303
+      },
+      "average_precision": 0.8302,
+      "f1": 0.7396,
+      "non_energy_average_precision": 0.7989,
+      "non_energy_recall": {
+       "detected": 498,
+       "positives": 730,
+       "recall": 0.6821917808219178
+      },
+      "positives": 827,
+      "precision": 0.7706,
+      "recall": 0.711,
+      "records": 2550,
+      "threshold": 0.497482
+     },
+     "fit_seconds": 114.94,
+     "training_fingerprint": "66c697ea789484465a391bd1afaa9a26ff251412968ebdd46e3ad759ac083c64",
+     "training_records": 12859
+    }
+   }
+  },
+  "uniform": {
+   "attack": {
+    "clean_fingerprint": "ad128fc332ae35228a235e992d66241432ce742932414f142852bd62250eb103",
+    "flipped": 666,
+    "flipped_share": 0.050011,
+    "mode": "uniform",
+    "poisoned_fingerprint": "47b69b98c8fbe3bc13e65c8c8c8614f98bf1f4ed21cba47ccc847947277588a3",
+    "rate": 0.05,
+    "seed": 20261112
+   },
+   "detection": {
+    "clean_adaptation_only_positive_quarantined": 83,
+    "clean_adaptation_only_positive_total": 1052,
+    "clean_climate_positive_quarantined": 290,
+    "clean_climate_positive_total": 3992,
+    "clean_records": 12651,
+    "clean_records_retained": 12291,
+    "detected_poison_true_positives": 245,
+    "detection_precision": 0.405,
+    "detection_recall": 0.3679,
+    "false_negatives": 421,
+    "false_positives": 360,
+    "false_quarantine_rate": 0.0285,
+    "flipped_by_original_label": {
+     "0": 464,
+     "1": 202
+    },
+    "injected_poison": 666,
+    "insufficient_evidence": 1137,
+    "insufficient_evidence_poisoned": 181,
+    "poisoned_accepted_into_training": 421,
+    "quarantined": 605,
+    "recall_by_original_label": {
+     "0": 0.4397,
+     "1": 0.203
+    },
+    "suspicion_rank_sweep": [
+     {
+      "precision": 0.5789,
+      "quarantine_share": 0.02,
+      "quarantined": 266,
+      "recall": 0.2312,
+      "true_positives": 154
+     },
+     {
+      "precision": 0.5,
+      "quarantine_share": 0.03,
+      "quarantined": 400,
+      "recall": 0.3003,
+      "true_positives": 200
+     },
+     {
+      "precision": 0.4054,
+      "quarantine_share": 0.05,
+      "quarantined": 666,
+      "recall": 0.4054,
+      "true_positives": 270
+     },
+     {
+      "precision": 0.3544,
+      "quarantine_share": 0.075,
+      "quarantined": 999,
+      "recall": 0.5315,
+      "true_positives": 354
+     },
+     {
+      "precision": 0.3071,
+      "quarantine_share": 0.1,
+      "quarantined": 1332,
+      "recall": 0.6141,
+      "true_positives": 409
+     }
+    ]
+   },
+   "gate": {
+    "accepted": 12712,
+    "counts": {
+     "accepted": {
+      "by_source": {
+       "iati_ec_intpa": 9326,
+       "iati_fcdo": 3386
+      },
+      "by_supplied_label": {
+       "0": 8750,
+       "1": 3962
+      },
+      "records": 12712
+     },
+     "input": {
+      "by_source": {
+       "iati_ec_intpa": 9806,
+       "iati_fcdo": 3511
+      },
+      "by_supplied_label": {
+       "0": 8861,
+       "1": 4456
+      },
+      "records": 13317
+     },
+     "insufficient_evidence": {
+      "by_source": {
+       "iati_ec_intpa": 840,
+       "iati_fcdo": 297
+      },
+      "by_supplied_label": {
+       "0": 587,
+       "1": 550
+      },
+      "records": 1137
+     },
+     "quarantined": {
+      "by_source": {
+       "iati_ec_intpa": 480,
+       "iati_fcdo": 125
+      },
+      "by_supplied_label": {
+       "0": 111,
+       "1": 494
+      },
+      "records": 605
+     }
+    },
+    "insufficient_evidence": 1137,
+    "output_fingerprint": "95a7b110a6974e72acf7dba8e9fcc72f62d6953a2f74586a139b8acc1dd858b0",
+    "quarantined": 605,
+    "seconds": 39.0
+   },
+   "models": {
+    "naive_poisoned": {
+     "benchmark": {
+      "adaptation_only_recall": {
+       "detected": 182,
+       "positives": 258,
+       "recall": 0.7054263565891473
+      },
+      "average_precision": 0.8357,
+      "f1": 0.7365,
+      "non_energy_average_precision": 0.8054,
+      "non_energy_recall": {
+       "detected": 552,
+       "positives": 730,
+       "recall": 0.7561643835616438
+      },
+      "positives": 827,
+      "precision": 0.6957,
+      "recall": 0.7823,
+      "records": 2550,
+      "threshold": 0.476845
+     },
+     "fit_seconds": 130.25,
+     "training_records": 13317
+    },
+    "protected_after_quarantine": {
+     "benchmark": {
+      "adaptation_only_recall": {
+       "detected": 175,
+       "positives": 258,
+       "recall": 0.6782945736434108
+      },
+      "average_precision": 0.8357,
+      "f1": 0.7611,
+      "non_energy_average_precision": 0.8069,
+      "non_energy_recall": {
+       "detected": 524,
+       "positives": 730,
+       "recall": 0.7178082191780822
+      },
+      "positives": 827,
+      "precision": 0.7795,
+      "recall": 0.7437,
+      "records": 2550,
+      "threshold": 0.547722
+     },
+     "fit_seconds": 151.78,
+     "training_fingerprint": "95a7b110a6974e72acf7dba8e9fcc72f62d6953a2f74586a139b8acc1dd858b0",
+     "training_records": 12712
+    },
+    "strict_variant_excluding_review": {
+     "benchmark": {
+      "adaptation_only_recall": {
+       "detected": 175,
+       "positives": 258,
+       "recall": 0.6782945736434108
+      },
+      "average_precision": 0.8247,
+      "f1": 0.7428,
+      "non_energy_average_precision": 0.7954,
+      "non_energy_recall": {
+       "detected": 525,
+       "positives": 730,
+       "recall": 0.7191780821917808
+      },
+      "positives": 827,
+      "precision": 0.7419,
+      "recall": 0.7437,
+      "records": 2550,
+      "threshold": 0.539547
+     },
+     "fit_seconds": 134.85,
+     "note": "Sensitivity analysis only: also excludes insufficient_evidence records.",
+     "training_fingerprint": "96db7e5d8ca81c9f5d745fb92821a80e9119a8cf50e0b5786bff89c1353ff967",
+     "training_records": 11575
+    }
+   }
+  }
+ },
+ "batch": {
+  "by_source": {
+   "iati_ec_intpa": 9806,
+   "iati_fcdo": 3511
+  },
+  "clean_fingerprint": "ad128fc332ae35228a235e992d66241432ce742932414f142852bd62250eb103",
+  "matches_ml_v2_plan_train_pin": true,
+  "positives": 4194,
+  "records": 13317
+ },
+ "benchmark": {
+  "positives": 827,
+  "records": 2550
+ },
+ "benchmark_label": "CHALLENGE DEVELOPMENT BENCHMARK: the ML v2 development-validation partition (2,550 FCDO/EC records). Not an independent or sealed test; scores measure agreement with donor Rio markers.",
+ "challenge": "C05 poisoned training batch quarantine",
+ "finished_at": "2026-11-10T21:55:42.860746+00:00",
+ "models": {
+  "clean_reference": {
+   "benchmark": {
+    "adaptation_only_recall": {
+     "detected": 189,
+     "positives": 258,
+     "recall": 0.7325581395348837
+    },
+    "average_precision": 0.8387,
+    "f1": 0.7376,
+    "non_energy_average_precision": 0.8104,
+    "non_energy_recall": {
+     "detected": 559,
+     "positives": 730,
+     "recall": 0.7657534246575343
+    },
+    "positives": 827,
+    "precision": 0.6902,
+    "recall": 0.792,
+    "records": 2550,
+    "threshold": 0.444743
+   },
+   "fit_seconds": 131.56,
+   "training_fingerprint": "ad128fc332ae35228a235e992d66241432ce742932414f142852bd62250eb103",
+   "training_records": 13317
+  }
+ },
+ "natural_disagreement_on_unpoisoned_batch": {
+  "insufficient_evidence": 934,
+  "meaning": "Records the detector quarantines when NO label was poisoned: disagreements between donor Rio markers and similar records (natural label noise or genuinely ambiguous projects). This is the false-alarm floor of the method.",
+  "quarantined": 374,
+  "share_quarantined": 0.0281
+ },
+ "run_id": "c05_acbd465eef5a",
+ "runtime": {
+  "machine": {
+   "platform": "Windows-11-10.0.26300-SP0",
+   "processor": "Intel64 Family 6 Model 165 Stepping 2, GenuineIntel",
+   "python": "3.12.15"
+  },
+  "peak_memory_mb": null,
+  "timings": {
+   "detector_clean_batch_s": 48.5,
+   "load_cohort_s": 98.2,
+   "total_s": 1116.3,
+   "train_clean_s": 137.4,
+   "train_targeted_non_energy_positive_s": 304.6,
+   "train_uniform_s": 433.6
+  }
+ },
+ "versions": {
+  "config_version": "c05-1.0.0",
+  "detector_version": "compassio-c05-detector-1.0.0",
+  "numpy": "2.5.4",
+  "pandas": "3.1.1",
+  "scikit_learn": "1.9.1"
+ }
+}

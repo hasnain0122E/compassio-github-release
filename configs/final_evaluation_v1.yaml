@@ -1,0 +1,86 @@
+# Compassio final evaluation plan v1 — PRE-REGISTERED before any test example was accessed.
+# Executed by `uv run compassio-ml final-evaluate --protocol <p> --plan-sha256 <sha>`, which
+# refuses if this file's SHA-256, the frozen data, or the guarded code has changed, and allows
+# exactly one test access per protocol. Do not edit; any change requires final_evaluation_v2.
+plan_version: final_evaluation_v1
+source_git_commit: f14f397fbed29364e7b43bfd1f0cdc582c6b3442
+seed: 20260109
+
+selected_model:            # fixed by Task 004 / accepted in Task 004.5; not re-tuned
+  algorithm: logistic_regression
+  representation: title_description
+  tfidf: {ngram_range: [1, 2], min_df: 2, max_df: 0.9, max_features: 200000, sublinear_tf: true}
+  params: {C: 16.0, class_weight: balanced}     # liblinear, L2, max_iter 1000, random_state = seed
+  input_columns: [title_clean, description_clean]
+  positive_label: "rio_overall > 0"
+
+data_checksums:
+  table_sha256: 71fc5a10285d25ed22d7e804f6cd5ec66783b6c6163168b5f8ab7cb46ae9d394
+  membership_sha256: aba478d973f50c7dfd98d8872ccd81fc541e6eded7698aaf7f1fc58adde4be2a
+  split_config_sha256: e06de7e236723784e8268e8c4ea8ca35a6c1f86281419476e48f357c5e6e4743
+  split_lock_sha256: 3d5b34d43bfb2547498a8280fe7b272b5665b84d29b930383e8f797fb1166c70
+
+# Fitting procedure (all protocols): fit the selected pipeline on the protocol's TRAIN partition
+# only (eligible records). Validation is NOT added (preserves the validated training-only
+# procedure; refit on train+validation was rejected to avoid unexamined effects).
+# Thresholds: max-F1 threshold on group-aware 3-fold StratifiedGroupKFold OUT-OF-FOLD TRAIN
+# predictions (seed above), computed before any test access (`compassio-ml final-dev`).
+protocols:
+  primary:
+    fit_partition: train
+    threshold: 0.4740212723792222        # = the Task 004 locked threshold (0.474), reproduced bit-for-bit
+    threshold_source: "Task 004 train-OOF max-F1 (reproduced from commit 6bb4668)"
+    expected_test_records: 3142
+  chronological:
+    fit_partition: train                 # commitment years 2000-2015
+    threshold: 0.5159941031937899
+    threshold_source: "chronological TRAIN out-of-fold max-F1 (pre-test)"
+    expected_test_records: 6022          # years 2018-2021; period-spanning groups excluded by the frozen split
+  pakistan_holdout:
+    fit_partition: train                 # no Pakistan records and no Pakistan-linked groups
+    threshold: 0.4968937550158455
+    threshold_source: "Pakistan-holdout TRAIN out-of-fold max-F1 (pre-test)"
+    expected_test_records: 496
+
+metrics:
+  positive_class: 1
+  threshold_metrics: [tp, fp, fn, tn, precision, recall, f1, accuracy_secondary]
+  ranking_metrics: [average_precision, roc_auc]
+  calibration: [brier, ece_10bin]
+  accuracy_role: secondary_only
+
+slices:
+  min_records: 30
+  min_positives: 5
+  year_bands: [[2000, 2005], [2006, 2010], [2011, 2015], [2016, 2021]]
+  families: [energy, non_energy, retrospective_warning, no_retrospective_warning, year_bands,
+             positives_mitigation_related, positives_adaptation_related, positives_adaptation_only,
+             positives_mitigation_only, positives_significant_overall_1, positives_principal_overall_2,
+             positives_non_energy_adaptation_related]
+  pakistan_confusions: [all, energy, non_energy]
+
+confidence_intervals:
+  method: group_bootstrap_percentile   # resample whole leakage groups with replacement
+  resamples: 2000
+  confidence: 0.95
+  statistics: [average_precision, f1, precision, recall]
+
+latency_benchmark:
+  description: "median of repeats; ms per 1,000 texts; first N primary VALIDATION texts; single process, CPU"
+  texts: 1000
+  repeats: 5
+
+baselines: [keyword, majority]   # unfitted comparators evaluated on the same test rows
+
+acceptance_criteria:             # primary protocol; all four must pass to release as MVP research screening
+  ap_ci_lower_must_exceed_keyword_ap: true
+  min_f1: 0.65
+  min_energy_recall: 0.85
+  max_ece: 0.05
+  non_energy_recall_limitation_below: 0.60   # below this, the release must state non-energy is unreliable
+
+notes:
+  - "Model family was chosen on primary validation, which included Pakistan records; family selection was therefore not fully blind to Pakistan. The Pakistan-holdout model itself never sees Pakistan records."
+  - "Chronological results test temporal distribution shift on retrospective descriptions, not prediction at approval time."
+  - "The calibrated SVM is not a final-test candidate."
+  - "Calibration (ECE/Brier) is of class-weighted logistic regression; no post-hoc calibration is fitted."

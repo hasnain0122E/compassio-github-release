@@ -1,0 +1,58 @@
+# C05 hardening addendum (c05-1.1.0). Frozen BEFORE evaluation on the final seed.
+# Run: uv run python -m compassio_ml.challenges.c05.cli addendum
+# The base run (configs/c05_poison_quarantine.yaml, run c05_acbd465eef5a) is NOT modified; its
+# poisoned batches are re-read (hash-verified) so every policy is compared on identical inputs.
+addendum_version: c05-1.1.0
+base_config: configs/c05_poison_quarantine.yaml
+base_run_id: c05_acbd465eef5a
+
+# Independent provenance signal: the publisher's OECD DAC CRS purpose codes (``sector_codes``),
+# source metadata the attacker does not control (only the Rio-marker label is attacked).
+# This list was fixed from the DAC code definitions BEFORE measuring anything; it is not learned
+# from labels. A record SUPPLIED with label 0 whose purpose code is one of these is
+# "provenance-inconsistent"; one supplied with label 1 is "provenance-corroborated".
+climate_intrinsic_dac_codes:
+  "41010": General environmental protection - environmental policy and administrative management
+  "41020": Biosphere protection (incl. climate change, ozone, air pollution)
+  "41030": Biodiversity
+  "41040": Site preservation
+  "41050": Flood prevention / control
+  "41081": Environmental education / training
+  "41082": Environmental research
+  "23210": Energy generation, renewable sources - multiple technologies
+  "23220": Hydro-electric power plants
+  "23230": Solar energy for centralised grids
+  "23240": Wind energy
+  "23250": Marine energy
+  "23260": Geothermal energy
+  "23270": Biofuel-fired power plants
+  "23183": Energy conservation and demand-side efficiency
+  "43060": Disaster risk reduction
+  "74020": Multi-hazard response preparedness
+  "31210": Forestry policy and administrative management
+  "31220": Forestry development
+  "14015": Water resources conservation
+
+policies:
+  # A: the DEPLOYED policy (detector compassio-c05-detector-1.0.0), unchanged.
+  two_signal: {}
+  # B: HARDENED CANDIDATE, designed on development seed 101 only.
+  hardened:
+    # quarantine = ((text-model AND neighbours) OR (text-model AND provenance-inconsistent))
+    #              minus protected records (below), which go to review instead.
+    provenance_second_signal: true
+    protect_provenance_corroborated_positives: true   # supplied 1 + intrinsic code -> review
+    # supplied 1 + non-energy (the adaptation/ambiguous group): quarantine only with strong
+    # evidence from BOTH signals, otherwise review.
+    positive_non_energy_strict:
+      max_knn_agreement: 0.0667        # at most 1 of 15 neighbours shares the label
+      min_probability_margin: 0.10     # P(other) >= class threshold + 0.10
+  # C: ANALYSIS ONLY: quarantine the top 5% by suspicion score (not deployed).
+  top_share:
+    share: 0.05
+
+evaluation:
+  final_seed: 20261112                 # same poisoned batches as the base run
+  robustness_seeds: [20261113, 20261114, 20261115]   # fresh, never used before (detection only)
+  development_seed_used: 101           # the only seed used to design policy B
+  train_downstream_for: [hardened, top_share]       # disposable models, base-run settings

@@ -1,0 +1,45 @@
+# Event-specific data-use authorizations (Task 009). See docs/hackathon/data_permission_scope.md.
+#
+# An entry here is NOT a licence clearance: it never changes any source's rights_status and is
+# used only by COMPASSIO_SOURCE_DATA_ACCESS=hackathon_event (loopback clients only, never in
+# production). The API refuses to start in event mode if the named entry is missing or invalid,
+# and serves no source data outside the valid_from..valid_until window.
+schema_version: 1
+authorizations:
+  battleverse_2026:
+    event: "BATTLEVERSE 2026 (Battle of Intelligence)"
+    granted_by: "BATTLEVERSE 2026 organizers (as reported by the Compassio team)"
+    reported_scope: >-
+      The organizers informed the team that they may use the extracted data sources for the
+      hackathon and that the organizers accept responsibility for this event authorization.
+    # user_reported_verbal_confirmation | written_evidence_on_file
+    # The organizers confirmed verbally (as reported by the team). Not independently verified
+    # and NOT a source-licence clearance: every source keeps rights_status not_reviewed.
+    evidence_status: user_reported_verbal_confirmation
+    # Reference to a written statement if one is obtained later (title/date, not personal data).
+    evidence_reference: null
+    recorded_on: "2026-11-10"
+    # Actual event dates are UNKNOWN. null = not set (no assumed date). When the real dates are
+    # known, set both as "YYYY-MM-DD"; outside a set window event mode serves no source data.
+    valid_from: null
+    valid_until: null
+    permitted_uses:
+      - local_demonstration_to_judges_and_mentors
+    excluded_uses:
+      - public_deployment
+      - redistribution_of_records_or_files
+      - commercial_use
+      - transfer_to_external_ai_services
+      - model_training
+    # Sources that may be served in event mode. restricted_internal sources (gcf_historical)
+    # are never served even if listed here.
+    sources:
+      - research_paper
+      - aiddata
+      - adb_pakistan
+      - gcf_projects
+      - gcf_readiness
+      - gcf_countries
+      - gcf_api_projects
+      - climate_funds_update
+      - climate_project_explorer

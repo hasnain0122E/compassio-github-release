@@ -1,0 +1,37 @@
+{
+  "lock_version": 1,
+  "membership": {
+    "path": "data/processed/research_split_membership_v1.parquet",
+    "sha256": "aba478d973f50c7dfd98d8872ccd81fc541e6eded7698aaf7f1fc58adde4be2a"
+  },
+  "split_config": {
+    "path": "configs/research_split_v1.yaml",
+    "sha256": "e06de7e236723784e8268e8c4ea8ca35a6c1f86281419476e48f357c5e6e4743"
+  },
+  "split_counts": {
+    "chronological": {
+      "excluded_spanning_periods": 2176,
+      "not_eligible": 49,
+      "test": 6022,
+      "train": 10461,
+      "validation": 2277
+    },
+    "pakistan_holdout": {
+      "excluded_pakistan_group_mate": 74,
+      "not_eligible": 49,
+      "test": 496,
+      "train": 17309,
+      "validation": 3057
+    },
+    "primary": {
+      "not_eligible": 49,
+      "test": 3142,
+      "train": 14654,
+      "validation": 3140
+    }
+  },
+  "table": {
+    "path": "data/processed/research_projects.parquet",
+    "sha256": "71fc5a10285d25ed22d7e804f6cd5ec66783b6c6163168b5f8ab7cb46ae9d394"
+  }
+}

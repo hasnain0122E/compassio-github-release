@@ -1,0 +1,43 @@
+# Frozen evaluation protocol for the research climate-relevance classifier.
+# Consumed by `uv run compassio-research build` (compassio_ml.research.splits).
+# Changing ANY value requires a new version (research_split_v2.yaml); never edit in place
+# once Task 004 experiments have started.
+version: research_split_v1
+seed: 20260109
+
+population:
+  # Only records with eligibility_status == eligible enter any split.
+  eligible_status: eligible
+  group_key: leakage_group_id
+  # Group relations used to build leakage_group_id (see docs/data/leakage_group_audit.md).
+  group_relations: [parent_id, description, title, title_series]
+
+primary:
+  # A. Group-disjoint train / validation / test over all eligible records.
+  description: Group-disjoint random split, stratified by whether a group contains a positive.
+  fractions: {train: 0.70, validation: 0.15, test: 0.15}
+  stratify_by: group_has_positive
+
+chronological:
+  # B. Older -> newer commitment years. Commitment year is NOT a publication timestamp of
+  # the description; this is a temporal distribution-shift test on retrospective text.
+  description: Train on earlier commitment years, validate and test on later ones.
+  periods:
+    train: [2000, 2015]
+    validation: [2016, 2017]
+    test: [2018, 2021]
+  # A group whose member years fall in more than one period is excluded from this protocol
+  # entirely (never split across the boundary, never moved).
+  spanning_group_policy: exclude
+
+pakistan_holdout:
+  # C. Pakistan generalisation: Pakistan never influences fitting, tuning or selection.
+  description: Hold out every Pakistan record; train/validate on groups with no Pakistan record.
+  holdout_iso3: PAK
+  # Non-Pakistan records that share a leakage group with a Pakistan record are excluded
+  # (they would leak Pakistan text into training) and are not counted as Pakistan test rows.
+  group_mate_policy: exclude
+  train_validation_fractions: {train: 0.85, validation: 0.15}
+  stratify_by: group_has_positive
+  report_strata:
+    sector_energy: ENERGY

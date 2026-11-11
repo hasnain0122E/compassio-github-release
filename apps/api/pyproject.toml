@@ -1,0 +1,29 @@
+[project]
+name = "compassio-api"
+version = "0.1.0"
+description = "Compassio HTTP API (FastAPI)."
+requires-python = ">=3.12"
+dependencies = [
+    "alembic>=1.20.1",
+    # Request handlers import only `compassio_ml.finance` (pure pydantic). The ingestion CLI
+    # imports the audited loaders; a test asserts the API app never imports pandas/sklearn.
+    "compassio-ml",
+    "fastapi>=0.162.2",
+    "pydantic>=2.14.3",
+    "pydantic-settings>=2.16.2",
+    "sqlalchemy>=2.1.8",
+    "uvicorn>=0.54.0",
+]
+
+[project.scripts]
+compassio-db = "compassio_api.cli.db_cli:main"
+
+[tool.uv.sources]
+compassio-ml = { workspace = true }
+
+[build-system]
+requires = ["hatchling>=1.27"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/compassio_api"]

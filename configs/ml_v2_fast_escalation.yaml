@@ -1,0 +1,36 @@
+# Compassio ML v2 FAST-TRACK escalation addendum (Task 006-ML2 §7). Frozen BEFORE candidate F is
+# fitted, AFTER the main plan's champion was selected and saved. Disclosure: written knowing the
+# main-run results (lexical finalists within 0.014 AP; champion combined/B_char_lr). Therefore F can
+# only REPLACE the champion under the strict rule below; it is never re-ranked against the other
+# lexical finalists, and the main plan is not changed.
+addendum_version: ml_v2_fast_escalation_v1
+base_plan_sha256: 4931705648939ff8825655f2d74d34c86d2f57a4eeb72955892105bb1a0728e8
+base_run_id: ml2fast_49317056_3bf81cd4_20261109T192725Z
+base_champion: combined/B_char_lr
+seed: 20261110
+
+encoder:   # one pretrained multilingual sentence encoder, used FROZEN (no fine-tuning), local CPU
+  model_id: intfloat/multilingual-e5-small
+  revision: 614241f622f53c4eeff9890bdc4f31cfecc418b3
+  license: mit
+  weights_file: model.safetensors
+  weights_sha256: 1a55775f53449dac10a2bcbc312469fac40b96d53198c407081a831f81c98477
+  local_dir: model_cache/intfloat__multilingual-e5-small   # under the git-ignored v2 output root
+  text_prefix: "query: "        # e5 input convention
+  max_seq_length: 256
+  normalize_embeddings: true
+  batch_size: 64
+
+candidate:
+  name: F_e5_lr
+  population: combined           # same TRAIN rows as the main plan's combined population
+  classifier: lr
+  grid: [{C: 0.5, class_weight: balanced}, {C: 2.0, class_weight: balanced}, {C: 8.0, class_weight: balanced}]
+  hyperparameter_selection: train_oof_average_precision
+  threshold: train_oof_max_f1
+
+replacement_rule:   # evaluated once on combined VALID
+  guard_min_non_energy_precision: 0.60
+  must_exceed_champion_non_energy_ap_by: 0.005
+  paired_ci_of_non_energy_ap_difference_must_exclude_zero: true
+  otherwise: keep_base_champion

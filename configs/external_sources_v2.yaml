@@ -1,0 +1,243 @@
+# Compassio external-source registry for ML v2 (Task 006-ML). Human-curated; validated by
+# compassio_ml.external.registry.ExternalRegistry. Measured values (hashes, sizes, counts,
+# retrieval dates) are NOT stored here: they live in each retrieval_manifest.json under
+# $COMPASSIO_V2_OUTPUT_ROOT/external_raw/<source_id>/<retrieval_id>/ and in the inspection reports.
+# confirmed_facts = observed in this project on 2026-11-09; assumptions = not verified.
+# rights_status stays not_reviewed until a person records a licence review with evidence.
+registry_version: external_sources_v2
+sources:
+  - source_id: worldbank_projects
+    publisher: World Bank
+    title: World Bank Projects & Operations (Projects API v3)
+    authoritative_url: https://search.worldbank.org/api/v3/projects
+    access_status: open
+    access_notes: No key required (HTTP 200 observed). Explicit field allow-list requested.
+    dataset_version: Live API; no version identifier. Snapshot = retrieval_id + file SHA-256.
+    unit_of_observation: one World Bank project (P-code), may span several countries
+    record_identifier: id (P-code, e.g. P512143)
+    country_field: countrycode (ISO 3166-1 alpha-2; regional codes possible)
+    date_fields:
+      boardapprovaldate: Board approval date (future for Pipeline projects)
+      closingdate: planned/actual closing date
+      milestones: concept review / appraisal / negotiation / approval dates
+      public_disclosure_date: date of public disclosure of project information
+    title_field: project_name
+    description_fields: [pdo, project_abstract]
+    proposal_stage_text: >-
+      PDO and abstract are approval-stage statements, returned as the current API snapshot (may be
+      revised by restructuring). Pipeline projects (status=Pipeline, approval date after retrieval)
+      carry genuinely pre-approval text.
+    label_category: D_world_bank_climate_indicator
+    label_definition: >-
+      themev2_level3_exact contains "Adaptation"/"Mitigation" with "Climate Change" at level 2.
+      Returned without percentages. Not a Rio score; absence is not a negative.
+    label_authority: World Bank (theme taxonomy tagging)
+    sector_field: major_sectors[].major_sector_code with sector percentages
+    financial_units: USD (curr_total_commitment, totalamt); commitments, not disbursements
+    relationships: >-
+      Additional financing and multiphase programmes are separate P-codes; no parent field was
+      returned by the allow-listed query. GCF FP codes / P-codes mentioned in text are recorded as
+      cross-references.
+    legal_terms_url: https://www.worldbank.org/en/about/legal/terms-of-use-for-datasets
+    legal_terms_evidence: >-
+      The terms-of-use-for-datasets URL redirected to the general WBG Terms & Conditions
+      (retrieved, role=terms). Its API clause allows API use to facilitate non-commercial uses
+      of Materials, forbids commercial use/reselling/charging for derivatives, and defers to
+      specific terms for Data Catalog datasets. Whether the Projects API is covered by a Data
+      Catalog licence is unverified. Not reviewed by a person.
+    retrieval_limits: {rows_per_page: 500, max_pages_per_country: 10, min_interval_s: 1.5}
+    confirmed_facts:
+      - "Projects API returned 640 Pakistan projects with no key (2026-11-09)"
+      - "fl=* returns staff fields teamleadname and teamleaderupi; they are not requested"
+      - "Pipeline project P512143 has boardapprovaldate 2027-03-25 (future) and a PDO"
+      - "themev2_level1/2/3_exact are returned without percentages"
+      - "terms-of-use-for-datasets URL redirects to the general WBG Terms & Conditions page"
+    assumptions:
+      - "Theme 'Adaptation'/'Mitigation' tags relate to the MDB climate co-benefits methodology"
+    limitations:
+      - "Older projects often lack project_abstract; PDO alone is short"
+
+  - source_id: gcf_project_pages
+    publisher: Green Climate Fund
+    title: GCF Open Data Library project list + public project pages
+    authoritative_url: https://www.greenclimate.fund/projects
+    access_status: open
+    access_notes: >-
+      robots.txt allows crawling of / (disallows /admin/, /search/, /user/) BUT declares
+      "Content-Signal: ai-train=no, search=yes, ai-input=yes" (captured 2026-11-09; the Task
+      006-ML note omitted this line). ML use is therefore RESTRICTED by
+      configs/ml_rights_eligibility_v2.yaml: no training, no automated evaluation, no worksheets;
+      records are kept only for separately authorised reference use. ODL page embeds the project
+      list in __NEXT_DATA__; the documented ODL JSON API path returned 404. These pages are distinct
+      from the backend's GCF API snapshot, which ML v2 never reads. Funding-proposal PDFs are NOT
+      downloaded.
+    dataset_version: Live website; snapshot = retrieval_id + per-page SHA-256
+    unit_of_observation: one GCF approved project (FP/SAP reference)
+    record_identifier: ApprovedRef (e.g. FP085, SAP012)
+    country_field: ODL Countries[].ISO3
+    date_fields:
+      BMDate: Board meeting (approval) date
+      concept_note_received: page timeline date
+      funding_proposal_received: page timeline date
+      approved_funding_proposal_date: date shown on the approved funding proposal document row
+      ProjectLastModifiedOn: ODL record modification timestamp
+    title_field: page <h1> (ODL ProjectName fallback)
+    description_fields: [page overview prose blocks only]
+    proposal_stage_text: >-
+      Approved funding proposal PDFs are contemporaneous proposal text (dated on the page) but are
+      not downloaded or parsed here. The page overview is an undated GCF portfolio summary.
+    label_category: C_gcf_classification
+    label_definition: GCF Theme = Mitigation | Adaptation | Cross-cutting. Positive-only population.
+    label_authority: Green Climate Fund
+    sector_field: none (ODL Sector = public/private)
+    financial_units: USD (TotalGCFBudgetUSD, TotalCoBudgetUSD); not extracted for modelling
+    relationships: >-
+      Same FP/SAP codes as the registered gcf_projects export (v1 raw). Accredited entity (e.g. ADB,
+      World Bank) may also publish the same project elsewhere; P-codes in text are cross-references.
+    legal_terms_url: https://www.greenclimate.fund/terms-and-conditions
+    legal_terms_evidence: >-
+      Task 004.5 read the GCF Terms and conditions: research/teaching and non-commercial use
+      permitted; commercial use, redistribution or commercial derivatives need prior written consent;
+      attribution "First published by the Green Climate Fund". Terms page re-retrieved (role=terms).
+    retrieval_limits: {max_page_bytes: 3145728, min_interval_s: 1.5}
+    confirmed_facts:
+      - "ODL embedded list: 379 projects (378 APPROVED, 1 CANCELLED); Theme Adaptation 171, Cross-cutting 131, Mitigation 77"
+      - "Project page lists document rows with type and date, e.g. FP085 'Approved funding proposal' 28 Nov 2018"
+      - "Project page overview section also contains theme/status/timeline widgets, excluded from text"
+      - "Project pages contain named contact persons; never extracted"
+      - "FP085 page text contains U+FFFD replacement characters in the served bytes"
+    assumptions:
+      - "The overview prose is derived from the approved funding proposal"
+    limitations:
+      - "No negatives; theme is not a Rio significance score"
+
+  - source_id: iati_fcdo
+    publisher: UK Foreign, Commonwealth and Development Office (IATI publisher GB-GOV-1)
+    title: FCDO IATI activity files listed in the IATI Registry (fcdo-set-1..20)
+    authoritative_url: https://iatiregistry.org/api/3/action/package_search?q=publisher_iati_id:GB-GOV-1
+    access_status: open
+    access_notes: >-
+      IATI Datastore v3 API returned HTTP 401 (subscription key required); no key supplied, so the
+      Datastore is not used. The open IATI Registry lists FCDO's publisher-hosted XML files.
+    dataset_version: Registry snapshot; files carry generated-datetime; snapshot = file SHA-256
+    unit_of_observation: one IATI activity (iati-identifier); hierarchy 1 programme / 2 component
+    record_identifier: iati-identifier
+    country_field: recipient-country/@code (ISO alpha-2) with percentage
+    date_fields:
+      activity-date type 1/2: planned/actual start
+      activity-date type 3/4: planned/actual end
+      last-updated-datetime: last update of the activity record by the publisher
+    title_field: title/narrative
+    description_fields: [description type 1 (general), description type 2 (objectives)]
+    proposal_stage_text: >-
+      Descriptions are the publisher's current text; drafting date unknown. activity-status 1
+      (pipeline/identification) marks activities not yet implemented.
+    label_category: B_donor_reported_rio
+    label_definition: >-
+      DAC policy-marker vocabulary 1, code 6 (mitigation) / 7 (adaptation), significance 0 not
+      targeted, 1 significant, 2 principal. Explicit 0 = donor-reported not targeted; absent = unknown.
+    label_authority: The reporting donor (FCDO), self-assessed under OECD DAC Rio-marker rules
+    sector_field: sector (DAC 5-digit, vocabulary 1; 3-digit vocabulary 2) with percentage
+    financial_units: GBP (default-currency); not extracted for modelling
+    relationships: >-
+      related-activity type=1 links components to parent programmes; participating-org refs
+      (e.g. 44000 World Bank) recorded; P-codes / FP codes in text recorded as cross-references.
+    legal_terms_url: https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/
+    legal_terms_evidence: >-
+      IATI Registry metadata lists license_id "uk-ogl" for every FCDO dataset (observed in the
+      retrieved registry_datasets.json). Licence text itself not reviewed by a person.
+    retrieval_limits: {max_file_bytes: 31457280, max_total_bytes: 367001600, min_interval_s: 1.5}
+    confirmed_facts:
+      - "FCDO files report policy-marker vocabulary 1 codes 6 and 7 with significance, including explicit 0"
+      - "Registry lists 31 FCDO datasets; fcdo-set-1..20 declared 290 MB in total with the others"
+    assumptions:
+      - "Donor Rio markers follow OECD DAC Rio-marker handbook definitions"
+    limitations:
+      - "Donor self-reported markers are known to be inconsistent across donors; one donor only"
+      - "Components often repeat parent text (near-duplicates; grouped by parent)"
+
+  - source_id: iati_ec_intpa
+    publisher: European Commission - DG International Partnerships (IATI publisher XI-IATI-EC_INTPA)
+    title: EC INTPA IATI activity files listed in the IATI Registry (per country / region)
+    authoritative_url: https://iatiregistry.org/api/3/action/package_search?q=publisher_iati_id:XI-IATI-EC_INTPA&rows=200
+    access_status: open
+    access_notes: >-
+      Registry API open. Files at ec.europa.eu/international-partnerships/assets/iati/; none of the
+      201 robots.txt Disallow rules for * matches that path and robots.txt has no Content-Signal
+      (captured 2026-11-09). Added in the Task 006-ML review gate for weak-sector coverage.
+    dataset_version: Registry snapshot; snapshot = file SHA-256
+    unit_of_observation: one IATI activity (iati-identifier); hierarchy 1 decision / 2 contract
+    record_identifier: iati-identifier
+    country_field: recipient-country/@code (ISO alpha-2) with percentage
+    date_fields:
+      activity-date type 1/2: planned/actual start
+      activity-date type 3/4: planned/actual end
+      last-updated-datetime: last update of the activity record by the publisher
+    title_field: title/narrative (English preferred)
+    description_fields: [description type 1 (general), description type 2 (objectives)]
+    proposal_stage_text: >-
+      Descriptions are the publisher's current text; drafting date unknown. Many activities link
+      'Action Document' documents (not downloaded).
+    label_category: B_donor_reported_rio
+    label_definition: >-
+      DAC policy-marker vocabulary 1, code 6 (mitigation) / 7 (adaptation), significance 0/1/2,
+      reported by the European Commission. Explicit 0 = not targeted; absent = unknown.
+    label_authority: European Commission (donor self-assessment)
+    sector_field: sector (DAC 5-digit) with percentage
+    financial_units: EUR (default-currency); not extracted for modelling
+    relationships: >-
+      related-activity type=1 links contracts to decisions; activities may appear in several
+      country files (de-duplicated on iati-identifier). Co-financing with FCDO/World Bank possible.
+    legal_terms_url: https://commission.europa.eu/legal-notice_en
+    legal_terms_evidence: >-
+      IATI Registry license_id "other-at" (attribution) for EC INTPA datasets (retrieved registry
+      list). Commission legal notice (retrieved, role=terms): EU-owned content CC BY 4.0 under
+      Commission Decision 2011/833 unless otherwise indicated; credit + indicate changes; third-
+      party content excluded. Not reviewed by a person.
+    retrieval_limits: {max_file_bytes: 31457280, max_total_bytes: 209715200, min_interval_s: 1.5}
+    confirmed_facts:
+      - "Registry lists 155 EC INTPA activity datasets, 123.8 MB declared, licence other-at (2026-11-09)"
+      - "Probe of the Pakistan file: policy-marker vocabulary 1 codes 6 and 7 with significance 0/1/2"
+    assumptions:
+      - "EC Rio markers follow OECD DAC Rio-marker handbook definitions"
+    limitations:
+      - "Donor self-reported markers; a second donor with its own conventions"
+      - "Some narratives may not be in English"
+
+  - source_id: oecd_crs
+    publisher: OECD Development Co-operation Directorate
+    title: OECD Creditor Reporting System activity-level bulk files (DF_CRS related files)
+    authoritative_url: https://sdmx.oecd.org/public/rest/dataflow/OECD.DCD.FSD/DSD_CRS@DF_CRS/latest
+    access_status: blocked_automated_access
+    access_notes: >-
+      SDMX dataflow metadata (open) lists related files at webfs-dcd.oecd.org (CRS.parquet,
+      CRS-reduced.parquet, 'CRS <year> data.zip'). Every bulk file request from this client
+      returned HTTP 403 from a Cloudflare challenge; only the README text file was served. The
+      challenge was not bypassed. A person must download the files in a browser and place them
+      under $COMPASSIO_V2_OUTPUT_ROOT/manual_downloads/oecd_crs/ for registration.
+    dataset_version: "related files v20261006 per SDMX annotations (observed)"
+    unit_of_observation: one CRS activity flow record (per donor report and year)
+    record_identifier: CrsID / ProjectNumber (per codebook; not verified on data)
+    country_field: RecipientCode / RecipientName (not verified on data)
+    date_fields:
+      Year: reporting year of the flow (not verified on data)
+      CommitmentDate: commitment date where reported (not verified on data)
+    title_field: ProjectTitle (not verified on data)
+    description_fields: [ShortDescription, LongDescription]
+    proposal_stage_text: unknown
+    label_category: B_donor_reported_rio
+    label_definition: ClimateMitigation / ClimateAdaptation Rio markers 0/1/2 (not verified on data)
+    label_authority: Reporting donors (self-assessed)
+    sector_field: PurposeCode (DAC 5-digit)
+    financial_units: USD thousands / millions per codebook (not verified on data)
+    relationships: Same activity reported in several years; IATI identifiers sometimes reported
+    legal_terms_url: null
+    legal_terms_evidence: OECD terms not read in this task.
+    confirmed_facts:
+      - "SDMX DF_CRS v1.7 annotations list CRS.parquet and per-year zip related files (2026-11-09)"
+      - "README states pipe-delimited UTF-8 files; Bi_Multi=2 rows are multilateral outflows to exclude"
+      - "webfs-dcd.oecd.org bulk files returned HTTP 403 (Cloudflare) to GET and HEAD"
+    assumptions:
+      - "Bulk files contain project titles, long descriptions and Rio markers"
+    limitations:
+      - "Not acquired in this task"

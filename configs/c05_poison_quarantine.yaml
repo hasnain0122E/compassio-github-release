@@ -1,0 +1,55 @@
+# BATTLEVERSE challenge C05: poisoned training batch quarantine. Frozen BEFORE the experiment.
+# Run: uv run python -m compassio_ml.challenges.c05.cli run
+# See docs/challenges/c05_experiment_protocol.md. Outputs go to data/ml_v2/challenges/c05/
+# (git-ignored). Canonical data, labels, models and sealed evaluations are never modified.
+config_version: c05-1.0.0
+detector_version: compassio-c05-detector-1.0.0
+
+cohort:
+  # The existing eligible ML v2 cohort, loaded ONLY via compassio_ml.model_v2.data.load_development
+  # (pins, rights and isolation re-checked). TRAIN is the incoming batch. VALID is used only as a
+  # clearly labelled CHALLENGE DEVELOPMENT BENCHMARK (never the sealed/consumed test sets).
+  plan: configs/ml_v2_fast_experiment.yaml
+  batch_partition: train
+  benchmark_partition: valid
+
+attack:
+  rate: 0.05                 # count = floor(n * rate + 0.5) -> 666 of 13,317
+  # Final-evaluation seed, fixed before the final run. Seeds 20261111 and 101 were used
+  # while developing the detector and are NOT used for the reported results.
+  seed: 20261112
+  modes:
+    uniform: {}               # flip 0<->1 on a uniformly random 5% of records
+    targeted_non_energy_positive: {}  # flip 1->0 on climate-positive non-energy records only
+                                      # (attacker hides adaptation/non-energy climate projects)
+
+detector:
+  # Out-of-fold, group-aware label-consistency check. Every vectoriser, classifier and
+  # nearest-neighbour index is fitted on the training folds only.
+  n_splits: 5
+  seed: 20261111
+  text_model:
+    features: {analyzer: word, ngram_range: [1, 2], min_df: 2, max_df: 0.9, max_features: 200000, sublinear_tf: true}
+    classifier: {C: 4.0, class_weight: balanced}
+  # Confident-learning style per-class thresholds (Northcutt et al. 2021): t_c = mean predicted
+  # probability of class c over records SUPPLIED with label c. Computed per publisher when the
+  # publisher has >= min_class_support records of that class, otherwise over the whole batch.
+  min_class_support: 50
+  knn:
+    k: 15
+    max_agreement: 0.20      # flag if <= 20% of the k nearest training-fold neighbours share the label
+    min_mean_similarity: 0.10  # below this, neighbours are too far to judge -> no kNN evidence
+  decision:
+    # quarantined: BOTH independent signals flag the supplied label.
+    # insufficient_evidence: exactly one signal flags, or the kNN check had no close neighbours.
+    # accepted: neither signal flags.
+    insufficient_evidence_policy: accept_and_review   # kept for training, listed for human review
+
+downstream:
+  # Disposable comparison models (never registered, never served): the ML v2 champion family.
+  features: char           # plan feature spec 'char' (char_wb 2-5)
+  classifier: lr
+  params: {C: 2.0, class_weight: balanced}
+  threshold: train_oof_max_f1   # chosen on the labels each model is trained with (3 group folds)
+  n_splits: 3
+  seed: 20261110

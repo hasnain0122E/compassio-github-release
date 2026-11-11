@@ -1,0 +1,68 @@
+{
+  "primary": {
+    "protocol": "primary",
+    "train_records": 14654,
+    "train_positives": 918,
+    "validation_records": 3140,
+    "validation_positives": 239,
+    "train_oof_threshold": 0.4740212723792222,
+    "validation": {
+      "precision": 0.7918552036199095,
+      "recall": 0.7322175732217573,
+      "f1": 0.7608695652173914,
+      "accuracy": 0.964968152866242,
+      "tn": 2855,
+      "fp": 46,
+      "fn": 64,
+      "tp": 175,
+      "predicted_positive": 221,
+      "average_precision": 0.8268687881498024,
+      "roc_auc": 0.9645238476416298
+    },
+    "model_sha256": "20846c7e2f950b579e6e9c3829cd77e8761742928a992d92b16f9ee0cf8adeb7"
+  },
+  "chronological": {
+    "protocol": "chronological",
+    "train_records": 10461,
+    "train_positives": 670,
+    "validation_records": 2277,
+    "validation_positives": 185,
+    "train_oof_threshold": 0.5159941031937899,
+    "validation": {
+      "precision": 0.6532663316582915,
+      "recall": 0.7027027027027027,
+      "f1": 0.6770833333333334,
+      "accuracy": 0.945542380324989,
+      "tn": 2023,
+      "fp": 69,
+      "fn": 55,
+      "tp": 130,
+      "predicted_positive": 199,
+      "average_precision": 0.7522961434919577,
+      "roc_auc": 0.9497881246447213
+    },
+    "model_sha256": "99742beb7e5add39f11397a78ac74debb2d71d11db495fa44521a56b34fdea9b"
+  },
+  "pakistan_holdout": {
+    "protocol": "pakistan_holdout",
+    "train_records": 17309,
+    "train_positives": 1086,
+    "validation_records": 3057,
+    "validation_positives": 197,
+    "train_oof_threshold": 0.4968937550158455,
+    "validation": {
+      "precision": 0.8012048192771084,
+      "recall": 0.6751269035532995,
+      "f1": 0.7327823691460055,
+      "accuracy": 0.9682695453058554,
+      "tn": 2827,
+      "fp": 33,
+      "fn": 64,
+      "tp": 133,
+      "predicted_positive": 166,
+      "average_precision": 0.7932931871191711,
+      "roc_auc": 0.9586791381207626
+    },
+    "model_sha256": "878bd36756d7b82699f7f56a1049e8c096c229937fccd342a7687bfc8d0ddd82"
+  }
+}

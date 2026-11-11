@@ -1,0 +1,217 @@
+{
+  "caveats": [
+    "Same 2,550 records for both models; v1 threshold unchanged (0.474).",
+    "VALID was used once to select ML v2, so ML v2's scores are optimistic.",
+    "Agreement with publisher markers, not independently verified accuracy.",
+    "v1's threshold was set on AidData (6-8% prevalence); part of the gap is a population/label-policy shift.",
+    "Do not compare with v1's Task 005 AidData final-test metrics (different data)."
+  ],
+  "git_commit": "3bf81cd42d5c932442a33cb060e7a46a0f35c308",
+  "ml_v1": {
+    "adaptation_only": {
+      "detected": 54,
+      "positives": 258,
+      "recall": 0.20930232558139536
+    },
+    "confusion": {
+      "fn": 584,
+      "fp": 31,
+      "tn": 1692,
+      "tp": 243
+    },
+    "intervals_95": {
+      "adaptation_only_recall": [
+        0.1458292322834646,
+        0.27459477920543496
+      ],
+      "average_precision": [
+        0.6306810389180467,
+        0.7303240532502907
+      ],
+      "f1": [
+        0.3857274204395793,
+        0.49727209423293117
+      ],
+      "non_energy_average_precision": [
+        0.5935812024524812,
+        0.7034641731292999
+      ],
+      "non_energy_precision": [
+        0.8251243104653874,
+        0.9192020709608649
+      ],
+      "non_energy_recall": [
+        0.21290134486974513,
+        0.30915465315443896
+      ],
+      "precision": [
+        0.8436338899196042,
+        0.9249146757679181
+      ],
+      "recall": [
+        0.24683810594657335,
+        0.34419437607393305
+      ]
+    },
+    "metrics": {
+      "adaptation_only_recall": 0.20930232558139536,
+      "average_precision": 0.6812037416061257,
+      "ece_10bin": 0.1713532141277864,
+      "energy_recall": 0.5567010309278351,
+      "f1": 0.44141689373297005,
+      "non_energy_average_precision": 0.6486887104123908,
+      "non_energy_precision": 0.875,
+      "non_energy_recall": 0.2589041095890411,
+      "precision": 0.8868613138686131,
+      "recall": 0.29383313180169285,
+      "roc_auc": 0.7326753553354888
+    },
+    "model_version": "compassio-ccrc-1.0.0-mvp-research-screening",
+    "predicted_positive": 274,
+    "publisher": {
+      "iati_ec_intpa": {
+        "average_precision": 0.7207927613711171,
+        "positives": 680,
+        "precision": 0.9430051813471503,
+        "recall": 0.2676470588235294,
+        "records": 1678
+      },
+      "iati_fcdo": {
+        "average_precision": 0.6599003884049828,
+        "positives": 147,
+        "precision": 0.7530864197530864,
+        "recall": 0.41496598639455784,
+        "records": 872
+      }
+    },
+    "threshold": 0.4740212723792222
+  },
+  "ml_v2": {
+    "adaptation_only": {
+      "detected": 189,
+      "positives": 258,
+      "recall": 0.7325581395348837
+    },
+    "candidate": "combined/B_char_lr",
+    "confusion": {
+      "fn": 172,
+      "fp": 294,
+      "tn": 1429,
+      "tp": 655
+    },
+    "intervals_95": {
+      "adaptation_only_recall": [
+        0.6473148634453781,
+        0.8116599207966921
+      ],
+      "average_precision": [
+        0.8062579301972957,
+        0.869150795923266
+      ],
+      "f1": [
+        0.700676778819636,
+        0.7742335265481045
+      ],
+      "non_energy_average_precision": [
+        0.7722242353095247,
+        0.846251264550378
+      ],
+      "non_energy_precision": [
+        0.6073841141537446,
+        0.7086360161870504
+      ],
+      "non_energy_recall": [
+        0.7155247211127944,
+        0.8138768759740957
+      ],
+      "precision": [
+        0.6430734149054506,
+        0.7368988161302257
+      ],
+      "recall": [
+        0.7466475922679507,
+        0.834499890206412
+      ]
+    },
+    "metrics": {
+      "adaptation_only_recall": 0.7325581395348837,
+      "average_precision": 0.8387371243374265,
+      "ece_10bin": 0.08004052702014841,
+      "energy_recall": 0.9896907216494846,
+      "f1": 0.7376126126126126,
+      "non_energy_average_precision": 0.8103870526442555,
+      "non_energy_precision": 0.6584216725559482,
+      "non_energy_recall": 0.7657534246575343,
+      "precision": 0.690200210748156,
+      "recall": 0.7920193470374849,
+      "roc_auc": 0.8912241450578664
+    },
+    "predicted_positive": 949,
+    "publisher": {
+      "iati_ec_intpa": {
+        "average_precision": 0.8619022638053542,
+        "positives": 680,
+        "precision": 0.7172503242542153,
+        "recall": 0.8132352941176471,
+        "records": 1678
+      },
+      "iati_fcdo": {
+        "average_precision": 0.7411803595706478,
+        "positives": 147,
+        "precision": 0.5730337078651685,
+        "recall": 0.6938775510204082,
+        "records": 872
+      }
+    },
+    "threshold": 0.44474326842740053
+  },
+  "paired_differences_ml_v2_minus_ml_v1": {
+    "champion_minus_v1_ap": {
+      "difference": 0.1575333827313008,
+      "high": 0.19763261436887292,
+      "low": 0.1198609484841455,
+      "valid_resamples": 2000
+    },
+    "champion_minus_v1_ap@iati_ec_intpa": {
+      "difference": 0.14110950243423703,
+      "high": 0.1867666942484405,
+      "low": 0.09829876416732532,
+      "valid_resamples": 2000
+    },
+    "champion_minus_v1_ap@iati_fcdo": {
+      "difference": 0.08127997116566499,
+      "high": 0.13082403833679937,
+      "low": 0.03281241000990615,
+      "valid_resamples": 2000
+    },
+    "champion_minus_v1_non_energy_ap": {
+      "difference": 0.16169834223186463,
+      "high": 0.20615743881414222,
+      "low": 0.12025065341400125,
+      "valid_resamples": 2000
+    }
+  },
+  "plan_sha256": "4931705648939ff8825655f2d74d34c86d2f57a4eeb72955892105bb1a0728e8",
+  "population": {
+    "by_publisher": {
+      "iati_ec_intpa": {
+        "positives": 680,
+        "records": 1678
+      },
+      "iati_fcdo": {
+        "positives": 147,
+        "records": 872
+      }
+    },
+    "description": "Eligible ML v2 development-validation records (FCDO + EC IATI); labels are publisher-reported Rio markers, not human-verified",
+    "positives": 827,
+    "records": 2550,
+    "used_for_model_selection": true
+  },
+  "run_id": "ml2fast_49317056_3bf81cd4_20261109T192725Z",
+  "schema": "compassio-ml-v2-comparison-aggregates/1",
+  "source_files_sha256": {
+    "results.json": "7bd685247765cacbfdd8066084ee2805a20fc6d1cbaba728c9e690f5968c3009",
+    "run_manifest.json": "bd7b4ca0d3854e0fc67dba54a424983bce313df9711918b396bdc731d0c69a4f"
+  }
+}

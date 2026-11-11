@@ -1,0 +1,62 @@
+# Compassio inference model registry (Task 007). Read by compassio_api.inference.
+# Pins identity, checksums, threshold and evaluation provenance for every model the API may load.
+# Statuses are SEPARATE from the operational mode:
+#   trusted_research_release  ML v1 (one-shot frozen test; listed in configs/trusted_model_releases.json)
+#   development_candidate     ML v2 (development-validation only; NOT a release; NOT in that registry)
+#   authorized_local_demo     an operational MODE (COMPASSIO_ML_V2_LOCAL_DEMO=true, environment=development,
+#                             local source-data access) in which ML v2 is the default engine.
+# Nothing here changes a model artifact, an evaluation ledger or a rights registry.
+version: inference_models_v1
+
+models:
+  ml_v1:
+    engine_label: "Compassio Climate Relevance Classifier v1 — MVP Research Screening"
+    model_version: compassio-ccrc-1.0.0-mvp-research-screening
+    status: trusted_research_release
+    loader: trusted_release
+    artifact_dir: models/compassio_ccrc_v1
+    artifact_sha256: 53b226f6e866bd5377b951aaeb87f9be86c72dc9ac444a807bf0d49c857d3656
+    model_fingerprint: 3023fe3d148b605c3ed9079c93f07296193fd2d8d5f77b8a82a163e58ccdc495
+    threshold: 0.4740212723792222
+    representation: "word TF-IDF 1-2-grams + logistic regression (C=16, balanced)"
+    training_data: "AidData GCDF 3.0 records with Qi et al. 2026 Rio annotations (primary TRAIN, 14,654)"
+    evaluation:
+      kind: one_shot_frozen_test
+      population: "AidData primary group-disjoint test (3,142 records, 202 positive)"
+      headline: {average_precision: 0.751, f1: 0.670, non_energy_recall: 0.368}
+      document: docs/research/task005_model_card.md
+    intended_use: "Human-reviewed research screening; reliable mainly for energy-sector text."
+  ml_v2:
+    engine_label: "Compassio Climate Intelligence — ML v2"
+    model_version: ml2fast_49317056_c76204127550
+    status: development_candidate
+    loader: development_candidate
+    artifact_dir: data/ml_v2/models_v2_dev/ml2fast_49317056_c76204127550
+    artifact_sha256: 654336052ba75aae97a5c20db1c3ce9bb06792640abe6f660973318852358574
+    model_fingerprint: c76204127550fb299c11704de61bd07cce3eae6635193e608a42897c5f995ad2
+    threshold: 0.44474326842740053
+    representation: "character TF-IDF 2-5-grams (char_wb) + logistic regression (C=2, balanced)"
+    training_data: "FCDO + EC IATI activities with publisher-reported Rio markers (v2 TRAIN, 13,317)"
+    evaluation:
+      kind: development_validation_used_for_selection
+      population: "2,550 eligible FCDO + EC v2 development-validation records (827 positive)"
+      headline: {average_precision: 0.839, f1: 0.738, non_energy_recall: 0.766}
+      document: docs/research/model_v2/development_champion_card.md
+    intended_use: "Authorized local demonstration and internal research screening with human review."
+
+demo:
+  mode_name: authorized_local_demo
+  default_model: ml_v2
+  fallback_model: ml_v1
+  allowed_environments: [development]
+  requires_source_data_access: local_development
+
+comparison_aggregates: docs/research/model_v2/fast_benchmark_aggregates.json
+
+# Database records may be passed to a model only if their source is permitted for
+# automated_evaluation in configs/ml_rights_eligibility_v2.yaml (fail closed otherwise).
+model_input_rights:
+  rights_config: configs/ml_rights_eligibility_v2.yaml
+  use: automated_evaluation
+  database_source_to_rights_source:
+    aiddata: aiddata
