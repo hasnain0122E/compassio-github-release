@@ -17,6 +17,7 @@ import {
   inputClass,
 } from "@/components/ui";
 import { api } from "@/lib/api";
+import { DEMO_MODE } from "@/lib/demo-mode";
 import type {
   ComparisonResponse,
   ModelInfo,
@@ -53,6 +54,7 @@ const EXAMPLES: Array<{ label: string; title: string; description: string }> = [
 ];
 
 function statusText(status: ModelInfo["status"]): string {
+  if (DEMO_MODE) return "Illustrative demo rules";
   return status === "development_candidate"
     ? "Development candidate"
     : "Trusted research release";
@@ -166,7 +168,7 @@ function ResultCard({
   return (
     <div className="flex flex-col gap-6">
       <div>
-        <span className="section-step">YOUR ANALYSIS</span>
+        <span className="section-step">{DEMO_MODE ? "ILLUSTRATIVE SCREENING RESULTS" : "YOUR ANALYSIS"}</span>
         <h2 className="mt-3 text-2xl font-semibold">{heading}</h2>
         <p className="mt-3 text-sm leading-relaxed text-text-2">
           {BAND[p.band]?.body}
@@ -229,7 +231,7 @@ function ResultCard({
           <p className="text-xs">
             Score {p.label_score.toFixed(3)} against decision threshold{" "}
             {p.threshold.toFixed(3)}. {p.is_climate_related ? "Above" : "Below"}{" "}
-            the frozen decision threshold.
+            {DEMO_MODE ? "the illustrative rule threshold." : "the frozen decision threshold."}
           </p>
           {result.source_evidence ? (
             <p className="break-words text-xs">
@@ -585,7 +587,7 @@ export function ScreeningWorkspace() {
                 Analyze project
               </Button>
               <p className="text-xs text-text-3">
-                {op.default_model === "ml_v2"
+                {DEMO_MODE ? "Illustrative keyword screening (no ML inference)" : op.default_model === "ml_v2"
                   ? "Powered by ML v2"
                   : "Powered by ML v1"}{" "}
                 / local research screening. Your text is not stored.
@@ -637,7 +639,7 @@ export function ScreeningWorkspace() {
         </div>
       </div>
       {preset ? <SourceNotice access={sources.data?.access} attribution={run.data?.source_evidence ? sourceName(run.data.source_evidence.source_id) : undefined} /> : null}
-      <details
+      {!DEMO_MODE && <details
         className="text-sm"
         onToggle={(e) => setShowDetails(e.currentTarget.open)}
       >
@@ -666,7 +668,7 @@ export function ScreeningWorkspace() {
             )}
           </Disclosure>
         </div>
-      </details>
+      </details>}
     </div>
   );
 }

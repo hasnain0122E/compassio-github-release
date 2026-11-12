@@ -7,7 +7,7 @@ import { useCallback, useSyncExternalStore } from "react";
  * persisted in localStorage, read with useSyncExternalStore (empty on the server).
  */
 export const MAX_SELECTION = 10;
-const STORAGE_KEY = "compassio.selection.v1";
+const STORAGE_KEY = process.env.NEXT_PUBLIC_COMPASSIO_DEMO_MODE === "true" ? "compassio.demo.selection.v1" : "compassio.selection.v1";
 
 export type SelectedProject = { id: string; title: string; sourceId: string };
 

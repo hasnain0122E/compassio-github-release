@@ -1,4 +1,5 @@
 "use client";
+import { DEMO_MODE, DEMO_NOTICE } from "@/lib/demo-mode";
 import type { AccessNotice } from "@/lib/api-types";
 import { ShieldCheck } from "lucide-react";
 import { useState } from "react";
@@ -16,6 +17,7 @@ export function SourceNotice({
   const sources = useApi(open ? "source-attributions" : null, (s) =>
     api.sources(s),
   );
+  if (DEMO_MODE) return <p className="text-xs text-text-3">{DEMO_NOTICE}</p>;
   if (!access) return null;
   return (
     <details

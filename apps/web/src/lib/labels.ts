@@ -1,6 +1,7 @@
 /** Display labels for backend codes. Meanings themselves always come from the API. */
 
 export const SOURCE_SHORT: Record<string, string> = {
+  synthetic_demo: "Synthetic demo projects",
   aiddata: "AidData",
   adb_pakistan: "ADB Pakistan",
   climate_funds_update: "Climate Funds Update",

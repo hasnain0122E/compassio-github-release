@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from "next";
 import { Providers } from "@/components/providers";
 import { PRODUCT_CATEGORY, PRODUCT_NAME, PRODUCT_TAGLINE } from "@/lib/brand";
 import "./globals.css";
+import { DEMO_MODE, DEMO_NOTICE } from "@/lib/demo-mode";
 
 export const metadata: Metadata = {
   title: { default: `${PRODUCT_NAME} — ${PRODUCT_CATEGORY}`, template: `%s — ${PRODUCT_NAME}` },
@@ -25,6 +26,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
         <script dangerouslySetInnerHTML={{ __html: THEME_SCRIPT }} />
       </head>
       <body className="min-h-full">
+        {DEMO_MODE && <aside className="bg-canopy-soft px-4 py-2 text-center text-xs text-text" role="note">{DEMO_NOTICE}</aside>}
         <Providers>{children}</Providers>
       </body>
     </html>

@@ -7,6 +7,7 @@
  *   never floods the single-worker local backend.
  * - All money stays as the backend's decimal strings; this module never does arithmetic on it.
  */
+import { DEMO_MODE } from "./demo-mode";
 import type {
   ApprovedDisbursedResponse,
   ClimateDistributionResponse,
@@ -35,7 +36,7 @@ import type {
 } from "./api-types";
 
 export const API_BASE = (
-  process.env.NEXT_PUBLIC_COMPASSIO_API_URL ?? "http://127.0.0.1:8000"
+  DEMO_MODE ? "" : process.env.NEXT_PUBLIC_COMPASSIO_API_URL ?? "http://127.0.0.1:8000"
 ).replace(/\/$/, "");
 
 export class ApiError extends Error {
@@ -162,6 +163,11 @@ async function sendNow<T>(
   body?: unknown,
   signal?: AbortSignal,
 ): Promise<T> {
+  if (DEMO_MODE) {
+    if (signal?.aborted) throw new DOMException("Aborted", "AbortError");
+    const { demoRequest } = await import("./demo-provider");
+    return demoRequest(path, body) as T;
+  }
   let response: Response;
   try {
     response = await fetch(`${API_BASE}${path}`, {

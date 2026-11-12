@@ -1,0 +1,15 @@
+node_modules
+.next
+e2e
+test-results
+playwright-report
+*.tsbuildinfo
+.env*
+**/*.sqlite
+**/*.sqlite3
+**/*.db
+**/*.pkl
+**/*.joblib
+**/*.onnx
+**/*.pt
+**/*.pem

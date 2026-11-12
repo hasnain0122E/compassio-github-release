@@ -24,6 +24,7 @@ import {
   LoadingBlock,
 } from "@/components/ui";
 import { api } from "@/lib/api";
+import { DEMO_MODE } from "@/lib/demo-mode";
 import type { ProjectDetail as Detail, ProjectEvidence } from "@/lib/api-types";
 import { exactAmount, humanize, priceBasis, sourceText } from "@/lib/format";
 import { SourceNotice } from "@/components/source-notice";
@@ -259,7 +260,7 @@ export function ProjectDetailView() {
                 {ev?.climate_relevance.statement ||
                   "These source annotations are a starting point for review, not proof of environmental outcomes."}
               </p>
-              {p.source.source_id === "aiddata" ? (
+              {DEMO_MODE || p.source.source_id === "aiddata" ? (
                 <LinkButton
                   href={`/screening?project=${encodeURIComponent(p.id)}`}
                   variant="secondary"

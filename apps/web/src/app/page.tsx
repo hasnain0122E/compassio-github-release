@@ -1,3 +1,4 @@
+import { DEMO_MODE } from "@/lib/demo-mode";
 import Link from "next/link";
 import { Brain, Database, FileSearch, Landmark, Scale, ShieldCheck } from "lucide-react";
 import { CompassHero } from "@/components/compass-hero";
@@ -8,14 +9,14 @@ import { buttonClass } from "@/components/styles";
 const STEPS: Array<{ title: string; body: string; href: string; action: string }> = [
   {
     title: "Find",
-    body: "Search 26 thousand project records by country, sector, source and year. Pakistan is covered by every source.",
+    body: DEMO_MODE ? "Search six synthetic project examples by country, sector and year, including Pakistan flood protection, solar and water resilience." : "Search 26 thousand project records by country, sector, source and year. Pakistan is covered by every source.",
     href: "/projects?country=PAK",
     action: "Explore Pakistan projects",
   },
   {
     title: "Understand",
     body: "Open a project to see each funding figure with its meaning, currency, price basis and source reference.",
-    href: "/projects/gcf_projects:FP085",
+    href: DEMO_MODE ? "/projects/pak-flood" : "/projects/gcf_projects:FP085",
     action: "Open an example project",
   },
   {
@@ -77,7 +78,7 @@ export default function Home() {
               </Link>
             </div>
             <div className="mt-4 border-t border-ink-2 pt-6">
-              <p className="mb-4 text-2xs text-ink-text-2">Records in the verified local database, per source (never added across sources)</p>
+              <p className="mb-4 text-2xs text-ink-text-2">{DEMO_MODE ? "Synthetic sample project records" : "Records in the verified local database, per source (never added across sources)"}</p>
               <HeroCounts />
             </div>
           </div>
@@ -156,16 +157,16 @@ export default function Home() {
         <section id="ai" aria-labelledby="ai-title" className="bg-ink text-ink-text">
           <div className="mx-auto grid max-w-7xl gap-10 px-4 py-16 sm:px-8 sm:py-20 lg:grid-cols-2">
             <div className="flex flex-col gap-4">
-              <p className="text-sm font-semibold text-[#7fd1a3]">Compassio Climate Intelligence — ML v2</p>
-              <h2 id="ai-title" className="text-2xl font-bold text-white sm:text-3xl">Finds the climate projects simpler screening overlooks</h2>
+              <p className="text-sm font-semibold text-[#7fd1a3]">{DEMO_MODE ? "Illustrative screening demo" : "Compassio Climate Intelligence ? ML v2"}</p>
+              <h2 id="ai-title" className="text-2xl font-bold text-white sm:text-3xl">{DEMO_MODE ? "Explore how project screening works" : "Finds the climate projects simpler screening overlooks"}</h2>
               <p className="text-ink-text-2">
-                Our improved AI helps identify climate-related development projects that simpler screening
+                {DEMO_MODE ? "Try deterministic keyword screening on sample or pasted text. Results are illustrative, not actual ML v2 inference." : <>Our improved AI helps identify climate-related development projects that simpler screening
                 can overlook, especially projects involving farming, water and flood protection. It reads the
-                title and description, gives a score, and shows which words pushed it up or down.
+                title and description, gives a score, and shows which words pushed it up or down.</>}
               </p>
               <p className="text-sm text-ink-text-2">
                 It helps you decide what to review first. It does not approve funding or verify
-                environmental outcomes, and the earlier ML v1 model stays available for comparison.
+                environmental outcomes. {DEMO_MODE ? "ML evaluation was verified separately." : "The earlier ML v1 model stays available for comparison."}
               </p>
               <Link href="/screening" className="mt-2 w-fit rounded-1 bg-[#7fd1a3] px-5 py-3 text-sm font-semibold text-ink hover:bg-white">
                 Try AI screening
@@ -180,27 +181,26 @@ export default function Home() {
         <section id="data" aria-labelledby="data-title" className="mx-auto max-w-7xl px-4 py-16 sm:px-8 sm:py-20">
           <div className="grid gap-10 lg:grid-cols-[1fr_1.3fr]">
             <div className="flex flex-col gap-4">
-              <h2 id="data-title" className="text-2xl font-bold sm:text-3xl">Real data, honest arithmetic</h2>
+              <h2 id="data-title" className="text-2xl font-bold sm:text-3xl">{DEMO_MODE ? "Sample projects, clear limits" : "Real data, honest arithmetic"}</h2>
               <ul className="flex flex-col gap-3 text-sm text-text-2">
                 <li className="flex gap-3">
                   <Database aria-hidden className="mt-0.5 size-4 shrink-0 text-canopy" />
-                  Every record comes from a registered public source with a file checksum. Nothing is generated.
+                  {DEMO_MODE ? "Demo records are author-written synthetic examples, clearly labeled throughout." : "Every record comes from a registered public source with a file checksum. Nothing is generated."}
                 </li>
                 <li className="flex gap-3">
                   <Landmark aria-hidden className="mt-0.5 size-4 shrink-0 text-canopy" />
-                  Money is exact decimal arithmetic on the server. A missing amount is shown as missing, never as zero.
+                  {DEMO_MODE ? "The samples contain no actual financial observations. Missing amounts stay missing." : "Money is exact decimal arithmetic on the server. A missing amount is shown as missing, never as zero."}
                 </li>
                 <li className="flex gap-3">
                   <ShieldCheck aria-hidden className="mt-0.5 size-4 shrink-0 text-canopy" />
-                  Sources keep their licences and attribution. This demo runs on one machine under an event
-                  authorization; it is not a public data service.
+                  {DEMO_MODE ? "These synthetic records are included with the Next.js application. No private source datasets are shipped." : "Sources keep their licences and attribution. This demo runs on one machine under an event authorization; it is not a public data service."}
                 </li>
               </ul>
               <div className="mt-2 rounded-2 border border-line bg-panel-2 p-4 text-sm text-text-2">
                 <p className="font-semibold text-text">Built with</p>
                 <p className="mt-1">
-                  FastAPI with a read-only SQLite database and exact Decimal finance contracts · scikit-learn
-                  text models with pinned checksums · Next.js and React for this interface.
+                  {DEMO_MODE ? "Next.js and React with included synthetic data and illustrative keyword screening." : <> FastAPI with a read-only SQLite database and exact Decimal finance contracts · scikit-learn
+                  text models with pinned checksums · Next.js and React for this interface.</>}
                 </p>
               </div>
             </div>

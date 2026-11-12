@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { DEMO_MODE } from "@/lib/demo-mode";
 import { api } from "@/lib/api";
 import { dateTime, integer, percent } from "@/lib/format";
 import { RECORD_LEVEL, sourceName } from "@/lib/labels";
@@ -83,6 +84,7 @@ export function LiveFundingPreview() {
   const { data, error, loading } = useApi("landing-cfu", (s) =>
     api.fundingBy("country", { metric: "cfu_approvals_usd", limit: 6 }, s),
   );
+  if (DEMO_MODE) return <p className="text-sm text-text-3">Synthetic examples have no actual funding observations. Explore flood protection, solar energy and water resilience projects.</p>;
   if (loading) return <Skeleton className="h-40 w-full" />;
   if (error || !data) return <p className="text-sm text-text-3">Live preview appears when the API is running.</p>;
   return (
@@ -106,6 +108,7 @@ export function LiveFundingPreview() {
 
 export function ModelAdvantage() {
   const { data, error } = useApi("model-comparison", (s) => api.modelComparison(s));
+  if (DEMO_MODE) return <p className="text-sm text-ink-text-2">This hosted demo uses illustrative keyword screening. ML evaluations were verified separately in the local research environment. See Trust &amp; Resilience for recorded scorecards.</p>;
   if (error || !data) {
     return <p className="text-sm text-ink-text-2">Benchmark figures load from the local API.</p>;
   }

@@ -27,8 +27,8 @@ export default function ChallengesPage() {
       description="Three safeguards, tested with reproducible evidence. Explore the limits as well as the improvements."
       crumbs={[{ href: "/projects", label: "Compassio" }, { label: "Trust & Resilience" }]} />
     <PageBody>
-      <p className="text-sm text-text-2">These comparisons are recorded challenge evaluations.
-        Only the input demonstration runs live in this page. Screening supports human review;
+      <p className="text-sm text-text-2">These comparisons are recorded results from prior local evaluations.
+        Live challenge execution requires the separate local research environment. Screening supports human review;
         it does not predict funding approval, returns or environmental impact.</p>
       <div className="flex flex-col gap-6">
         <article className="project-card space-y-5 p-5 sm:p-8">
